@@ -6,15 +6,16 @@ public class Paciente {
 	private int idPac;
 	private String nombre;
 	private String apellido;
-	private String tipoDoc;
 	private int nroDoc;
 	private String correo;
 	private String direccion;
 	private int telefono;
-	private String descripcion;
+	private int celular;
+	private String nota;
+	private String ciudad;
 	private String os;
 	private int nroOs;
-	private Date fecNac;
+	private String fecNac;
 	
 	public int getIdPac() {
 		return idPac;
@@ -33,12 +34,6 @@ public class Paciente {
 	}
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-	public String getTipoDoc() {
-		return tipoDoc;
-	}
-	public void setTipoDoc(String tipoDoc) {
-		this.tipoDoc = tipoDoc;
 	}
 	public int getNroDoc() {
 		return nroDoc;
@@ -64,12 +59,6 @@ public class Paciente {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 	public String getOs() {
 		return os;
 	}
@@ -82,13 +71,30 @@ public class Paciente {
 	public void setNroOs(int nroOs) {
 		this.nroOs = nroOs;
 	}
-	public Date getFecNac() {
+	public String getFecNac() {
 		return fecNac;
 	}
-	public void setFecNac(Date fecNac) {
+	public void setFecNac(String fecNac) {
 		this.fecNac = fecNac;
 	}
-	
+	public int getCelular() {
+		return celular;
+	}
+	public void setCelular(int celular) {
+		this.celular = celular;
+	}
+	public String getNota() {
+		return nota;
+	}
+	public void setNota(String nota) {
+		this.nota = nota;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 	
 
 }
