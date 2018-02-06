@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Usuario {
 	private int idU;
 	private String user;
+	private String pass;
 	private String nombre;
 	private String apellido;
 	private String correo;
@@ -18,6 +19,13 @@ public class Usuario {
 	}
 	public void setIdU(int idU) {
 		this.idU = idU;
+	}
+	
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public String getUser() {
 		return user;

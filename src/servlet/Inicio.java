@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controlers.CtrlABMUsuario;
 import entity.Usuario;
 import util.AppDataException;
 
@@ -34,14 +35,12 @@ public class Inicio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(" GET -INICIO ");
-		String pagina = "/home.jsp";
+		String pagina = "/escritorio.jsp";
 		HttpSession session = request.getSession();
 		try {
 			if(session.getAttribute("usuario")!=null) {
 				System.out.println("sesion iniciada");
 
-				
-				
 			}else{
 				pagina = "/login.jsp";
 			}
@@ -66,14 +65,25 @@ public class Inicio extends HttpServlet {
 			String user=request.getParameter("user");
 			String pass=request.getParameter("pass");
 			if(user!=null && pass!=null){
-				Usuario uss = new Usuario();
+				
+				Usuario uForm = new Usuario();
+				uForm.setUser(user);
+				uForm.setPass(pass);
+				Usuario uLog = new Usuario();
+				uLog = null;
+				CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
+				uLog = ctrlUss.login(uForm);
+				
+				
+				
+				
 				
 				
 			}else{
 				
 				pagina = "/login.jsp";
 				request.setAttribute("errTipo", "warning");
-				request.setAttribute("errDesc", "Ingrese usuario y contraseÃ±a");
+				request.setAttribute("errDesc", "Ingrese usuario y contraseña");
 				
 			}
 			
