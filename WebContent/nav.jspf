@@ -1,0 +1,124 @@
+	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand" href="../index.html"> 	 S<i class="fa fa-eye" aria-hidden="true"></i><small>PTICA - Optica Centro</small></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+             	<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Usuario
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="../pages/preferencias.jsp"><i class="fa fa-gear fa-fw"></i> Preferencias</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/Logout"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        
+                        <li>
+                            <a href="../pages/escritorio.jsp"><i class="fa fa-dashboard fa-fw"></i> Escritorio</a>
+                        </li><!-- /escritorio -->
+                        <li>
+                            <a href="#"><i class="fa fa-address-book-o" aria-hidden="true"></i> Pacientes<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../pages/historias_clinicas.jsp"><i class="fa fa-search" aria-hidden="true"></i> Historia Clinica</a>
+                                </li>
+                                <li>
+                                    <a href="../pages/nueva_ficha.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nueva Ficha</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li><!-- /Pacientes -->
+                        
+                      
+                        <li>
+                            <a href="#"><i class="fa fa-adjust fa-fw"></i> Lentes Recetados<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../pages/recetados_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar atención</a>
+                                </li>
+                                <li>
+                                    <a href="../pages/recetados_nuevo.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo ingreso</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li><!--  /recetados -->
+                        
+                       <li>
+                            <a href="#"><i class="fa fa-low-vision fa-fw"></i> Contactología<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../pages/contactologia_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar atención</a>
+                                </li>
+                                <li>
+                                    <a href="../pages/contactologia_nuevo.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo ingreso</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li><!--  Contactologia -->
+                       <li>
+                            <a href="#"><i class="fa fa-assistive-listening-systems fa-fw"></i> Audiología<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../pages/audiologia_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar atención</a>
+                                </li>
+                                <li>
+                                    <a href="../pages/audiologia_nuevo.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo ingreso</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li><!--  Contactologia --> 
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Taller<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../pages/reparacion_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar Reparación</a>
+                                </li>
+                                <li>
+                                    <a href="../pages/reparacion_nueva.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo Ingreso</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li><!--  Contactologia -->
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../pages/acceso_restringido.jsp"><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Usuarios</a>
+                                </li>
+                                <li>
+                                    <a href="../pages/usuario_nuevo.jsp"><i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Usuario</a>
+                                </li>
+                              
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li><!--  Usuarios Cascada -->
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        
+<!--  NAV right-->

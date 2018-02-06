@@ -4,7 +4,6 @@ public class Nivel {
 	private int idNivel;
 	private String descripcion;
 	
-	
 	public int getIdNivel() {
 		return idNivel;
 	}
