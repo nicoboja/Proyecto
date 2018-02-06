@@ -57,7 +57,7 @@ public class Inicio extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pagina = "/escritorio.jsp";
+		String pagina = "/login.jsp";
 		HttpSession session = request.getSession();
 		
 		try {
@@ -65,7 +65,6 @@ public class Inicio extends HttpServlet {
 			String user=request.getParameter("user");
 			String pass=request.getParameter("pass");
 			if(user!=null && pass!=null){
-				
 				Usuario uForm = new Usuario();
 				uForm.setUser(user);
 				uForm.setPass(pass);
@@ -73,23 +72,31 @@ public class Inicio extends HttpServlet {
 				uLog = null;
 				CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
 				uLog = ctrlUss.login(uForm);
-				
-				
-				
-				
-				
-				
+				if(uLog!=null){
+					if (uLog.equals("Habilitado")) {
+						pagina = "/escritorio.jsp";
+						session.setAttribute("ussLog", uLog);
+					}else {
+						request.setAttribute("errTipo", "danger");
+						request.setAttribute("errText", "Usuario "+uLog.getUser()+" Inhabilitado!");
+					}
+				}else{
+					request.setAttribute("errTIpo", "danger");
+					request.setAttribute("errText", "Usuario o contraseña incorrecta!");
+				}
 			}else{
-				
-				pagina = "/login.jsp";
 				request.setAttribute("errTipo", "warning");
-				request.setAttribute("errDesc", "Ingrese usuario y contraseña");
-				
+				request.setAttribute("errText", "Ingrese usuario y contraseña");
 			}
 			
 		} catch (Exception e) {
+			request.setAttribute("errTipo", "warning");
+			request.setAttribute("errText", e);
 			
 		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+        dispatcher.forward(request, response);
+        
 //		try {
 //				String user=request.getParameter("user");
 //				String pass=request.getParameter("pass");
@@ -133,14 +140,7 @@ public class Inicio extends HttpServlet {
 //			
 //			} catch (AppDataException e) {
 //				request.setAttribute("error", "Error: "+e);
-//				pagina = "/login.jsp";
-//			} catch (Exception e) {
-//				request.setAttribute("error", "Error: "+e);
-//				pagina = "/login.jsp";
-//			}
-//		
-//			System.out.println("#############INGRESO##############");
-//			
+//	s
 //			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 //	        dispatcher.forward(request, response); 
 //		
