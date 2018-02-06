@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Date;
-
 public class FichaLente {
 	private int idFicha;
 	private String fecEntrada;
