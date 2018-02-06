@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="config/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="config/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="config/bootstrap/css/dataTables.responsive.css" rel="stylesheet" media="screen">
+<!-- Bootstrap CSS 
+
+<link rel="stylesheet" type="text/css" href="../config/datatables-plugins/css/dataTables.bootstrap4.min.css"/>
+<link rel="stylesheet" type="text/css" href="../config/datatables-plugins/css/dataTables.responsive.css"/>
+<link href="config/datatables-plugins/css/dataTables.bootstrap.css" rel="stylesheet">-->
+
+
+<!-- Custom CSS -->
+<link href="config/css/custom.css" rel="stylesheet" media="screen">
+<!-- MetisMenu CSS -->
+<link href="config/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="config/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- Morris Charts CSS -->
+<link href="config/morrisjs/morris.css" rel="stylesheet"> 
