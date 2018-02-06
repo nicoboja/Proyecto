@@ -1,6 +1,5 @@
 package entity;
 
-
 public class FichaLente {
 	private int idFicha;
 	private String fecEntrada;
