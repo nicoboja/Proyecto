@@ -1,25 +1,25 @@
 package data;
 
-import entity.Paciente;
+import entity.FichaLente;
 
-public class DataPaciente {
+public class DataFichaLente {
 
-	public void add(Paciente pac) {
+	public void add(FichaLente fl) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void delete(Paciente pac) {
+	public void delete(FichaLente fl) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void update(Paciente pac) {
+	public void update(FichaLente fl) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public Paciente getById(Paciente pac) {
+	public FichaLente getById(FichaLente pac) {
 		// TODO Auto-generated method stub
 		return null;
 	}
