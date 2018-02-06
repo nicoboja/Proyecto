@@ -40,25 +40,21 @@ function carga() {
 			 	
 			  	<div class="panel-body">
 			  	
-			 <div class="alert alert-warning">
+			 <div class="alert alert-<%=request.getAttribute("infoTipo")%>">
                 	<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
                               <big><i class="fa fa-exclamation-circle" aria-hidden="true"></i></big>
-                               Usuario o contraseña incorrecta
+                               <%=request.getAttribute("infoText")%>
              </div> 
                 
-             <div class="alert alert-danger">
-                	<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                              <big><i class="fa fa-times-circle" aria-hidden="true"></i></big>
-                               Usuario inhabilitado
-             </div>	
+            
                 
-			    <form accept-charset="UTF-8" role="form" >
+			  <form class="form-signin" name="signin" action="/Proyecto/inicio" method="post">
                     <fieldset>
 			    	  	<div class="form-group">
-			    	  		<input class="form-control" placeholder="Usuario" name="alias" id="alias" type="text">
+			    	  		<input class="form-control" placeholder="Usuario" name="user" id="user" type="text">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
+			    			<input class="form-control" placeholder="Contraseña" name="pass" type="pass" value="">
 			    		</div>
 			    		
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Iniciar">

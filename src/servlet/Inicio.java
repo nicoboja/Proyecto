@@ -18,6 +18,7 @@ import util.AppDataException;
 /**
  * Servlet implementation class Inicio
  */
+
 @WebServlet({ "/Inicio", "/inicio", "/INICIO" })
 public class Inicio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,8 +41,11 @@ public class Inicio extends HttpServlet {
 		try {
 			if(session.getAttribute("usuario")!=null) {
 				System.out.println("sesion iniciada");
+				
 
 			}else{
+				request.setAttribute("infoTipo", "info");
+				request.setAttribute("infoText", "Ingrese usuario y contraseña");
 				pagina = "/login.jsp";
 			}
 			
@@ -72,77 +76,30 @@ public class Inicio extends HttpServlet {
 				CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
 				uLog = ctrlUss.login(uForm);
 				if(uLog!=null){
-					if (uLog.equals("Habilitado")) {
+					if (uLog.getEstado().equals("Habilitado")) {
 						pagina = "/escritorio.jsp";
 						session.setAttribute("ussLog", uLog);
 					}else {
-						request.setAttribute("errTipo", "danger");
-						request.setAttribute("errText", "Usuario "+uLog.getUser()+" Inhabilitado!");
+						request.setAttribute("infoTipo", "danger");
+						request.setAttribute("infoText", "Usuario <b>"+user+"</b> Inhabilitado!");
 					}
 				}else{
-					request.setAttribute("errTIpo", "danger");
-					request.setAttribute("errText", "Usuario o contrase�a incorrecta!");
+					request.setAttribute("infoTipo", "danger");
+					request.setAttribute("infoText", "Usuario o contraseña incorrecta!");
 				}
 			}else{
-				request.setAttribute("errTipo", "warning");
-				request.setAttribute("errText", "Ingrese usuario y contrase�a");
+				request.setAttribute("infoTipo", "warning");
+				request.setAttribute("infoText", "Ingrese usuario y contraseña!");
 			}
 			
 		} catch (Exception e) {
-			request.setAttribute("errTipo", "warning");
-			request.setAttribute("errText", e);
+			request.setAttribute("infoTipo", "danger");
+			request.setAttribute("infoText", e);
 			
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
         dispatcher.forward(request, response);
         
-//		try {
-//				String user=request.getParameter("user");
-//				String pass=request.getParameter("pass");
-//			if (user!=null) {
-//	//			Persona per=new Persona();
-//				per.setUss(user);
-//				per.setPass(pass);
-//				
-//				Persona plog=new Persona();
-//				plog= null;
-//				
-//				CtrlABMPersona ctrlPer= new CtrlABMPersona();
-//				plog=ctrlPer.login(per);
-//				
-//				if (plog != null) {
-//					System.out.println("diferente a nulo");
-//					if (plog.isHabilitado()) {
-//						System.out.println("habilitado");
-//						session.setAttribute("usuario", plog);
-//						CtrlABMReserva ctrlRes = new CtrlABMReserva();
-//						ArrayList<Reserva> listaRes = ctrlRes.getById(plog.getId());
-//						listaRes.get(1).getDetalle();
-//						request.setAttribute("listares", listaRes );
-//					}else{
-//						request.setAttribute("error", "Error: <b>"+plog.getUss()+"<b> no esta <b>Habilitado</b>");
-//						session.setAttribute("usuario", null);
-//						pagina = "/login.jsp";
-//					}
-//					
-//				}else{
-//					request.setAttribute("error", "Error: Usuario o Contraseña incorrecta!");
-//					session.setAttribute("usuario", null);
-//					pagina = "/login.jsp";
-//				}
-//				
-//			}else{
-//				request.setAttribute("error", "Error: Ingrese Usuario y Contraseña");
-//				session.setAttribute("usuario", null);
-//				pagina = "/login.jsp";
-//			}
-//			
-//			} catch (AppDataException e) {
-//				request.setAttribute("error", "Error: "+e);
-//	s
-//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-//	        dispatcher.forward(request, response); 
-//		
 	}
 }
 
