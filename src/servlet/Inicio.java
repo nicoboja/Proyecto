@@ -61,7 +61,6 @@ public class Inicio extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		try {
-			
 			String user=request.getParameter("user");
 			String pass=request.getParameter("pass");
 			if(user!=null && pass!=null){
