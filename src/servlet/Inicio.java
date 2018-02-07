@@ -78,7 +78,13 @@ public class Inicio extends HttpServlet {
 				if(uLog!=null){
 					if (uLog.getEstado().equals("Habilitado")) {
 						pagina = "/escritorio.jsp";
-						session.setAttribute("ussLog", uLog);
+						session.setAttribute("uss", uLog);
+						System.out.println("ACA");
+						System.out.println(uLog.getNivel().get(0).getDescripcion());
+						for(int i=0;i<=uLog.getNivel().size();i++){
+							System.out.println(uLog.getNivel().get(i).getDescripcion());
+							session.setAttribute(uLog.getNivel().get(i).getDescripcion(), true);
+						}
 					}else {
 						request.setAttribute("infoTipo", "danger");
 						request.setAttribute("infoText", "Usuario <b>"+user+"</b> Inhabilitado!");

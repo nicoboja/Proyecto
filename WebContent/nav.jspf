@@ -1,3 +1,4 @@
+<%@page import="entity.Usuario"%>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -14,14 +15,14 @@
             <ul class="nav navbar-top-links navbar-right">
              	<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Usuario
+                   <%= ((Usuario)session.getAttribute("uss")).getUser() %> 
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="../pages/preferencias.jsp"><i class="fa fa-gear fa-fw"></i> Preferencias</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/Logout"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                        <li><a href="../Proyecto/Logout"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -105,7 +106,7 @@
                             <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../pages/acceso_restringido.jsp"><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Usuarios</a>
+                                    <a href="../Proyecto/Usuarios"><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Usuarios</a>
                                 </li>
                                 <li>
                                     <a href="../pages/usuario_nuevo.jsp"><i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Usuario</a>

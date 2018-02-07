@@ -52,17 +52,19 @@ public class DataUsuario {
 			if(rs!=null && rs.next()){
 				uLog = new Usuario();
 				uLog.setNombre(rs.getString("nombre"));
+				uLog.setUser(rs.getString("user"));
 				uLog.setApellido(rs.getString("apellido"));
 				uLog.setCorreo(rs.getString("correo"));
 				uLog.setFecAlta(rs.getString("fecalta"));
 				uLog.setFecEstado(rs.getString("fecestado"));
 				uLog.setEstado(rs.getString("estado"));
+				uLog.setIdU(rs.getInt("idU"));
 				
 				//Cargo Niveles del Usuario
 				try {
 					stmtn=FactoryConexion.getInstancia().getConn().prepareStatement(
 							"select * from nivel n inner join nivel_usuario nu on  n.idnivel = nu.idnivel where nu.`idUsuario` = ?");
-				stmtn.setString(1, u.getUser());
+				stmtn.setInt(1,uLog.getIdU()) ;
 				rsn=stmtn.executeQuery();
 					if(rsn!=null && rsn.next()){
 						Nivel niv = new Nivel();
@@ -70,6 +72,7 @@ public class DataUsuario {
 						niv.setDescripcion(rs.getString("desc"));
 						uNiv.add(niv);
 					}
+				uLog.setNivel(uNiv);	
 				} catch (SQLException | AppDataException e) {
 					throw new AppDataException(e,"No es posible recuperar nivel de usuario");
 				}

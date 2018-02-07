@@ -10,17 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import entity.Usuario;
+
 /**
- * Servlet implementation class Logout
+ * Servlet implementation class Usuarios
  */
-@WebServlet("/Logout")
-public class Logout extends HttpServlet {
+@WebServlet({ "/Usuarios", "/usuarios", "/USUARIOS" })
+public class Usuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Logout() {
+    public Usuarios() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,11 +31,15 @@ public class Logout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pagina = "/login.jsp";
+		// TODO Auto-generated method stub
+		String pagina = "/acceso_restringido.jsp";
 		HttpSession session = request.getSession();
-		session.invalidate();
-		request.setAttribute("infoTipo", "success");
-		request.setAttribute("infoText", "Sesión cerrada con exito!");
+		
+		if(session.getAttribute("Administrador") !=null){
+			
+			pagina = "BIEN!";
+		}
+		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
         dispatcher.forward(request, response);
 	}
