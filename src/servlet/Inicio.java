@@ -79,8 +79,8 @@ public class Inicio extends HttpServlet {
 					if (uLog.getEstado().equals("Habilitado")) {
 						pagina = "/escritorio.jsp";
 						session.setAttribute("uss", uLog);
-						System.out.println("ACA");
-						System.out.println(uLog.getNivel().get(0).getDescripcion());
+						System.out.println("Estado: "+uLog.getEstado());
+						
 						for(int i=0;i<=uLog.getNivel().size();i++){
 							System.out.println(uLog.getNivel().get(i).getDescripcion());
 							session.setAttribute(uLog.getNivel().get(i).getDescripcion(), true);
@@ -101,6 +101,7 @@ public class Inicio extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("infoTipo", "danger");
 			request.setAttribute("infoText", e);
+			e.printStackTrace();
 			
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);

@@ -54,7 +54,7 @@ function carga() {
 			    	  		<input class="form-control" placeholder="Usuario" name="user" id="user" type="text" required maxlength="15" minlength="4">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Contraseña" name="pass" type="pass" value="" required maxlength="15" minlength="3">
+			    			<input class="form-control" placeholder="Contraseña" name="pass" type="password" value="" required maxlength="15" minlength="3">
 			    		</div>
 			    		
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Iniciar">

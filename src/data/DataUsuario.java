@@ -30,19 +30,44 @@ public class DataUsuario {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ArrayList<Nivel> getNivelesUser(Usuario u) throws AppDataException{
+		ArrayList<Nivel> niveles = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"SELECT * from nivel n inner where user=? and pass=?");
+			stmt.setInt(1, u.getIdU());
+			
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				Nivel n = new Nivel();
+				
+				}			
+			}catch (SQLException e) {
+				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
+				
+			}finally{
+				try{
+					if(rs!=null) rs.close();
+					if(stmt!=null) stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 
+
+		
+		return niveles;
+		
+	}
 
 	public Usuario getLogedUser(Usuario u) throws AppDataException {
 		Usuario uLog = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
-		
-		PreparedStatement stmtn=null;
-		ResultSet rsn=null;
-		
-		
-		ArrayList<Nivel> uNiv= new ArrayList<Nivel>();
-		
-		System.out.println(u.getUser()+" HOLA "+u.getPass());
+		System.out.println(u.getUser()+" <<-->> "+u.getPass());
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"SELECT * from usuario where user=? and pass=?");
@@ -59,27 +84,9 @@ public class DataUsuario {
 				uLog.setFecEstado(rs.getString("fecestado"));
 				uLog.setEstado(rs.getString("estado"));
 				uLog.setIdU(rs.getInt("idU"));
-				
-				//Cargo Niveles del Usuario
-				try {
-					stmtn=FactoryConexion.getInstancia().getConn().prepareStatement(
-							"select * from nivel n inner join nivel_usuario nu on  n.idnivel = nu.idnivel where nu.`idUsuario` = ?");
-				stmtn.setInt(1,uLog.getIdU()) ;
-				rsn=stmtn.executeQuery();
-					if(rsn!=null && rsn.next()){
-						Nivel niv = new Nivel();
-						niv.setIdNivel(rs.getInt("idNiv"));
-						niv.setDescripcion(rs.getString("desc"));
-						uNiv.add(niv);
-					}
-				uLog.setNivel(uNiv);	
-				} catch (SQLException | AppDataException e) {
-					throw new AppDataException(e,"No es posible recuperar nivel de usuario");
-				}
-				
 				}			
-			}catch (SQLException | AppDataException e) {
-				throw new AppDataException(e,"No es posible recuperar usuario");
+			}catch (SQLException e) {
+				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
 				
 			}finally{
 				try{
