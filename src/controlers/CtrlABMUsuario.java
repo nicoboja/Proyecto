@@ -6,7 +6,7 @@ import data.DataUsuario;
 public class CtrlABMUsuario {
 	
 	private DataUsuario dataU = new DataUsuario();
-
+	
 	
 	public void add(Usuario u) throws Exception{		
 		dataU.add(u);		
@@ -20,8 +20,14 @@ public class CtrlABMUsuario {
 		dataU.update(u);					
 	}					
 	
-	public Usuario login(Usuario u) throws Exception{
+	public Usuario login(Usuario u) throws Exception{		
 		return this.dataU.getLogedUser(u);
+	}
+	
+	public Usuario recuperarNiveles(Usuario u) throws Exception{
+		Usuario us=new Usuario();
+		us.setNivel(dataU.getNivelesUser(u));
+		return us;
 	}
 	
 	public Usuario getByUser(Usuario u) throws Exception{	

@@ -11,19 +11,57 @@ import util.AppDataException;
 
 public class DataUsuario {
 
-	public void add(Usuario u) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void add(Usuario u) throws AppDataException{
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"insert into usuario (idU, apellido, correo, nombre, pass, user, fecalta, estado) values (?,?,?,?,?,?,CURDATE(),'Habilitado')");
+			stmt.setInt(1, u.getIdU());	
+			stmt.setString(2,u.getApellido());
+			stmt.setString(3, u.getCorreo());
+			stmt.setString(4, u.getNombre());
+			stmt.setString(5, u.getPass());
+			stmt.setString(6, u.getUser());
+			stmt.executeUpdate();
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
+			
+		}finally{
+			try{
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 		
+	}		
 
 	public void delete(Usuario u) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void update(Usuario u) {
-		// TODO Auto-generated method stub
-		
+	public void update(Usuario u) throws AppDataException {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"update usuario set apellido=?, correo=?, nombre=?, pass=?, estado=?, fecEstado=? where idU=?;");
+			stmt.setString(1,u.getApellido());
+			stmt.setString(2, u.getCorreo());
+			stmt.setString(3, u.getNombre());
+			stmt.setString(4, u.getPass());
+			stmt.setString(5, u.getUser());
+			stmt.setInt(6, u.getIdU());
+			stmt.executeUpdate();
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
+			
+		}finally{
+			try{
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 			
 	}
 
 	public Usuario getByUser(Usuario u) {
@@ -33,20 +71,22 @@ public class DataUsuario {
 	
 	public ArrayList<Nivel> getNivelesUser(Usuario u) throws AppDataException{
 		ArrayList<Nivel> niveles = null;
+		Nivel n=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"SELECT * from nivel n inner where user=? and pass=?");
-			stmt.setInt(1, u.getIdU());
-			
+						"select * from nivel_usuario nu inner join nivel n on nu.idnivel=n.idnivel where nu.idusuario=?");
+			stmt.setInt(1, u.getIdU());			
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()){
-				Nivel n = new Nivel();
+				n = new Nivel();
+				n.setIdNivel(rs.getInt("nu.idnivel"));
+				n.setDescripcion(rs.getString("n.descripcion"));	
 				
 				}			
 			}catch (SQLException e) {
-				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
+				throw new AppDataException(e,"No es posible recuperar niveles de usuario de la BD");
 				
 			}finally{
 				try{
@@ -57,10 +97,8 @@ public class DataUsuario {
 					e.printStackTrace();	
 				}
 			} 
-
 		
-		return niveles;
-		
+		return niveles;		
 	}
 
 	public Usuario getLogedUser(Usuario u) throws AppDataException {

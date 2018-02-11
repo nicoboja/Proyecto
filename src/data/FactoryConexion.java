@@ -13,6 +13,7 @@ public class FactoryConexion {
 	private String user="root";
 	private String password="root";
 	private String db="dboptica";
+	private String dbw="bdoptica";
 	
 	private static FactoryConexion instancia;
 		
@@ -39,7 +40,7 @@ public class FactoryConexion {
 		try {
 			if(conn==null || conn.isClosed()){	
 				conn = DriverManager.getConnection(
-			        "jdbc:mysql://"+host+":"+port+"/"+db+"?user="+user+"&password="+password);
+			        "jdbc:mysql://"+host+":"+port+"/"+dbw+"?user="+user+"&password="+password);
 			}
 		} catch (SQLException e) {
 			try {
