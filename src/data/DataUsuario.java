@@ -15,13 +15,12 @@ public class DataUsuario {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"insert into usuario (idU, apellido, correo, nombre, pass, user, fecalta, estado) values (?,?,?,?,?,?,CURDATE(),'Habilitado')");
-			stmt.setInt(1, u.getIdU());	
-			stmt.setString(2,u.getApellido());
-			stmt.setString(3, u.getCorreo());
-			stmt.setString(4, u.getNombre());
-			stmt.setString(5, u.getPass());
-			stmt.setString(6, u.getUser());
+						"insert into usuario (apellido, correo, nombre, pass, user, fecalta, estado) values (?,?,?,?,?,CURDATE(),'Habilitado')");	
+			stmt.setString(1,u.getApellido());
+			stmt.setString(2, u.getCorreo());
+			stmt.setString(3, u.getNombre());
+			stmt.setString(4, u.getPass());
+			stmt.setString(5, u.getUser());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
@@ -53,7 +52,7 @@ public class DataUsuario {
 			stmt.setInt(6, u.getIdU());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
-			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
+			throw new AppDataException(e,"No es posible actualizar Usuario en la BD");
 			
 		}finally{
 			try{
