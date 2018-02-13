@@ -12,7 +12,7 @@
 
 <script type="text/javascript" >
 function carga() {
-	document.getElementById("alias").focus();
+	document.getElementById("user").focus();
 	
 }
 </script>
@@ -51,7 +51,7 @@ function carga() {
 			  <form class="form-signin" name="signin" action="/Proyecto/inicio" method="post">
                     <fieldset>
 			    	  	<div class="form-group">
-			    	  		<input class="form-control" placeholder="Usuario" name="user" id="user" type="text" required maxlength="15" minlength="4">
+			    	  		<input class="form-control" autofocus placeholder="Usuario" name="user" id="user" type="text" required maxlength="15" minlength="4">
 			    		</div>
 			    		<div class="form-group">
 			    			<input class="form-control" placeholder="Contraseña" name="pass" type="password" value="" required maxlength="15" minlength="3">

@@ -70,31 +70,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li><!--  /recetados -->
-                        
-                       <li>
-                            <a href="#"><i class="fa fa-low-vision fa-fw"></i> Contactología<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="../pages/contactologia_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar atención</a>
-                                </li>
-                                <li>
-                                    <a href="../pages/contactologia_nuevo.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo ingreso</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li><!--  Contactologia -->
-                       <li>
-                            <a href="#"><i class="fa fa-assistive-listening-systems fa-fw"></i> Audiología<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="../pages/audiologia_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar atención</a>
-                                </li>
-                                <li>
-                                    <a href="../pages/audiologia_nuevo.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo ingreso</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li><!--  Contactologia --> 
+                       
+                      
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Taller<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

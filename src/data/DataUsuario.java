@@ -180,6 +180,42 @@ public class DataUsuario {
 			return uLog;
 		}
 	
+	public Usuario getById(Usuario u) throws AppDataException {
+		Usuario usu = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"SELECT * from usuario where idU=?");
+			stmt.setInt(1, u.getIdU());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				usu = new Usuario();
+				usu.setNombre(rs.getString("nombre"));
+				usu.setUser(rs.getString("user"));
+				usu.setApellido(rs.getString("apellido"));
+				usu.setCorreo(rs.getString("correo"));
+				usu.setFecAlta(rs.getString("fecalta"));
+				usu.setFecEstado(rs.getString("fecestado"));
+				usu.setEstado(rs.getString("estado"));
+				usu.setIdU(rs.getInt("idU"));
+				usu.setNivel(this.getNivelesUser(usu));
+				}			
+			}catch (SQLException e) {
+				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
+				
+			}finally{
+				try{
+					if(rs!=null) rs.close();
+					if(stmt!=null) stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 
+		return usu;
+	}
+	
 	
 	
 	}

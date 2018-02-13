@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,20 +54,21 @@
         					</tfoot>
        					 <tbody>
        					 <%if(request.getAttribute("listUss") !=null){ 
-       					 
+       						ArrayList<Usuario> listUss = (ArrayList<Usuario>)request.getAttribute("listUss");
+       	            		for(Usuario u: listUss){
        					 
        					 
        					 %>
        					 		<tr>
-                                        <td><button type="button" onclick="document.location ='ModificarUsuario'" class="btn btn-outline btn-warning text-right btn-block">n.bojanich</button></td>
-                                        <td>Nicolas</td>
-                                        <td>Bojanich</td>
-                                        <td>nico.boja@gmail.com</td>
-                                        <td>r</td>
-                                        <td>r</td>
+                                        <td><button type="button" onclick="document.location ='ModificarUsuario?id=<%=u.getIdU()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=u.getUser() %></button></td>
+                                        <td><%=u.getNombre() %></td>
+                                        <td><%=u.getApellido() %></td>
+                                        <td><%=u.getCorreo() %></td>
+                                        <td><%=u.getFecAlta() %></td>
+                                        <td><%=u.getEstado() %></td>
                                        
                                 </tr>
-                         <%} %>
+                         <%}} %>
         				</tbody>
    				 	</table>
                             <!-- /.table-responsive -->
