@@ -107,6 +107,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li><!--  Contactologia -->
+                  <%if(request.getAttribute("Administrador") != null){ %>      
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -120,6 +121,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li><!--  Usuarios Cascada -->
+                   <%}%>     
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -129,14 +131,14 @@
          
         
 <!--  NAV right-->
-
+<%if(request.getAttribute("infoNav") != null){ %>
 <div class="row">
   <div class="col-md-10 col-md-offset-2">
   	<div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
          <big><i class="fa fa-exclamation-circle" aria-hidden="true"></i></big>
-         Usted no tiene permisos para ingresar a <%=request.getAttribute("infoText") %>
+        <%=request.getAttribute("infoNav") %>
 	</div>
   </div>
 </div>
-
+<%} %>

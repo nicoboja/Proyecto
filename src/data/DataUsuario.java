@@ -3,6 +3,7 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import entity.Nivel;
@@ -69,21 +70,25 @@ public class DataUsuario {
 	}
 	
 	public ArrayList<Nivel> getNivelesUser(Usuario u) throws AppDataException{
-		ArrayList<Nivel> niveles = null;
+		ArrayList<Nivel> niveles = new ArrayList <Nivel>();
 		Nivel n=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"select * from nivel_usuario nu inner join nivel n on nu.idnivel=n.idnivel where nu.idusuario=?");
+						"select * from nivel_usuario nu inner join nivel n on nu.idnivel=n.idnivel where nu.idUsuario=?");
 			stmt.setInt(1, u.getIdU());			
 			rs=stmt.executeQuery();
-			if(rs!=null && rs.next()){
-				n = new Nivel();
-				n.setIdNivel(rs.getInt("nu.idnivel"));
-				n.setDescripcion(rs.getString("n.descripcion"));	
-				
-				}			
+			if(rs!=null){
+				while(rs.next()){
+					n = new Nivel();
+					n.setIdNivel(rs.getInt("nu.idnivel"));
+					System.out.println(n.getIdNivel());
+					n.setDescripcion(rs.getString("n.descripcion"));	
+					System.out.println(n.getDescripcion());
+					niveles.add(n);
+					}		
+				}	
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible recuperar niveles de usuario de la BD");
 				
@@ -96,8 +101,46 @@ public class DataUsuario {
 					e.printStackTrace();	
 				}
 			} 
-		
 		return niveles;		
+	}
+	
+	public ArrayList<Usuario> getAll() throws Exception{	
+		Statement stmt=null;
+		ResultSet rs=null;
+		Usuario u=null;
+		ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
+		try {
+			stmt = FactoryConexion.getInstancia()
+					.getConn().createStatement();
+			rs = stmt.executeQuery("select * from usuario");
+			if(rs!=null){
+				while(rs.next()){
+					u = new Usuario();
+					u.setNombre(rs.getString("nombre"));
+					u.setUser(rs.getString("user"));
+					u.setApellido(rs.getString("apellido"));
+					u.setCorreo(rs.getString("correo"));
+					u.setFecAlta(rs.getString("fecalta"));
+					u.setFecEstado(rs.getString("fecestado"));
+					u.setEstado(rs.getString("estado"));
+					u.setIdU(rs.getInt("idU"));
+					u.setNivel(this.getNivelesUser(u));
+					usuarios.add(u);
+				}
+			}
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible recuperar personas de la BD");
+			
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return usuarios;		
 	}
 
 	public Usuario getLogedUser(Usuario u) throws AppDataException {
@@ -136,6 +179,7 @@ public class DataUsuario {
 			} 
 			return uLog;
 		}
+	
 	
 	
 	}
