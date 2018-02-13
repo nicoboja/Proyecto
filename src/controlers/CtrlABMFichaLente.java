@@ -19,7 +19,7 @@ public class CtrlABMFichaLente {
 		dataFicLen.update(fl);					
 	}			
 	
-	public FichaLente getById(FichaLente pac) throws Exception{	
-		return this.dataFicLen.getById(pac);			
+	public FichaLente getById(FichaLente fl) throws Exception{	
+		return this.dataFicLen.getById(fl);			
 	}
 }

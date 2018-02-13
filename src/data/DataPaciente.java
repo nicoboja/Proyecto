@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import entity.Paciente;
-import entity.Usuario;
 import util.AppDataException;
 
 public class DataPaciente {
