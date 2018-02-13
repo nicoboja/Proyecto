@@ -25,7 +25,7 @@ public class CtrlABMUsuario {
 		us=null;
 		us=dataU.getLogedUser(u);
 		if (us!=null){
-			us.setNivel(dataU.getNivelesUser(u));
+			us.setNivel(dataU.getNivelesUser(us));
 		}		
 		return us;
 	}

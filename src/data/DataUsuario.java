@@ -69,21 +69,25 @@ public class DataUsuario {
 	}
 	
 	public ArrayList<Nivel> getNivelesUser(Usuario u) throws AppDataException{
-		ArrayList<Nivel> niveles = null;
+		ArrayList<Nivel> niveles = new ArrayList <Nivel>();
 		Nivel n=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"select * from nivel_usuario nu inner join nivel n on nu.idnivel=n.idnivel where nu.idusuario=?");
+						"select * from nivel_usuario nu inner join nivel n on nu.idnivel=n.idnivel where nu.idUsuario=?");
 			stmt.setInt(1, u.getIdU());			
 			rs=stmt.executeQuery();
-			if(rs!=null && rs.next()){
-				n = new Nivel();
-				n.setIdNivel(rs.getInt("nu.idnivel"));
-				n.setDescripcion(rs.getString("n.descripcion"));	
-				
-				}			
+			if(rs!=null){
+				while(rs.next()){
+					n = new Nivel();
+					n.setIdNivel(rs.getInt("nu.idnivel"));
+					System.out.println(n.getIdNivel());
+					n.setDescripcion(rs.getString("n.descripcion"));	
+					System.out.println(n.getDescripcion());
+					niveles.add(n);
+					}		
+				}	
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible recuperar niveles de usuario de la BD");
 				
@@ -96,7 +100,6 @@ public class DataUsuario {
 					e.printStackTrace();	
 				}
 			} 
-		
 		return niveles;		
 	}
 
