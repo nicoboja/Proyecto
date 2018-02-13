@@ -47,7 +47,7 @@ public class DataUsuario {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"update usuario set user=?, apellido=?, correo=?, nombre=?, pass=?, estado=?, fecEstado=?,"
-						+ " nota=? where idU=?;");
+						+ " notas=? where idU=?;");
 			stmt.setString(1,u.getUser());
 			stmt.setString(2,u.getApellido());
 			stmt.setString(3, u.getCorreo());
@@ -130,6 +130,7 @@ public class DataUsuario {
 					u.setFecEstado(rs.getString("fecestado"));
 					u.setEstado(rs.getString("estado"));
 					u.setIdU(rs.getInt("idU"));
+					u.setNotas(rs.getString("notas"));
 					u.setNivel(this.getNivelesUser(u));
 					usuarios.add(u);
 				}
@@ -170,6 +171,7 @@ public class DataUsuario {
 				uLog.setFecEstado(rs.getString("fecestado"));
 				uLog.setEstado(rs.getString("estado"));
 				uLog.setIdU(rs.getInt("idU"));
+				uLog.setNotas(rs.getString("notas"));
 				uLog.setNivel(this.getNivelesUser(uLog));
 				}			
 			}catch (SQLException e) {
@@ -206,6 +208,7 @@ public class DataUsuario {
 				usu.setFecEstado(rs.getString("fecestado"));
 				usu.setEstado(rs.getString("estado"));
 				usu.setIdU(rs.getInt("idU"));
+				usu.setNotas(rs.getString("notas"));
 				usu.setNivel(this.getNivelesUser(usu));
 				}			
 			}catch (SQLException e) {

@@ -79,6 +79,20 @@ public class consola {
 		System.out.println(us.getApellido());
 		System.out.println(us.getFecAlta());
 		
+//		System.out.println("Notas del usuario:");
+//		us.setNotas(s.nextLine());
+//		try {
+//			ctrlUser.update(us);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		System.out.println("ingresar id usuario:");	
+//		
+//		us.setIdU(Integer.parseInt(s.nextLine()));
+		
+		System.out.println(us.getNotas());	
 
 		
 		
