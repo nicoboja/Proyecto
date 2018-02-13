@@ -21,7 +21,13 @@ public class CtrlABMUsuario {
 	}					
 	
 	public Usuario login(Usuario u) throws Exception{		
-		return this.dataU.getLogedUser(u);
+		Usuario us=new Usuario();
+		us=null;
+		us=dataU.getLogedUser(u);
+		if (us!=null){
+			us.setNivel(dataU.getNivelesUser(u));
+		}		
+		return us;
 	}
 	
 	public Usuario recuperarNiveles(Usuario u) throws Exception{
