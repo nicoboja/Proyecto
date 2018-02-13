@@ -107,7 +107,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li><!--  Contactologia -->
-                  <%if(request.getAttribute("Administrador") != null){ %>      
+                  <%if(session.getAttribute("Administrador") != null){ %>      
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

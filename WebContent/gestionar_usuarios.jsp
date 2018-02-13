@@ -33,6 +33,8 @@
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Correo</th>
+                                    <th>Fecha Alta</th>
+                                    <th>Estado</th>
                                     
                                     
        						   </tr>
@@ -43,62 +45,30 @@
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Correo</th>
+                                    <th>Fecha Alta</th>
+                                    <th>Estado</th>
+                                    
                                    
                             </tr>
         					</tfoot>
        					 <tbody>
-           						<tr>
-                                        <td><button type="button" onclick="document.location ='../pages/usuario_modificar.jsp'" class="btn btn-outline btn-warning text-right btn-block">n.bojanich</button></td>
+       					 <%if(request.getAttribute("listUss") !=null){ 
+       					 
+       					 
+       					 
+       					 %>
+       					 		<tr>
+                                        <td><button type="button" onclick="document.location ='ModificarUsuario'" class="btn btn-outline btn-warning text-right btn-block">n.bojanich</button></td>
                                         <td>Nicolas</td>
                                         <td>Bojanich</td>
                                         <td>nico.boja@gmail.com</td>
-                                   		
+                                        <td>r</td>
+                                        <td>r</td>
                                        
-                                    </tr>
-                                    <tr >
-                                        <td><button type="button" class="btn btn-outline btn-warning text-right btn-block">b.alessandri</button></td>
-                                        <td>Bruno</td>
-                                        <td>Alessandri</td>
-                                        <td>bruno@gmail.com</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><button type="button" class="btn btn-outline btn-warning text-right btn-block">c.smerialdino</button></td>
-                                        <td>Claudia</td>
-                                        <td>Smerialdino</td>
-                                        <td>smerialdino@gmail.com</td>
-                                       
-              						</tr>
-                                    <tr>
-                                        <td><button type="button" class="btn btn-outline btn-warning text-right btn-block btn">p.bruch</button></td>
-                                        <td>Pedro</td>
-                                        <td>Bruch</td>
-                                        <td>bruchpedro@hotmail.com</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><button type="button" class="btn btn-outline btn-warning text-right btn-block">a.avendaño</button></td>
-                                        <td>Alejandra</td>
-                                        <td>Avendaño</td>
-                                        <td>aleavendaño@hotmail.com</td>
-                                    </tr>
-                                    <tr >
-                                        <td><button type="button" class="btn btn-outline btn-warning text-right btn-block">l.gomez</button></td>
-                                        <td>Leticia</td>
-                                        <td>Gomex</td>
-                                        <td>leti002@hotmail.com</td>
-                                       
-                                    </tr>
-                                    <tr >
-                                        <td><button type="button" class="btn btn-outline btn-warning text-right btn-block">g.caprioti</button></td>
-                                        <td>German</td>
-                                        <td>Caprioti</td>
-                                        <td>german.caprioti@hotmail.com
- 									</td>
-                                       
-                                    </tr>
-        </tbody>
-    </table>
+                                </tr>
+                         <%} %>
+        				</tbody>
+   				 	</table>
                             <!-- /.table-responsive -->
                             
                         </div>
