@@ -51,54 +51,53 @@
                                  
                                  <div class="col-lg-6">
                                  
-                                 <% if(request.getAttribute("ussM") !=null){ 
-                						ArrayList<Nivel> listNivUss = ((Usuario)request.getAttribute("ussM")).getNivel();
-                   	            		for(Nivel u: listNivUss){if(u.getDescripcion().equals("Administrador")){}}
-                   	            		
-                                 } %>
+                                
                                    	
                                         <div class="form-group">
                                             <label>Roles</label>
                                             <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="admin" checked>Administrador
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="" checked >Optico
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="" >Tecnico
-                                                </label>
+                                                
+                                                 <% if(request.getAttribute("nivBD") !=null){ 
+                                                	 ArrayList<Nivel> listNivBD = (ArrayList<Nivel>)request.getAttribute("nivBD");
+                                                	 for(Nivel n : listNivBD){
+                                                 %>
+                                                 	<label>
+                                                	<input type="checkbox" value="<%=n.getDescripcion() %>" 
+                                                	<%
+                                                	ArrayList<Nivel> listNivUss = ((Usuario)request.getAttribute("ussM")).getNivel();
+                                                	for(Nivel u: listNivUss){if(u.getDescripcion().equals(n.getDescripcion())){
+                                                		%>
+                                                		checked
+                                                		<% 
+                                                	}}
+                                                	%>><%=n.getDescripcion() %>
+                                                	</label>
+                                                <%}} %>
+                                                
+                                                
                                             </div>
                                             
+                                            
                                             <div class="form-group">
-                                           		<label>Estado</label>
-                                            	<select class="form-control ">
-                                            		<option class="text-success">Habilitado: 10/09/2017 por c.smerialdino</option>
-                                            		<option class="text-danger">Inhabilitado: 10/09/2017 por c.smerialdino</option>
-                                               		<option class="text-info">Fecha Alta: 02/09/2017</option>
-									      		</select>
+                                           		<label>Estado: <%=((Usuario)request.getAttribute("ussM")).getEstado() %></label> el día <%=((Usuario)request.getAttribute("ussM")).getFecEstado() %>
+                                            	<select id="estado" name="estado"  class="form-control ">
+                                            		<option class="text-success" value="Habilitado">Habilitado</option>
+                                            		<option class="text-danger" value="Inhabilitado">Inhabilitado</option>
+                                               	</select>
 									      	</div>
 									      	<div class="form-group">
-									      	<button type="button" class="btn btn-danger ">Inhabilitar</button>
-									      
-									      	</div>
+                                            	<label>Notas Internas</label>
+                                            	<textarea class="form-control" rows="5"><%=((Usuario)request.getAttribute("ussM")).getNotas() %></textarea>
+                                        	</div>
+                                       		 
+                                			
+                                	</div><!-- /form group -->
 									      	
 									      	
                                     </div><!-- /col6 -->
                               		</div><!-- /row -->	
                               		<div class="col-lg-12">
-                                   <div class="form-group">
-                                            	<label>Notas Internas</label>
-                                            	<textarea class="form-control" rows="3"><%=((Usuario)request.getAttribute("ussM")).getNotas() %></textarea>
-                                        	</div>
-                                       		<button type="button" class="btn btn-success btn-lg btn-block ">Guardar</button>    
-                                			
-                                	</div><!-- /form group -->
+                                   <button type="button" class="btn btn-success btn-lg btn-block ">Guardar</button>   
                                 </div>	 
                          </div><!-- /panel body -->
                     </div><!--  /panel default -->

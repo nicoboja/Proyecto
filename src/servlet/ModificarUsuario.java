@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controlers.CtrlABMNivel;
 import controlers.CtrlABMUsuario;
 import entity.Usuario;
 
@@ -47,11 +49,21 @@ public class ModificarUsuario extends HttpServlet {
 						Usuario uss = new Usuario();
 						uss.setIdU(idU);
 						uss= ctrlUss.getById(uss);
+						
 						if(uss== null){
 							pagina = "/gestionar_usuarios.jsp";
+							try {
+								ArrayList<Usuario> listUss = ctrlUss.getAll();
+								request.setAttribute("listUss", listUss);
+						
+							} catch (Exception e) {
+								request.setAttribute("infoNav", e);
+							}
 							request.setAttribute("infoNav", "No existe Usuario");
 							
 						}else{
+							CtrlABMNivel ctrlNiv = new CtrlABMNivel();
+							request.setAttribute("nivBD", ctrlNiv.getAll());
 							request.setAttribute("ussM", uss);
 						}
 						

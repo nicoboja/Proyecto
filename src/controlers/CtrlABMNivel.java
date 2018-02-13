@@ -6,12 +6,13 @@ import data.DataNivel;
 import entity.Nivel;
 
 
-public class CtrlNivel {
+public class CtrlABMNivel {
+	
 	private DataNivel dataN = new DataNivel();
 	
-	public ArrayList<Nivel> getAll() {
+	public ArrayList<Nivel> getAll() throws Exception {		
 		
-		return null;
+			return dataN.getAll();		
 		
 	}
 

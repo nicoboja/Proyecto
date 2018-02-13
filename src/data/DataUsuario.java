@@ -89,9 +89,9 @@ public class DataUsuario {
 				while(rs.next()){
 					n = new Nivel();
 					n.setIdNivel(rs.getInt("nu.idnivel"));
-					System.out.println(n.getIdNivel());
+					//System.out.println(n.getIdNivel());
 					n.setDescripcion(rs.getString("n.descripcion"));	
-					System.out.println(n.getDescripcion());
+					//System.out.println(n.getDescripcion());
 					niveles.add(n);
 					}		
 				}	

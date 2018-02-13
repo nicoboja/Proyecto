@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a class="navbar-brand" href="../index.html"> 	 S<i class="fa fa-eye" aria-hidden="true"></i><small>PTICA - Optica Centro</small></a>
+                <a class="navbar-brand" href="../Proyecto/index.html"> 	 S<i class="fa fa-eye" aria-hidden="true"></i><small>PTICA - Optica Centro</small></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -42,7 +42,7 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-                            <a href="../pages/escritorio.jsp"><i class="fa fa-dashboard fa-fw"></i> Escritorio</a>
+                            <a href="../Proyecto/Inicio"><i class="fa fa-dashboard fa-fw"></i> Escritorio</a>
                         </li><!-- /escritorio -->
                         <li>
                             <a href="#"><i class="fa fa-address-book-o" aria-hidden="true"></i> Pacientes<span class="fa arrow"></span></a>
