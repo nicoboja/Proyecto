@@ -225,7 +225,49 @@ public class DataUsuario {
 			} 
 		return usu;
 	}
-	
+
+	public void deleteNivUser(Usuario u) throws AppDataException {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"delete from nivel_usuario where idUsuario=?");	
+			stmt.setInt(1, u.getIdU());
+			stmt.executeUpdate();
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible borrar Niveles de Usuario en la BD");
+			
+		}finally{
+			try{
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 		
 	}
+
+	public void insertNivUser(Usuario u) throws AppDataException {
+		
+		for(int i=0;i<u.getNivel().size();i++){	
+			PreparedStatement stmt=null;
+			try {
+				stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+							"insert into nivel_usuario (idNivel, idUsuario) values (?,?)");	
+				stmt.setInt(1, u.getNivel().get(i).getIdNivel());
+				stmt.setInt(2,u.getIdU());
+				stmt.executeUpdate();
+			}catch (SQLException | AppDataException e) {
+				throw new AppDataException(e,"No es posible agregar Niveles de Usuario a la BD");
+				
+			}finally{
+				try{
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 		
+		}
+	}
+	
+}
 
 

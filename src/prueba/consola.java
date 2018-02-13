@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import controlers.CtrlABMPaciente;
 import controlers.CtrlABMUsuario;
+import entity.Nivel;
 import entity.Paciente;
 import entity.Usuario;
 
@@ -79,6 +80,34 @@ public class consola {
 		System.out.println(us.getApellido());
 		System.out.println(us.getFecAlta());
 		
+		for(int i=0;i<us.getNivel().size();i++){			
+			System.out.println(us.getNivel().get(i).getIdNivel());
+			System.out.println(us.getNivel().get(i).getDescripcion());
+		}			
+		int j=0;
+		String salir;
+		ArrayList<Nivel> niv=new ArrayList<Nivel>();
+		Nivel n=new Nivel();
+		do {
+			System.out.println("Ingrese codigo de rol:");
+			n.setIdNivel(Integer.parseInt(s.nextLine()));
+			niv.add(n);
+			
+			
+			j++;	
+			System.out.println("desea salir? si= s");
+			salir=(s.nextLine());
+		}while (salir=="s");
+		us.setNivel(niv);
+		try {
+			ctrlUser.update(us);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("actualizado correctamente!");
+		
 //		System.out.println("Notas del usuario:");
 //		us.setNotas(s.nextLine());
 //		try {
@@ -92,7 +121,7 @@ public class consola {
 //		
 //		us.setIdU(Integer.parseInt(s.nextLine()));
 		
-		System.out.println(us.getNotas());	
+		//System.out.println(us.getNotas());	
 
 		
 		

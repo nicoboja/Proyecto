@@ -12,7 +12,10 @@ public class CtrlABMUsuario {
 	
 	
 	public void add(Usuario u) throws Exception{		
-		dataU.add(u);		
+		dataU.add(u);	
+		if(u.getNivel().isEmpty()==false){
+			dataU.insertNivUser(u);
+		}	
 	}
 	
 	public void delete(Usuario u) throws Exception{	
@@ -20,7 +23,11 @@ public class CtrlABMUsuario {
 	}
 	
 	public void update(Usuario u) throws Exception{			
-		dataU.update(u);					
+		dataU.update(u);
+		dataU.deleteNivUser(u);
+		if(u.getNivel().isEmpty()==false){
+			dataU.insertNivUser(u);
+		}		
 	}					
 	
 	public Usuario login(Usuario u) throws Exception{		
