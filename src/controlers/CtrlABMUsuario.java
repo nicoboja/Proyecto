@@ -25,7 +25,7 @@ public class CtrlABMUsuario {
 	
 	public Usuario login(Usuario u) throws Exception{		
 	
-		return dataU.getLogedUser(u);
+		return this.dataU.getLogedUser(u);
 	}
 	
 	public Usuario recuperarNiveles(Usuario u) throws Exception{

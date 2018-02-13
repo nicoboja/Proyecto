@@ -125,7 +125,7 @@ public class DataUsuario {
 				uLog.setFecEstado(rs.getString("fecestado"));
 				uLog.setEstado(rs.getString("estado"));
 				uLog.setIdU(rs.getInt("idU"));
-				uLog.setNivel(this.getNivelesUser(u));
+				uLog.setNivel(this.getNivelesUser(uLog));
 				}			
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
