@@ -37,13 +37,11 @@ public class DataPaciente {
 			}catch (SQLException e) {
 				e.printStackTrace();	
 			}
-		} 		
-		
+		} 				
 	}
 
 	public void delete(Paciente pac)  throws AppDataException {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	public void update(Paciente pac)  throws AppDataException {

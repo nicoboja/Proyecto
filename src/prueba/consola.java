@@ -62,6 +62,23 @@ public class consola {
 			System.out.println(pacs.get(i).getApellido());
 		}
 		
+		
+		
+		Usuario us=new Usuario();
+		System.out.println("ingresar id usuario:");	
+		
+		us.setIdU(Integer.parseInt(s.nextLine()));
+		try {
+			us=ctrlUser.getById(us);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(us.getNombre());
+		System.out.println(us.getApellido());
+		System.out.println(us.getFecAlta());
+		
 
 		
 		

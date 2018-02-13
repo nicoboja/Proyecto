@@ -16,12 +16,14 @@ public class DataUsuario {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"insert into usuario (apellido, correo, nombre, pass, user, fecalta, estado) values (?,?,?,?,?,CURDATE(),'Habilitado')");	
-			stmt.setString(1,u.getApellido());
-			stmt.setString(2, u.getCorreo());
-			stmt.setString(3, u.getNombre());
-			stmt.setString(4, u.getPass());
-			stmt.setString(5, u.getUser());
+						"insert into usuario (user, apellido, correo, nombre, pass, notas, fecalta, estado)"
+						+ " values (?,?,?,?,?,CURDATE(),'Habilitado')");	
+			stmt.setString(1, u.getUser());
+			stmt.setString(2,u.getApellido());
+			stmt.setString(3, u.getCorreo());
+			stmt.setString(4, u.getNombre());
+			stmt.setString(5, u.getPass());			
+			stmt.setString(6, u.getNotas());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
@@ -44,13 +46,17 @@ public class DataUsuario {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"update usuario set apellido=?, correo=?, nombre=?, pass=?, estado=?, fecEstado=? where idU=?;");
-			stmt.setString(1,u.getApellido());
-			stmt.setString(2, u.getCorreo());
-			stmt.setString(3, u.getNombre());
-			stmt.setString(4, u.getPass());
-			stmt.setString(5, u.getUser());
-			stmt.setInt(6, u.getIdU());
+						"update usuario set user=?, apellido=?, correo=?, nombre=?, pass=?, estado=?, fecEstado=?,"
+						+ " nota=? where idU=?;");
+			stmt.setString(1,u.getUser());
+			stmt.setString(2,u.getApellido());
+			stmt.setString(3, u.getCorreo());
+			stmt.setString(4, u.getNombre());
+			stmt.setString(5, u.getPass());
+			stmt.setString(6, u.getEstado());
+			stmt.setString(7, u.getFecEstado());
+			stmt.setString(8, u.getNotas());
+			stmt.setInt(9, u.getIdU());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible actualizar Usuario en la BD");
@@ -180,6 +186,42 @@ public class DataUsuario {
 			} 
 			return uLog;
 		}
+
+	public Usuario getById(Usuario u) throws AppDataException {
+		Usuario usu = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"SELECT * from usuario where idU=?");
+			stmt.setInt(1, u.getIdU());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				usu = new Usuario();
+				usu.setNombre(rs.getString("nombre"));
+				usu.setUser(rs.getString("user"));
+				usu.setApellido(rs.getString("apellido"));
+				usu.setCorreo(rs.getString("correo"));
+				usu.setFecAlta(rs.getString("fecalta"));
+				usu.setFecEstado(rs.getString("fecestado"));
+				usu.setEstado(rs.getString("estado"));
+				usu.setIdU(rs.getInt("idU"));
+				usu.setNivel(this.getNivelesUser(usu));
+				}			
+			}catch (SQLException e) {
+				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
+				
+			}finally{
+				try{
+					if(rs!=null) rs.close();
+					if(stmt!=null) stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 
+		return usu;
+	}
 	
 	}
 
