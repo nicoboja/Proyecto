@@ -63,6 +63,9 @@ public class Inicio extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pagina = "/login.jsp";
 		HttpSession session = request.getSession();
+		//session.setAttribute("Administrador",null);
+		//session.setAttribute("Optico", null);
+		
 		
 		try {
 			String user=request.getParameter("user");
@@ -86,6 +89,7 @@ public class Inicio extends HttpServlet {
 							session.setAttribute(uLog.getNivel().get(i).getDescripcion(), true);
 						}
 					}else {
+						
 						request.setAttribute("infoTipo", "danger");
 						request.setAttribute("infoText", "Usuario <b>"+user+"</b> Inhabilitado!");
 					}
@@ -107,6 +111,12 @@ public class Inicio extends HttpServlet {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
         dispatcher.forward(request, response);
         
+	}
+	
+	private void iniNiveles() {
+		
+		
+		
 	}
 }
 

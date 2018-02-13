@@ -1,6 +1,5 @@
 package data;
 import java.sql.*;
-
 import util.AppDataException;
 
 
@@ -12,7 +11,7 @@ public class FactoryConexion {
 	private String port="3306";
 	private String user="root";
 	private String password="root";
-	private String db="dboptica";
+	private String db="bdoptica";
 	
 	private static FactoryConexion instancia;
 		
