@@ -1,5 +1,6 @@
 package prueba;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import controlers.CtrlABMUsuario;
@@ -13,6 +14,7 @@ public class consola {
 		Usuario usu=new Usuario();
 		Usuario uLogueado=new Usuario();
 		CtrlABMUsuario ctrlUser=new CtrlABMUsuario();
+		ArrayList<Usuario> usus= new ArrayList<Usuario>();
 		
 		System.out.println("Ingrese Usuario:");
 		usu.setUser(s.nextLine());
@@ -26,6 +28,24 @@ public class consola {
 		}
 		System.out.println(uLogueado.getApellido());
 		System.out.println(uLogueado.getNivel().get(0).getIdNivel());
+		try {
+			usus=ctrlUser.getAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<usus.size();i++){
+			System.out.println(usus.get(i).getIdU());
+			System.out.println(usus.get(i).getNombre());
+			System.out.println(usus.get(i).getApellido());
+			for(int v=0;v<usus.get(i).getNivel().size(); v++){
+				System.out.println(usus.get(i).getNivel().get(v).getIdNivel());
+				System.out.println(usus.get(i).getNivel().get(v).getDescripcion());
+			}
+				
+			
+		}
 
 		
 		

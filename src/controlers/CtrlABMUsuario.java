@@ -1,6 +1,9 @@
 package controlers;
 
 import entity.Usuario;
+
+import java.util.ArrayList;
+
 import data.DataUsuario;
 
 public class CtrlABMUsuario {
@@ -21,13 +24,8 @@ public class CtrlABMUsuario {
 	}					
 	
 	public Usuario login(Usuario u) throws Exception{		
-		Usuario us=new Usuario();
-		us=null;
-		us=dataU.getLogedUser(u);
-		if (us!=null){
-			us.setNivel(dataU.getNivelesUser(us));
-		}		
-		return us;
+	
+		return dataU.getLogedUser(u);
 	}
 	
 	public Usuario recuperarNiveles(Usuario u) throws Exception{
@@ -38,6 +36,10 @@ public class CtrlABMUsuario {
 	
 	public Usuario getByUser(Usuario u) throws Exception{	
 		return this.dataU.getByUser(u);			
+	}
+	
+	public ArrayList<Usuario> getAll() throws Exception{	
+		return this.dataU.getAll();		
 	}
 
 }

@@ -3,6 +3,7 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import entity.Nivel;
@@ -124,6 +125,7 @@ public class DataUsuario {
 				uLog.setFecEstado(rs.getString("fecestado"));
 				uLog.setEstado(rs.getString("estado"));
 				uLog.setIdU(rs.getInt("idU"));
+				uLog.setNivel(this.getNivelesUser(u));
 				}			
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
@@ -139,6 +141,45 @@ public class DataUsuario {
 			} 
 			return uLog;
 		}
+	
+	public ArrayList<Usuario> getAll() throws Exception{	
+		Statement stmt=null;
+		ResultSet rs=null;
+		Usuario u=null;
+		ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
+		try {
+			stmt = FactoryConexion.getInstancia()
+					.getConn().createStatement();
+			rs = stmt.executeQuery("select * from usuario");
+			if(rs!=null){
+				while(rs.next()){
+					u = new Usuario();
+					u.setNombre(rs.getString("nombre"));
+					u.setUser(rs.getString("user"));
+					u.setApellido(rs.getString("apellido"));
+					u.setCorreo(rs.getString("correo"));
+					u.setFecAlta(rs.getString("fecalta"));
+					u.setFecEstado(rs.getString("fecestado"));
+					u.setEstado(rs.getString("estado"));
+					u.setIdU(rs.getInt("idU"));
+					u.setNivel(this.getNivelesUser(u));
+					usuarios.add(u);
+				}
+			}
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible recuperar personas de la BD");
+			
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return usuarios;		
+	}
 	
 	}
 
