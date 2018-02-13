@@ -24,14 +24,8 @@ public class CtrlABMUsuario {
 	}					
 	
 	public Usuario login(Usuario u) throws Exception{		
-		Usuario us=new Usuario();
-		us=null;
-		us=dataU.getLogedUser(u);
-		if (us!=null){
-			us.setNivel(dataU.getNivelesUser(us));
-			//System.out.println(us.getNivel().get(0).getDescripcion());
-		}		
-		return us;
+	
+		return this.dataU.getLogedUser(u);
 	}
 	
 	public Usuario recuperarNiveles(Usuario u) throws Exception{
@@ -43,9 +37,11 @@ public class CtrlABMUsuario {
 	public Usuario getByUser(Usuario u) throws Exception{	
 		return this.dataU.getByUser(u);			
 	}
+
 	public ArrayList<Usuario> getAll() throws Exception{	
 		return this.dataU.getAll();		
 	}
+	
 	public Usuario getById(Usuario u) throws Exception{
 		return this.dataU.getById(u);
 	}

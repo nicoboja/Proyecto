@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="entity.Usuario"%>
+    <%@page import="entity.Nivel"%>
+    <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,22 +50,18 @@
                                  </div><!-- /col6 -->
                                  
                                  <div class="col-lg-6">
+                                 
+                                 <% if(request.getAttribute("ussM") !=null){ 
+                						ArrayList<Nivel> listNivUss = ((Usuario)request.getAttribute("ussM")).getNivel();
+                   	            		for(Nivel u: listNivUss){if(u.getDescripcion().equals("Administrador")){}}
+                   	            		
+                                 } %>
                                    	
                                         <div class="form-group">
                                             <label>Roles</label>
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" value="admin" checked>Administrador
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="" >Contactologo
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="" >Fonoudiologo
                                                 </label>
                                             </div>
                                             <div class="checkbox">
@@ -96,7 +94,7 @@
                               		<div class="col-lg-12">
                                    <div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea class="form-control" rows="3">Administrador del sistema S.optica, soporte tecnico.</textarea>
+                                            	<textarea class="form-control" rows="3"><%=((Usuario)request.getAttribute("ussM")).getNotas() %></textarea>
                                         	</div>
                                        		<button type="button" class="btn btn-success btn-lg btn-block ">Guardar</button>    
                                 			

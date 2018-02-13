@@ -11,7 +11,9 @@ public class FactoryConexion {
 	private String port="3306";
 	private String user="root";
 	private String password="root";
+
 	private String db="bdoptica";
+
 	
 	private static FactoryConexion instancia;
 		
