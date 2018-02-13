@@ -101,7 +101,46 @@ public class DataUsuario {
 					e.printStackTrace();	
 				}
 			} 
-		return niveles;		
+		return niveles;
+	}
+	
+	public ArrayList<Usuario> getAll() throws Exception{	
+		Statement stmt=null;
+		ResultSet rs=null;
+		Usuario u=null;
+		ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
+		try {
+			stmt = FactoryConexion.getInstancia()
+					.getConn().createStatement();
+			rs = stmt.executeQuery("select * from usuario");
+			if(rs!=null){
+				while(rs.next()){
+					u = new Usuario();
+					u.setNombre(rs.getString("nombre"));
+					u.setUser(rs.getString("user"));
+					u.setApellido(rs.getString("apellido"));
+					u.setCorreo(rs.getString("correo"));
+					u.setFecAlta(rs.getString("fecalta"));
+					u.setFecEstado(rs.getString("fecestado"));
+					u.setEstado(rs.getString("estado"));
+					u.setIdU(rs.getInt("idU"));
+					u.setNivel(this.getNivelesUser(u));
+					usuarios.add(u);
+				}
+			}
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible recuperar Usuarios de la BD");
+			
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return usuarios;
 	}
 
 	public Usuario getLogedUser(Usuario u) throws AppDataException {
@@ -141,45 +180,6 @@ public class DataUsuario {
 			} 
 			return uLog;
 		}
-	
-	public ArrayList<Usuario> getAll() throws Exception{	
-		Statement stmt=null;
-		ResultSet rs=null;
-		Usuario u=null;
-		ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
-		try {
-			stmt = FactoryConexion.getInstancia()
-					.getConn().createStatement();
-			rs = stmt.executeQuery("select * from usuario");
-			if(rs!=null){
-				while(rs.next()){
-					u = new Usuario();
-					u.setNombre(rs.getString("nombre"));
-					u.setUser(rs.getString("user"));
-					u.setApellido(rs.getString("apellido"));
-					u.setCorreo(rs.getString("correo"));
-					u.setFecAlta(rs.getString("fecalta"));
-					u.setFecEstado(rs.getString("fecestado"));
-					u.setEstado(rs.getString("estado"));
-					u.setIdU(rs.getInt("idU"));
-					u.setNivel(this.getNivelesUser(u));
-					usuarios.add(u);
-				}
-			}
-		}catch (SQLException | AppDataException e) {
-			throw new AppDataException(e,"No es posible recuperar personas de la BD");
-			
-		}finally{
-			try{
-				if(rs!=null) rs.close();
-				if(stmt!=null) stmt.close();
-				FactoryConexion.getInstancia().releaseConn();
-			}catch (SQLException e) {
-				e.printStackTrace();	
-			}
-		} 
-		return usuarios;		
-	}
 	
 	}
 

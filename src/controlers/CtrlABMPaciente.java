@@ -1,5 +1,7 @@
 package controlers;
 
+import java.util.ArrayList;
+
 import data.DataPaciente;
 import entity.Paciente;
 
@@ -22,6 +24,10 @@ public class CtrlABMPaciente {
 	
 	public Paciente getById(Paciente pac) throws Exception{	
 		return this.dataPac.getById(pac);			
+	}
+	
+	public ArrayList<Paciente> getAll() throws Exception{	
+		return this.dataPac.getAll();		
 	}
 
 }

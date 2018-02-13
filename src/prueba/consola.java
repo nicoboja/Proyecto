@@ -3,7 +3,9 @@ package prueba;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controlers.CtrlABMPaciente;
 import controlers.CtrlABMUsuario;
+import entity.Paciente;
 import entity.Usuario;
 
 public class consola {
@@ -15,6 +17,8 @@ public class consola {
 		Usuario uLogueado=new Usuario();
 		CtrlABMUsuario ctrlUser=new CtrlABMUsuario();
 		ArrayList<Usuario> usus= new ArrayList<Usuario>();
+		CtrlABMPaciente ctrlPac=new CtrlABMPaciente();
+		ArrayList<Paciente> pacs= new ArrayList<Paciente>();
 		
 		System.out.println("Ingrese Usuario:");
 		usu.setUser(s.nextLine());
@@ -42,10 +46,22 @@ public class consola {
 			for(int v=0;v<usus.get(i).getNivel().size(); v++){
 				System.out.println(usus.get(i).getNivel().get(v).getIdNivel());
 				System.out.println(usus.get(i).getNivel().get(v).getDescripcion());
-			}
-				
-			
+			}			
 		}
+		
+		try {
+			pacs=ctrlPac.getAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		for(int i=0;i<pacs.size();i++){
+			System.out.println(pacs.get(i).getIdPac());
+			System.out.println(pacs.get(i).getNombre());
+			System.out.println(pacs.get(i).getApellido());
+		}
+		
 
 		
 		

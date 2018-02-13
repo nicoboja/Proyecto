@@ -37,9 +37,10 @@ public class CtrlABMUsuario {
 	public Usuario getByUser(Usuario u) throws Exception{	
 		return this.dataU.getByUser(u);			
 	}
-	
+
 	public ArrayList<Usuario> getAll() throws Exception{	
 		return this.dataU.getAll();		
 	}
+
 
 }

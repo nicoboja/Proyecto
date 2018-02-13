@@ -3,6 +3,8 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import entity.Paciente;
 import util.AppDataException;
@@ -74,7 +76,7 @@ public class DataPaciente {
 		} 				
 	}
 
-	public Paciente getById(Paciente pac)  throws AppDataException {
+	public Paciente getById(Paciente pac) throws AppDataException {
 		Paciente p = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -98,18 +100,62 @@ public class DataPaciente {
 				p.setNroOs(rs.getInt("nroOs"));
 				p.setIdPac(rs.getInt("idPac"));
 				}			
-			}catch (SQLException e) {
+		}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible recuperar Paciente de la BD");
 				
-			}finally{
-				try{
-					if(rs!=null) rs.close();
-					if(stmt!=null) stmt.close();
-					FactoryConexion.getInstancia().releaseConn();
-				}catch (SQLException e) {
-					e.printStackTrace();	
-				}
-			} 
-			return p;
-		}
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return p;
 	}
+
+	public ArrayList<Paciente> getAll() throws AppDataException {
+		Paciente p=null;
+		Statement stmt=null;
+		ResultSet rs=null;		
+		ArrayList<Paciente> pacientes= new ArrayList<Paciente>();
+		try {
+			stmt = FactoryConexion.getInstancia()
+					.getConn().createStatement();
+			rs = stmt.executeQuery("select * from paciente");
+			if(rs!=null){
+				while(rs.next()){
+					p = new Paciente();
+					p.setIdPac(rs.getInt("idPac"));
+					p.setNombre(rs.getString("nombre"));
+					p.setApellido(rs.getString("apellido"));
+					p.setNroDoc(rs.getInt("nroDoc"));
+					p.setCorreo(rs.getString("correo"));
+					p.setTelefono(rs.getInt("telefono"));
+					p.setDireccion(rs.getString("direccion"));
+					p.setNota(rs.getString("nota"));
+					p.setOs(rs.getString("os"));
+					p.setNroOs(rs.getInt("nroOs"));
+					p.setFecNac(rs.getString("fecNac"));
+					p.setCelular(rs.getInt("celular"));
+					p.setCiudad(rs.getString("ciudad"));
+					pacientes.add(p);
+				}
+			}
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible recuperar Pacientes de la BD");
+			
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return pacientes;
+	}
+	
+}

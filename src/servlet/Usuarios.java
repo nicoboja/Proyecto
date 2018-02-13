@@ -32,12 +32,12 @@ public class Usuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String pagina = "/acceso_restringido.jsp";
+		String pagina = "/gestionar_usuarios.jsp";
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("Administrador") !=null){
-			
-			pagina = "BIEN!";
+		if(session.getAttribute("Administrador") ==null){
+			pagina = "/escritorio.jsp";
+			request.setAttribute("infoNav", "No tiene permisos para ingresar a Usuarios");
 		}
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);

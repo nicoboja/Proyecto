@@ -64,6 +64,8 @@ public class Inicio extends HttpServlet {
 		String pagina = "/login.jsp";
 		HttpSession session = request.getSession();
 		
+		
+		
 		try {
 			String user=request.getParameter("user");
 			String pass=request.getParameter("pass");
@@ -81,11 +83,12 @@ public class Inicio extends HttpServlet {
 						session.setAttribute("uss", uLog);
 						System.out.println("Estado: "+uLog.getEstado());
 						
-						for(int i=0;i<=uLog.getNivel().size();i++){
+						for(int i=0;i<uLog.getNivel().size();i++){
 							System.out.println(uLog.getNivel().get(i).getDescripcion());
 							session.setAttribute(uLog.getNivel().get(i).getDescripcion(), true);
 						}
 					}else {
+						 
 						request.setAttribute("infoTipo", "danger");
 						request.setAttribute("infoText", "Usuario <b>"+user+"</b> Inhabilitado!");
 					}
@@ -107,6 +110,12 @@ public class Inicio extends HttpServlet {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
         dispatcher.forward(request, response);
         
+	}
+	
+	private void iniNiveles() {
+		
+		
+		
 	}
 }
 
