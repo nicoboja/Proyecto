@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="meta.jspf"%>
 
-<title>S.Optica | Modificar Usuario</title>
+<title>S.Optica | Nuevo Usuario</title>
 </head>
 <body>
 <%@ include file="nav.jspf" %>
@@ -18,14 +18,14 @@
             <div class="row">
             
                 <div class="col-lg-12">
-                    <h1 class="page-header">Modificar Usuario</h1>
+                    <h1 class="page-header">Nuevo Usuario</h1>
                 </div><!-- /.col-lg-12 -->
         	</div><!-- /.row -->
 			<div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        Datos de <b><%=((Usuario)request.getAttribute("ussM")).getUser() %></b> -  Fecha Alta: <%=((Usuario)request.getAttribute("ussM")).getFecAlta() %>
+                        Alta de <b>Usuario </b> - 
                        
                    </div>
                    <div class="panel-body">
@@ -38,27 +38,27 @@
             		 <%} %>
                    <form name="modifica" action="ModificarUsuario" method="post">
                         <div class="row">
-                        	<input hidden id="id" name="id" value="<%=((Usuario)request.getAttribute("ussM")).getIdU() %> ">
+                        	<input hidden id="id" name="id" value="">
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>Usuario</label>
-                                        <input class="form-control" disabled="disabled" value="<%=((Usuario)request.getAttribute("ussM")).getUser() %> ">
+                                        <input class="form-control" disabled="disabled" value="">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control" autofocus name="apellido" id="apellido" value="<%=((Usuario)request.getAttribute("ussM")).getApellido() %>" >
+                                       <input class="form-control" autofocus name="apellido" id="apellido" value="" >
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" name="nombre" id="nombre" value="<%=((Usuario)request.getAttribute("ussM")).getNombre() %>" >
+                                        <input class="form-control" name="nombre" id="nombre" value="" >
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correo" id="correo" value="<%=((Usuario)request.getAttribute("ussM")).getCorreo() %>" >
+                                            <input class="form-control" name="correo" id="correo" value="" >
                                     </div>
                                     <div class="form-group">
                                             <label>Contraseña</label>
-                                            <input class="form-control" type="password" name="pass" id="pass" value="<%=((Usuario)request.getAttribute("ussM")).getPass() %>" >
+                                            <input class="form-control" type="password" name="pass" id="pass" value="" >
                                     </div>
                                  </div><!-- /col6 -->
                                  
@@ -91,18 +91,17 @@
                                                 
                                             </div>
                                             
-                                            <input value="<%=((Usuario)request.getAttribute("ussM")).getFecEstado() %>" id="fecEstado" name="fecEstado" hidden>
                                             
                                             <div class="form-group">
-                                           		<label>Estado: <%=((Usuario)request.getAttribute("ussM")).getEstado() %></label> el día <%=((Usuario)request.getAttribute("ussM")).getFecEstado() %>
+                                           		<label>Estado:</label> 
                                             	<select id="estado" name="estado"  class="form-control ">
-                                            		<option <%if(((Usuario)request.getAttribute("ussM")).getEstado().equals("Habilitado")){ %>selected<%} %> value="Habilitado">Habilitado</option>
-                                            		<option <%if(((Usuario)request.getAttribute("ussM")).getEstado().equals("Inhabilitado")){ %>selected<%} %> value="Inhabilitado">Inhabilitado</option>
+                                            		<option  value="Habilitado">Habilitado</option>
+                                            		<option  value="Inhabilitado">Inhabilitado</option>
                                                	</select>
 									      	</div>
 									      	<div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea class="form-control" rows="5"><%=((Usuario)request.getAttribute("ussM")).getNotas() %></textarea>
+                                            	<textarea class="form-control" rows="5"></textarea>
                                         	</div>
                                        		 
                                 			

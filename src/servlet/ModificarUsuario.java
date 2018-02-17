@@ -68,7 +68,7 @@ public class ModificarUsuario extends HttpServlet {
 						}
 						
 					}else{
-						pagina = "/gestionar_usuarios.jsp";
+						pagina = "/Usuarios";
 						request.setAttribute("infoNav", "Se produjo un error al querer modificar el usuario");
 					}
 					
@@ -96,9 +96,47 @@ public class ModificarUsuario extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String pagina = "/usuario_modificar";
+		HttpSession session = request.getSession();
+		
+		try {
+			if(session.getAttribute("uss")!=null) {
+				if(session.getAttribute("Administrador") ==null){
+					pagina = "/escritorio.jsp";
+					request.setAttribute("infoNav", "No tiene permisos para ingresar a Usuarios");
+					}//administrador
+				else{
+					
+					int idu = Integer.parseInt(request.getParameter("idu"));
+					CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
+					Usuario uss = new Usuario();
+					uss.setApellido(request.getParameter("apellido"));
+					uss.setNombre(request.getParameter("nombre"));
+					uss.setCorreo(request.getParameter("correo"));
+					uss.setEstado(request.getParameter("estado"));
+					uss.setPass(request.getParameter("pass"));
+					uss.setFecEstado(request.getParameter("fecEstado"));
+					uss.setIdU(idu);
+					
+					
+					
+					
+					
+				}
+			}else{
+				request.setAttribute("infoTipo", "info");
+				request.setAttribute("infoText", "Ingrese usuario y contraseña");
+				pagina = "/login.jsp";
+			}
+		} catch (Exception e) {
+			request.setAttribute("infoNav", e);
+			e.printStackTrace();
+		}
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+		dispatcher.forward(request, response);
 	}
 
 }
