@@ -38,11 +38,11 @@
             		 <%} %>
                    <form name="modifica" action="ModificarUsuario" method="post">
                         <div class="row">
-                        	<input hidden id="id" name="id" value="<%=((Usuario)request.getAttribute("ussM")).getIdU() %> ">
+                        	<input id="id" type="text" name="id" value="<%=((Usuario)request.getAttribute("ussM")).getIdU() %>">
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>Usuario</label>
-                                        <input class="form-control" disabled="disabled" value="<%=((Usuario)request.getAttribute("ussM")).getUser() %> ">
+                                        <input class="form-control" name="usuario" id="usuario" disabled="disabled" value="<%=((Usuario)request.getAttribute("ussM")).getUser() %>">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
@@ -57,7 +57,7 @@
                                             <input class="form-control" name="correo" id="correo" value="<%=((Usuario)request.getAttribute("ussM")).getCorreo() %>" >
                                     </div>
                                     <div class="form-group">
-                                            <label>Contraseña</label>
+                                            <label>Contraseña: <%=((Usuario)request.getAttribute("ussM")).getPass() %></label>
                                             <input class="form-control" type="password" name="pass" id="pass" value="<%=((Usuario)request.getAttribute("ussM")).getPass() %>" >
                                     </div>
                                  </div><!-- /col6 -->
@@ -102,7 +102,7 @@
 									      	</div>
 									      	<div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea class="form-control" rows="5"><%=((Usuario)request.getAttribute("ussM")).getNotas() %></textarea>
+                                            	<textarea id="notas" name="notas" class="form-control" rows="5"><%=((Usuario)request.getAttribute("ussM")).getNotas() %></textarea>
                                         	</div>
                                        		 
                                 			

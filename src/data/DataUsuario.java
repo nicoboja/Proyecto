@@ -16,14 +16,15 @@ public class DataUsuario {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"insert into usuario (user, apellido, correo, nombre, pass, notas, fecalta, estado)"
-						+ " values (?,?,?,?,?,CURDATE(),'Habilitado')");	
+						"insert into usuario (user, apellido, correo, nombre, pass, notas, estado, fecalta, fecestado)"
+						+ " values (?,?,?,?,?,?,?,CURDATE(),CURDATE())");	
 			stmt.setString(1, u.getUser());
-			stmt.setString(2,u.getApellido());
+			stmt.setString(2, u.getApellido());
 			stmt.setString(3, u.getCorreo());
 			stmt.setString(4, u.getNombre());
 			stmt.setString(5, u.getPass());			
 			stmt.setString(6, u.getNotas());
+			stmt.setString(7, u.getEstado());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
@@ -46,20 +47,19 @@ public class DataUsuario {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"update usuario set user=?, apellido=?, correo=?, nombre=?, pass=?, estado=?, fecEstado=?,"
+						"update usuario set apellido=?, correo=?, nombre=?, pass=?, estado=?, fecEstado=?,"
 						+ " notas=? where idU=?;");
-			stmt.setString(1,u.getUser());
-			stmt.setString(2,u.getApellido());
-			stmt.setString(3, u.getCorreo());
-			stmt.setString(4, u.getNombre());
-			stmt.setString(5, u.getPass());
-			stmt.setString(6, u.getEstado());
-			stmt.setString(7, u.getFecEstado());
-			stmt.setString(8, u.getNotas());
-			stmt.setInt(9, u.getIdU());
+			stmt.setString(1,u.getApellido());
+			stmt.setString(2, u.getCorreo());
+			stmt.setString(3, u.getNombre());
+			stmt.setString(4, u.getPass());
+			stmt.setString(5, u.getEstado());
+			stmt.setString(6, u.getFecEstado());
+			stmt.setString(7, u.getNotas());
+			stmt.setInt(8, u.getIdU());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
-			throw new AppDataException(e,"No es posible actualizar Usuario en la BD");
+			throw new AppDataException(e,"No es posible actualizar Usuario en la BD DATOS");
 			
 		}finally{
 			try{
@@ -70,9 +70,41 @@ public class DataUsuario {
 		} 			
 	}
 
-	public Usuario getByUser(Usuario u) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario getByUser(Usuario u) throws AppDataException {
+		Usuario usu = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"SELECT * from usuario where user=?");
+			stmt.setString(1, u.getUser());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				usu = new Usuario();
+				usu.setNombre(rs.getString("nombre"));
+				usu.setUser(rs.getString("user"));
+				usu.setApellido(rs.getString("apellido"));
+				usu.setCorreo(rs.getString("correo"));
+				usu.setFecAlta(rs.getString("fecalta"));
+				usu.setFecEstado(rs.getString("fecestado"));
+				usu.setEstado(rs.getString("estado"));
+				usu.setIdU(rs.getInt("idU"));
+				usu.setNotas(rs.getString("notas"));
+				usu.setNivel(this.getNivelesUser(usu));
+				}			
+			}catch (SQLException e) {
+				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
+				
+			}finally{
+				try{
+					if(rs!=null) rs.close();
+					if(stmt!=null) stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 
+		return usu;
 	}
 	
 	public ArrayList<Nivel> getNivelesUser(Usuario u) throws AppDataException{
@@ -107,7 +139,9 @@ public class DataUsuario {
 					e.printStackTrace();	
 				}
 			} 
+
 		return niveles;
+
 	}
 	
 	public ArrayList<Usuario> getAll() throws Exception{	
@@ -147,6 +181,7 @@ public class DataUsuario {
 				e.printStackTrace();	
 			}
 		} 
+
 		return usuarios;
 	}
 
@@ -209,6 +244,7 @@ public class DataUsuario {
 				usu.setEstado(rs.getString("estado"));
 				usu.setIdU(rs.getInt("idU"));
 				usu.setNotas(rs.getString("notas"));
+				usu.setPass(rs.getString("pass"));
 				usu.setNivel(this.getNivelesUser(usu));
 				}			
 			}catch (SQLException e) {
@@ -225,5 +261,75 @@ public class DataUsuario {
 			} 
 		return usu;
 	}
-	
+
+
+	public void deleteNivUser(Usuario u) throws AppDataException {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"delete from nivel_usuario where idUsuario=?");	
+			stmt.setInt(1, u.getIdU());
+			stmt.executeUpdate();
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible borrar Niveles de Usuario en la BD");
+			
+		}finally{
+			try{
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 		
 	}
+
+	public void insertNivUser(Usuario u) throws AppDataException {
+		
+		for(int i=0;i<u.getNivel().size();i++){	
+			PreparedStatement stmt=null;
+			try {
+				stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+							"insert into nivel_usuario (idNivel, idUsuario) values (?,?)");	
+				stmt.setInt(1, u.getNivel().get(i).getIdNivel());
+				stmt.setInt(2,u.getIdU());
+				stmt.executeUpdate();
+			}catch (SQLException | AppDataException e) {
+				throw new AppDataException(e,"No es posible agregar Niveles de Usuario a la BD");
+				
+			}finally{
+				try{
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 		
+		}
+	}	
+	
+	public boolean existeUser(Usuario u) throws AppDataException {
+		boolean b = false;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"SELECT * from usuario where user=?");
+			stmt.setString(1, u.getUser());
+			rs=stmt.executeQuery();
+			if(rs!=null){
+				b= true;
+				System.out.println("existe");
+				}			
+			}catch (SQLException e) {
+				throw new AppDataException(e,"No es posible validar existencia de usuario en la BD");
+				
+			}finally{
+				try{
+					if(rs!=null) rs.close();
+					if(stmt!=null) stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 
+		return b;
+	}
+}

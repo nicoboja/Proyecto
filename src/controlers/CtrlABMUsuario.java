@@ -11,16 +11,40 @@ public class CtrlABMUsuario {
 	private DataUsuario dataU = new DataUsuario();
 	
 	
-	public void add(Usuario u) throws Exception{		
-		dataU.add(u);		
+	public boolean add(Usuario u) throws Exception{
+		boolean b=false;
+
+		if(dataU.existeUser(u)==false){
+			dataU.add(u);	
+			if(u.getNivel()!=null){
+				dataU.insertNivUser(u);
+			}				
+			b=true;
+		}
+		return b;
 	}
 	
 	public void delete(Usuario u) throws Exception{	
 		dataU.delete(u);		
 	}
 	
-	public void update(Usuario u) throws Exception{			
-		dataU.update(u);					
+	public void update(Usuario u) throws Exception{		
+		Usuario uvalida=new Usuario();
+		uvalida.setIdU(u.getIdU());
+		uvalida=this.getById(u);
+		//System.out.println(uvalida.getEstado());
+		//System.out.println(u.getEstado());
+		if(u.getEstado().equals(uvalida.getEstado())){
+			u.setFecEstado(uvalida.getFecEstado());	
+		}else{
+			
+		}	
+		dataU.update(u);
+		
+		if(u.getNivel()!=null){
+			dataU.deleteNivUser(u);
+			dataU.insertNivUser(u);
+		}		
 	}					
 	
 	public Usuario login(Usuario u) throws Exception{		
@@ -45,6 +69,5 @@ public class CtrlABMUsuario {
 	public Usuario getById(Usuario u) throws Exception{
 		return this.dataU.getById(u);
 	}
-
 
 }
