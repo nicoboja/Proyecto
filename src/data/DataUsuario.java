@@ -314,9 +314,10 @@ public class DataUsuario {
 						"SELECT * from usuario where user=?");
 			stmt.setString(1, u.getUser());
 			rs=stmt.executeQuery();
-			if(rs!=null){
+			if(rs!=null && rs.next()){
 				b= true;
 				System.out.println("existe");
+				System.out.println(rs.getString("user"));
 				}			
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible validar existencia de usuario en la BD");

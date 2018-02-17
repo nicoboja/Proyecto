@@ -61,7 +61,7 @@ public class consola {
 			System.out.println("------------------------");
 		}
 		Usuario uN=new Usuario();
-		uN.setIdU(6);
+	
 		System.out.println("Ingresar USUARIO");
 		System.out.println("Ingresar Nombre:");
 		uN.setNombre(s.nextLine());
@@ -73,10 +73,15 @@ public class consola {
 		uN.setCorreo(s.nextLine());
 		System.out.println("Ingresar Contraseña:");
 		uN.setPass(s.nextLine());
-		uN.setEstado("Inhabilitado");
-		uN.setFecEstado("2018-02-17");
+		uN.setEstado("Habilitado");
+		System.out.println("Ingresar User:");
+		uN.setUser(s.nextLine());
+		System.out.println("Ingresar pass:");
+		uN.setPass(s.nextLine());
+
+//		uN.setFecEstado("2018-02-17");
 		try {
-			ctrlUser.update(uN);
+			x=ctrlUser.add(uN);
 			System.out.println(x);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
