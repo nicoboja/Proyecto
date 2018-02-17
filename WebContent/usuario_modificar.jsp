@@ -38,7 +38,7 @@
             		 <%} %>
                    <form name="modifica" action="ModificarUsuario" method="post">
                         <div class="row">
-                        	<input id="id" type="text" name="id" value="<%=((Usuario)request.getAttribute("ussM")).getIdU() %>">
+                        	<input id="id" hidden type="text" name="id" value="<%=((Usuario)request.getAttribute("ussM")).getIdU() %>">
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>Usuario</label>
@@ -112,7 +112,7 @@
                                     </div><!-- /col6 -->
                               		</div><!-- /row -->	
                               		<div class="col-lg-12">
-                                   <button type="submit" class="btn btn-success btn-lg btn-block ">Guardar</button>   
+                                   <button type="submit" class="btn btn-warning btn-lg btn-block ">Modificar</button>   
                                 </form>
                                 </div>	 
                          </div><!-- /panel body -->

@@ -83,6 +83,7 @@ public class ModificarUsuario extends HttpServlet {
 				}
 		
 			}catch (Exception e) {
+				pagina= "/escritorio.jsp";
 				request.setAttribute("infoNav", e);
 			}
 		
@@ -122,14 +123,14 @@ public class ModificarUsuario extends HttpServlet {
 							uss.setNotas(request.getParameter("notas"));
 							uss.setIdU(id);
 							
-							System.out.println(uss.getApellido());
+							/*System.out.println(uss.getApellido());
 							System.out.println(uss.getNombre());
 							System.out.println(uss.getIdU());
 							System.out.println(uss.getCorreo());
 							System.out.println(uss.getEstado());
 							System.out.println(uss.getPass());
 							System.out.println(uss.getFecEstado());
-							System.out.println(uss.getNotas());
+							System.out.println(uss.getNotas());*/
 							
 							CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
 							ctrlUss.update(uss);
