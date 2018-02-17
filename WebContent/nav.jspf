@@ -92,7 +92,7 @@
                                     <a href="../Proyecto/Usuarios"><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="../pages/usuario_nuevo.jsp"><i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Usuario</a>
+                                    <a href="../Proyecto/NuevoUsuario"><i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Usuario</a>
                                 </li>
                               
                             </ul>

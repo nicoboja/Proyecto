@@ -18,6 +18,7 @@ public class DataUsuario {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"insert into usuario (user, apellido, correo, nombre, pass, notas, estado, fecalta, fecestado)"
 						+ " values (?,?,?,?,?,?,?,?,?)");	
+
 			stmt.setString(1, u.getUser());
 			stmt.setString(2, u.getApellido());
 			stmt.setString(3, u.getCorreo());
@@ -61,7 +62,7 @@ public class DataUsuario {
 			stmt.setInt(8, u.getIdU());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
-			throw new AppDataException(e,"No es posible actualizar Usuario en la BD");
+			throw new AppDataException(e,"No es posible actualizar Usuario en la BD DATOS");
 			
 		}finally{
 			try{
@@ -141,9 +142,7 @@ public class DataUsuario {
 					e.printStackTrace();	
 				}
 			} 
-
 		return niveles;
-
 	}
 	
 	public ArrayList<Usuario> getAll() throws Exception{	
@@ -183,7 +182,6 @@ public class DataUsuario {
 				e.printStackTrace();	
 			}
 		} 
-
 		return usuarios;
 	}
 
@@ -333,6 +331,5 @@ public class DataUsuario {
 				}
 			} 
 		return b;
-	}
-}
-
+	} 
+} 

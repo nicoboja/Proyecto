@@ -86,6 +86,10 @@ public class Usuario {
 	public void setNivel(ArrayList<Nivel> nivel) {
 		this.nivel = nivel;
 	}
+
+
+	
+	
 	
 	
 }
