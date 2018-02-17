@@ -39,7 +39,7 @@ public class Inicio extends HttpServlet {
 		String pagina = "/escritorio.jsp";
 		HttpSession session = request.getSession();
 		try {
-			if(session.getAttribute("usuario")!=null) {
+			if(session.getAttribute("uss")!=null) {
 				System.out.println("sesion iniciada");
 				
 

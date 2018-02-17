@@ -15,7 +15,8 @@ public class DataPaciente {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"insert into paciente (nombre, apellido, nroDoc, celular, ciudad, correo, direccion, fecNac, nota, os, nroOs) values (?,?,?,?,?,?,?,?,?,?,?)");
+						"insert into paciente (nombre, apellido, nroDoc, celular, ciudad, correo, direccion, fecNac, "
+						+ "nota, os, nroOs, telefono) values (?,?,?,?,?,?,?,?,?,?,?,?)");
 			stmt.setString(1, pac.getNombre());	
 			stmt.setString(2, pac.getApellido());
 			stmt.setInt(3, pac.getNroDoc());
@@ -27,6 +28,7 @@ public class DataPaciente {
 			stmt.setString(9, pac.getNota());
 			stmt.setString(10, pac.getOs());
 			stmt.setInt(11, pac.getNroOs());
+			stmt.setInt(12, pac.getTelefono());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Paciente a la BD");

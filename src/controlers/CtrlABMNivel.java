@@ -1,3 +1,4 @@
+
 package controlers;
 
 import java.util.ArrayList;
@@ -12,7 +13,8 @@ public class CtrlABMNivel {
 	
 	public ArrayList<Nivel> getAll() throws Exception {		
 		
-			return dataN.getAll();				
+			return dataN.getAll();		
+		
 	}
 
 }

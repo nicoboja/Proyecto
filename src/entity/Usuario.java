@@ -2,6 +2,10 @@ package entity;
 
 import java.util.ArrayList;
 
+/**
+ * @author Bruno
+ *
+ */
 public class Usuario {
 	private int idU;
 	private String user;

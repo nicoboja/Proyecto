@@ -40,5 +40,4 @@ public class DataNivel {
 			} 
 		return niveles;
 	}
-
 }

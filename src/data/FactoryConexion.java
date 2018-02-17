@@ -65,7 +65,6 @@ public class FactoryConexion {
 		} catch (SQLException e) {
 			throw e;
 		}
-	}
-	
+	}	
 
 }

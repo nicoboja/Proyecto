@@ -11,22 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import controlers.CtrlABMNivel;
 import controlers.CtrlABMUsuario;
-
 import entity.Usuario;
 
 /**
- * Servlet implementation class Usuarios
+ * Servlet implementation class ModificarUsuario
  */
-@WebServlet({ "/Usuarios", "/usuarios", "/USUARIOS" })
-public class Usuarios extends HttpServlet {
+@WebServlet({ "/ModificarUsuario", "/modificarusuario", "/MODIFICARUSUARIO", "/MODIFICARusuario" })
+public class ModificarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Usuarios() {
+    public ModificarUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,8 +34,7 @@ public class Usuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String pagina = "/gestionar_usuarios.jsp";
+		String pagina = "/usuario_modificar.jsp";
 		HttpSession session = request.getSession();
 		
 		try {
@@ -45,29 +43,55 @@ public class Usuarios extends HttpServlet {
 					pagina = "/escritorio.jsp";
 					request.setAttribute("infoNav", "No tiene permisos para ingresar a Usuarios");
 				}else{
-			
-					try {
+					if(request.getParameter("id") != null){
+						int idU = Integer.parseInt(request.getParameter("id"));
 						CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
-						ArrayList<Usuario> listUss = ctrlUss.getAll();
-						request.setAttribute("listUss", listUss);
-				
-					} catch (Exception e) {
-						request.setAttribute("infoNav", e);
+						Usuario uss = new Usuario();
+						uss.setIdU(idU);
+						uss= ctrlUss.getById(uss);
+						
+						if(uss== null){
+							pagina = "/gestionar_usuarios.jsp";
+							try {
+								ArrayList<Usuario> listUss = ctrlUss.getAll();
+								request.setAttribute("listUss", listUss);
+						
+							} catch (Exception e) {
+								request.setAttribute("infoNav", e);
+							}
+							request.setAttribute("infoNav", "No existe Usuario");
+							
+						}else{
+							CtrlABMNivel ctrlNiv = new CtrlABMNivel();
+							request.setAttribute("nivBD", ctrlNiv.getAll());
+							request.setAttribute("ussM", uss);
+						}
+						
+					}else{
+						pagina = "/gestionar_usuarios.jsp";
+						request.setAttribute("infoNav", "Se produjo un error al querer modificar el usuario");
 					}
-			
-				}
-			}else{
+					
+					
+					
+					}
+				
+				}else{
 					request.setAttribute("infoTipo", "info");
 					request.setAttribute("infoText", "Ingrese usuario y contraseña");
 					pagina = "/login.jsp";
 				}
-		} catch (Exception e) {
-			request.setAttribute("infoNav", e);
-		}
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-        dispatcher.forward(request, response);
+			}catch (Exception e) {
+				request.setAttribute("infoNav", e);
+			}
+		
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
 	}
+				
+		
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
