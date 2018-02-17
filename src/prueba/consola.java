@@ -1,5 +1,7 @@
 package prueba;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,6 +27,10 @@ public class consola {
 		CtrlABMNivel ctrlNiv=new CtrlABMNivel();
 		boolean x = false;
 		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		System.out.println(dtf.format(localDate)); //2016/11/16
+		
 		System.out.println("Ingrese Usuario:");
 		usu.setUser(s.nextLine());
 		System.out.println("Ingrese Pass:");
@@ -34,10 +40,28 @@ public class consola {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(uLogueado.getApellido());
+//		System.out.println(uLogueado.getApellido());
+//		System.out.println("Ingresar numero:");
+//		String g;
+//		g=(s.nextLine());
+//		int z=Integer.parseInt(g);
+//		System.out.println(z);
 		
+		try {
+			pacs=ctrlPac.getAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<pacs.size();i++){
+			System.out.println("Paciente "+(i+1));
+			System.out.println(pacs.get(i).getNombre());
+			System.out.println(pacs.get(i).getApellido());
+			System.out.println("------------------------");
+		}
 		Usuario uN=new Usuario();
-		
+		uN.setIdU(6);
 		System.out.println("Ingresar USUARIO");
 		System.out.println("Ingresar Nombre:");
 		uN.setNombre(s.nextLine());
@@ -47,23 +71,22 @@ public class consola {
 		uN.setNotas(s.nextLine());
 		System.out.println("Ingresar Mail:");
 		uN.setCorreo(s.nextLine());
-		System.out.println("Ingresar User:");
-		uN.setUser(s.nextLine());
 		System.out.println("Ingresar Contraseña:");
 		uN.setPass(s.nextLine());
-		uN.setEstado("Hablilitado");
+		uN.setEstado("Inhabilitado");
+		uN.setFecEstado("2018-02-17");
 		try {
-			x=ctrlUser.add(uN);
+			ctrlUser.update(uN);
 			System.out.println(x);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(x){
-			System.out.println("Se agrego un nuevo usuario ");
-		}else{
-			System.out.println("Nombre de usuario ya utilizado");
-		}
+//		if(x){
+//			System.out.println("Se agrego un nuevo usuario ");
+//		}else{
+//			System.out.println("Nombre de usuario ya utilizado");
+//		}
 //		System.out.println("Ingresar PACIENTE");
 //		System.out.println("Ingresar Nombre:");
 //		pac.setNombre(s.nextLine());
@@ -89,8 +112,9 @@ public class consola {
 //		pac.setOs(s.nextLine());
 //		System.out.println("Ingresar Nro OS:");
 //		pac.setNroOs(Integer.parseInt(s.nextLine()));
+//		pac.setIdPac(3);
 //		try {
-//			ctrlPac.add(pac);
+//			ctrlPac.update(pac);
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();

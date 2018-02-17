@@ -50,7 +50,8 @@ public class DataPaciente {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"update paciente set nombre=?, apellido=?, nroDoc=?, celular=?, ciudad=?, correo=?, direccion=?, fecNac=?, nota=?, os=?, nroOs=? where idPac=?;");
+						"update paciente set nombre=?, apellido=?, nroDoc=?, celular=?, ciudad=?, correo=?,"
+						+ " direccion=?, fecNac=?, nota=?, os=?, nroOs=?, telefono=? where idPac=?;");
 			stmt.setString(1, pac.getNombre());	
 			stmt.setString(2, pac.getApellido());
 			stmt.setInt(3, pac.getNroDoc());
@@ -62,10 +63,11 @@ public class DataPaciente {
 			stmt.setString(9, pac.getNota());
 			stmt.setString(10, pac.getOs());
 			stmt.setInt(11, pac.getNroOs());
-			stmt.setInt(12, pac.getIdPac());
+			stmt.setInt(12, pac.getTelefono());
+			stmt.setInt(13, pac.getIdPac());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
-			throw new AppDataException(e,"No es posible actualizar Paciente en la BD");
+			throw new AppDataException(e, "No es posible actualizar Paciente en la BD");
 			
 		}finally{
 			try{
@@ -91,6 +93,7 @@ public class DataPaciente {
 				p.setApellido(rs.getString("apellido"));
 				p.setNroDoc(rs.getInt("nroDoc"));
 				p.setCelular(rs.getInt("celular"));
+				p.setTelefono(rs.getInt("telefono"));
 				p.setCiudad(rs.getString("ciudad"));
 				p.setCorreo(rs.getString("correo"));
 				p.setDireccion(rs.getString("direccion"));
