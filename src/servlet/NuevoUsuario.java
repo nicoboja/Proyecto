@@ -75,19 +75,25 @@ public class NuevoUsuario extends HttpServlet {
 				}else{
 					
 					Usuario uss = new Usuario();
+					uss.setUser(request.getParameter("usuario"));
 					uss.setApellido(request.getParameter("apellido"));
 					uss.setNombre(request.getParameter("nombre"));
 					uss.setCorreo(request.getParameter("correon"));
 					uss.setEstado(request.getParameter("estado"));
 					uss.setPass(request.getParameter("passn"));
-					uss.setFecEstado(request.getParameter("fecEstado"));
+					//uss.setFecEstado(request.getParameter("fecEstado"));
 					uss.setNotas(request.getParameter("notas"));
 					
 					CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
-					ctrlUss.add(uss);
+					boolean rta =ctrlUss.add(uss);
+					if(rta){
+						request.setAttribute("infoText","Se agrego el usuario: "+uss.getUser());
+						request.setAttribute("infoTipo","success");
+					}else{
+						request.setAttribute("infoText","Ya existe el usuario: "+uss.getUser());
+						request.setAttribute("infoTipo","danger");
+					}
 					
-					request.setAttribute("infoText","Se modifico usuario"+uss.getUser());
-					request.setAttribute("infoTipo","success");
 					CtrlABMNivel ctrlNiv = new CtrlABMNivel();
 					request.setAttribute("nivBD", ctrlNiv.getAll());
 				}

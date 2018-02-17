@@ -17,7 +17,8 @@ public class DataUsuario {
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"insert into usuario (user, apellido, correo, nombre, pass, notas, estado, fecalta, fecestado)"
-						+ " values (?,?,?,?,?,?,?,CURDATE(),CURDATE())");	
+						+ " values (?,?,?,?,?,?,?,?,?)");	
+
 			stmt.setString(1, u.getUser());
 			stmt.setString(2, u.getApellido());
 			stmt.setString(3, u.getCorreo());
@@ -25,6 +26,8 @@ public class DataUsuario {
 			stmt.setString(5, u.getPass());			
 			stmt.setString(6, u.getNotas());
 			stmt.setString(7, u.getEstado());
+			stmt.setString(8, u.getFecAlta());
+			stmt.setString(9, u.getFecEstado());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
@@ -49,7 +52,7 @@ public class DataUsuario {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"update usuario set apellido=?, correo=?, nombre=?, pass=?, estado=?, fecEstado=?,"
 						+ " notas=? where idU=?;");
-			stmt.setString(1,u.getApellido());
+			stmt.setString(1, u.getApellido());
 			stmt.setString(2, u.getCorreo());
 			stmt.setString(3, u.getNombre());
 			stmt.setString(4, u.getPass());
@@ -139,9 +142,7 @@ public class DataUsuario {
 					e.printStackTrace();	
 				}
 			} 
-
 		return niveles;
-
 	}
 	
 	public ArrayList<Usuario> getAll() throws Exception{	
@@ -181,7 +182,6 @@ public class DataUsuario {
 				e.printStackTrace();	
 			}
 		} 
-
 		return usuarios;
 	}
 
@@ -314,9 +314,10 @@ public class DataUsuario {
 						"SELECT * from usuario where user=?");
 			stmt.setString(1, u.getUser());
 			rs=stmt.executeQuery();
-			if(rs!=null){
+			if(rs!=null && rs.next()){
 				b= true;
 				System.out.println("existe");
+				System.out.println(rs.getString("user"));
 				}			
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible validar existencia de usuario en la BD");
@@ -331,5 +332,5 @@ public class DataUsuario {
 				}
 			} 
 		return b;
-	}
-}
+	} 
+} 

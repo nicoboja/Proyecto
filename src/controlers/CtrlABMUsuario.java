@@ -2,6 +2,8 @@ package controlers;
 
 import entity.Usuario;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import data.DataUsuario;
@@ -15,6 +17,10 @@ public class CtrlABMUsuario {
 		boolean b=false;
 
 		if(dataU.existeUser(u)==false){
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.now();
+			u.setFecAlta((dtf.format(localDate)));
+			u.setFecEstado((dtf.format(localDate)));
 			dataU.add(u);	
 			if(u.getNivel()!=null){
 				dataU.insertNivUser(u);
@@ -30,25 +36,25 @@ public class CtrlABMUsuario {
 	
 	public void update(Usuario u) throws Exception{		
 		Usuario uvalida=new Usuario();
-		uvalida.setIdU(u.getIdU());
 		uvalida=this.getById(u);
-		//System.out.println(uvalida.getEstado());
-		//System.out.println(u.getEstado());
-		if(u.getEstado().equals(uvalida.getEstado())){
+		if(uvalida.getEstado()==u.getEstado()){
 			u.setFecEstado(uvalida.getFecEstado());	
 		}else{
-			
-		}	
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.now();
+			u.setFecEstado((dtf.format(localDate)));
+		}
 		dataU.update(u);
-		
 		if(u.getNivel()!=null){
 			dataU.deleteNivUser(u);
 			dataU.insertNivUser(u);
 		}		
 	}					
+		
 	
 	public Usuario login(Usuario u) throws Exception{		
 	
+
 		return this.dataU.getLogedUser(u);
 	}
 	
@@ -69,5 +75,4 @@ public class CtrlABMUsuario {
 	public Usuario getById(Usuario u) throws Exception{
 		return this.dataU.getById(u);
 	}
-
 }

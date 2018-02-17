@@ -92,7 +92,7 @@
 									      	</div>
 									      	<div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea class="form-control" rows="5"></textarea>
+                                            	<textarea id="notas" name="notas" class="form-control" rows="5"></textarea>
                                         	</div>
                                        		 
                                 			
