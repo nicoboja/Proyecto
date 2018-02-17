@@ -12,8 +12,7 @@ public class CtrlABMNivel {
 	
 	public ArrayList<Nivel> getAll() throws Exception {		
 		
-			return dataN.getAll();		
-		
+			return dataN.getAll();				
 	}
 
 }

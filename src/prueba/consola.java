@@ -3,6 +3,7 @@ package prueba;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controlers.CtrlABMNivel;
 import controlers.CtrlABMPaciente;
 import controlers.CtrlABMUsuario;
 import entity.Nivel;
@@ -20,6 +21,7 @@ public class consola {
 		ArrayList<Usuario> usus= new ArrayList<Usuario>();
 		CtrlABMPaciente ctrlPac=new CtrlABMPaciente();
 		ArrayList<Paciente> pacs= new ArrayList<Paciente>();
+		CtrlABMNivel ctrlNiv=new CtrlABMNivel();
 		
 		System.out.println("Ingrese Usuario:");
 		usu.setUser(s.nextLine());
@@ -88,25 +90,38 @@ public class consola {
 		String salir;
 		ArrayList<Nivel> niv=new ArrayList<Nivel>();
 		Nivel n=new Nivel();
-		do {
-			System.out.println("Ingrese codigo de rol:");
-			n.setIdNivel(Integer.parseInt(s.nextLine()));
-			niv.add(n);
-			
-			
-			j++;	
-			System.out.println("desea salir? si= s");
-			salir=(s.nextLine());
-		}while (salir=="s");
-		us.setNivel(niv);
+		
 		try {
-			ctrlUser.update(us);
-		} catch (Exception e) {
+			niv=ctrlNiv.getAll();
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 		
-		System.out.println("actualizado correctamente!");
+		for(int i=0;i<niv.size();i++){			
+			System.out.println(niv.get(i).getIdNivel());
+			System.out.println(niv.get(i).getDescripcion());
+		}	
+//		
+//		do {
+//			System.out.println("Ingrese codigo de rol:");
+//			n.setIdNivel(Integer.parseInt(s.nextLine()));
+//			niv.add(n);
+//			
+//			
+//			j++;	
+//			System.out.println("desea salir? si= s");
+//			salir=(s.nextLine());
+//		}while (salir=="s");
+//		us.setNivel(niv);
+//		try {
+//			ctrlUser.update(us);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		System.out.println("actualizado correctamente!");
 		
 //		System.out.println("Notas del usuario:");
 //		us.setNotas(s.nextLine());

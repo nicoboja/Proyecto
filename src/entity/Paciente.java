@@ -93,6 +93,4 @@ public class Paciente {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-	
-
 }

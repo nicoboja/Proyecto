@@ -3,7 +3,6 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import entity.Nivel;
@@ -17,8 +16,7 @@ public class DataNivel {
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
-			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"select * from nivel");		
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("select * from nivel");		
 			rs=stmt.executeQuery();
 			if(rs!=null){
 				while(rs.next()){
