@@ -49,12 +49,9 @@ public class CtrlABMUsuario {
 			dataU.deleteNivUser(u);
 			dataU.insertNivUser(u);
 		}		
-	}					
-		
+	}							
 	
-	public Usuario login(Usuario u) throws Exception{		
-	
-
+	public Usuario login(Usuario u) throws Exception{
 		return this.dataU.getLogedUser(u);
 	}
 	
