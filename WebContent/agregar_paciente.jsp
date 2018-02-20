@@ -36,7 +36,7 @@
                                <%=request.getAttribute("infoText")%>
             		 </div> 
             		 <%} %>
-                   <form name="modifica" action="NuevoUsuario" method="post">
+                   <form name="agregaPaciente" action="NuevoPaciente" method="post">
                         <div class="row">
                         	
                         		 <div class="col-lg-6">
@@ -67,8 +67,12 @@
                                  </div><!-- /col6 -->
                                  
                                  <div class="col-lg-6">
+                                	 <div class="form-group">
+                                            <label>Celular</label>
+                                            <input class="form-control" type="number" name="cel" id="cel" value="" >
+                                    </div>
                                  	<div class="form-group">
-                                            <label>Telefono</label>
+                                            <label>Telefono fijo</label>
                                             <input class="form-control" name="tel" id="tel" value="" >
                                     </div>
                                 
@@ -78,29 +82,31 @@
                                     </div>
                                     <div class="form-group">
                                  	   <label>Nº Afiliado</label>
-                                       <input class="form-control"  name="apellido" id="apellido" value="" >
+                                       <input class="form-control"  name="nroaf" id="nroaf" value="" >
                                     </div>
                                     <div class="form-group">
                                         <label>Fecha Nacimiento</label>
                                         <input class="form-control" type="date" name="fecnac" id="fecnac" value="" >
                                     </div>
                                     
-                                    
-									      	<div class="form-group">
-                                            	<label>Notas Internas</label>
-                                            	<textarea id="notas" name="notas" class="form-control" rows="5"></textarea>
-                                        	</div>
-                                       		 
-                                			
-                                	</div><!-- /form group -->
+                                    </div><!-- /form group -->
 									      	
 									      	
                                     </div><!-- /col6 -->
-                              		</div><!-- /row -->	
+                              		<!-- /row -->	
                               		<div class="col-lg-12">
-                                   <button type="submit" class="btn btn-success btn-lg btn-block ">Nuevo Usuario</button>   
-                                </form>
-                                </div>	 
+                              			<div class="form-group">
+                                            	<label>Notas Internas</label>
+                                            	<textarea id="notas" name="notas" class="form-control" rows="5"></textarea>
+                                     	</div>
+                                     	</div>
+                                     	</div>
+                              		<div class="col-lg-12">
+                              		
+                                   <button type="submit" class="btn btn-success btn-lg btn-block ">Nueva ficha de Paciente</button>   
+                                
+                                </div>	
+                                </form> 
                          </div><!-- /panel body -->
                     </div><!--  /panel default -->
                 </div><!-- /col12 -->

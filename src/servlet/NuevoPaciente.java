@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controlers.CtrlABMNivel;
+import controlers.CtrlABMPaciente;
 import controlers.CtrlABMUsuario;
+import entity.Paciente;
 import entity.Usuario;
 
 /**
@@ -72,29 +74,50 @@ public class NuevoPaciente extends HttpServlet {
 					pagina = "/escritorio.jsp";
 					request.setAttribute("infoNav", "No tiene permisos para ingresar a crear un nuevo paciente");
 				}else{
-					
-					Usuario uss = new Usuario();
-					uss.setUser(request.getParameter("usuario"));
-					uss.setApellido(request.getParameter("apellido"));
-					uss.setNombre(request.getParameter("nombre"));
-					uss.setCorreo(request.getParameter("correon"));
-					uss.setEstado(request.getParameter("estado"));
-					uss.setPass(request.getParameter("passn"));
-					//uss.setFecEstado(request.getParameter("fecEstado"));
-					uss.setNotas(request.getParameter("notas"));
-					
-					CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
-					boolean rta =ctrlUss.add(uss);
-					if(rta){
-						request.setAttribute("infoText","Se agrego el usuario: "+uss.getUser());
-						request.setAttribute("infoTipo","success");
+					if (request.getParameter("dni")!= null &&  request.getParameter("dni")!= "") {
+						int cel = 0 , nrobra = 0 , tel = 0;
+						
+						Paciente pacForm = new Paciente();
+						if (request.getParameter("cel")!= null) {cel = Integer.parseInt(request.getParameter("cel"));}
+						if (request.getParameter("tel")!= null) {tel = Integer.parseInt(request.getParameter("tel"));}
+						if (request.getParameter("nroaf")!= null) {nrobra = Integer.parseInt(request.getParameter("nroaf"));}
+						
+						int dni = Integer.parseInt(request.getParameter("dni"));
+						pacForm.setNroDoc(dni);
+						pacForm.setNombre(request.getParameter("nombre"));
+						pacForm.setApellido(request.getParameter("apellido"));
+						pacForm.setCorreo(request.getParameter("correo"));
+						pacForm.setDireccion(request.getParameter("dir"));
+						pacForm.setCiudad(request.getParameter("ciudad"));
+						pacForm.setCelular(cel);
+						pacForm.setTelefono(tel);
+						pacForm.setOs(request.getParameter("osocial"));
+						pacForm.setNroDoc(nrobra);
+						pacForm.setFecNac(request.getParameter("fecnac"));
+						pacForm.setNota(request.getParameter("notas"));
+						
+						Paciente pacBD = new Paciente();
+						
+						CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
+						pacBD= ctrlPac.getByDoc(pacForm);
+						
+						if(pacBD == null ){
+							ctrlPac.add(pacForm);
+							request.setAttribute("infoText","Paciente creado con exito, DNI: "+pacForm.getNroDoc());
+							request.setAttribute("infoTipo","success");
+							
+						}else{
+							request.setAttribute("infoText","Ya existe el DNI "+pacBD.getNroDoc()+" en el registro de Fichas ");
+							request.setAttribute("infoTipo","warning");
+						}
+						
 					}else{
-						request.setAttribute("infoText","Ya existe el usuario: "+uss.getUser());
+						request.setAttribute("infoText","DNI invalido!");
 						request.setAttribute("infoTipo","danger");
 					}
 					
-					CtrlABMNivel ctrlNiv = new CtrlABMNivel();
-					request.setAttribute("nivBD", ctrlNiv.getAll());
+			
+					
 				}
 			}else{
 				request.setAttribute("infoTipo", "info");
@@ -105,7 +128,7 @@ public class NuevoPaciente extends HttpServlet {
 			catch (Exception e) {
 				pagina= "/escritorio.jsp";
 				request.setAttribute("infoNav", e);
-			}
+		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 		dispatcher.forward(request, response);
 	}
