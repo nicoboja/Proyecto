@@ -46,20 +46,21 @@ public class Pacientes extends HttpServlet {
 					listPac=null;
 					Paciente pac = new Paciente();
 					if (request.getParameter("dni") != null && request.getParameter("dni") != "") {
-						request.setAttribute("infoNav", "DNI");	
+						
 						int doc = Integer.parseInt(request.getParameter("dni"));
 						pac.setNroDoc(doc);
 						listPac = ctrlPac.getListDoc(pac);
 					}else{
 						
 					if (request.getParameter("ape") != null && request.getParameter("ape") != ""){
-						request.setAttribute("infoNav", "APELLIDO");
-						pac.setApellido((String) request.getAttribute("ape"));
+						
+						pac.setApellido(request.getParameter("ape"));
+						
 						listPac = ctrlPac.getByApe(pac);
 						}else{
 							
 					if (request.getParameter("hc") != null && request.getParameter("hc") != ""){
-							request.setAttribute("infoNav", "HC");	
+							
 							int hc = Integer.parseInt(request.getParameter("hc"));
 							pac.setNroDoc(hc);
 							listPac = ctrlPac.getListDoc(pac);

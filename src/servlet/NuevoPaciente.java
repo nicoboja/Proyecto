@@ -92,7 +92,7 @@ public class NuevoPaciente extends HttpServlet {
 						pacForm.setCelular(cel);
 						pacForm.setTelefono(tel);
 						pacForm.setOs(request.getParameter("osocial"));
-						pacForm.setNroDoc(nrobra);
+						pacForm.setNroOs(nrobra);
 						pacForm.setFecNac(request.getParameter("fecnac"));
 						pacForm.setNota(request.getParameter("notas"));
 						
