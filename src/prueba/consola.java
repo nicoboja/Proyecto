@@ -20,6 +20,7 @@ public class consola {
 		Usuario usu=new Usuario();
 		Usuario uLogueado=new Usuario();
 		Paciente pac=new Paciente();
+		Paciente pa=new Paciente();
 		CtrlABMUsuario ctrlUser=new CtrlABMUsuario();
 		ArrayList<Usuario> usus= new ArrayList<Usuario>();
 		CtrlABMPaciente ctrlPac=new CtrlABMPaciente();
@@ -46,47 +47,53 @@ public class consola {
 //		g=(s.nextLine());
 //		int z=Integer.parseInt(g);
 //		System.out.println(z);
-		
-		try {
-			pacs=ctrlPac.getAll();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(int i=0;i<pacs.size();i++){
-			System.out.println("Paciente "+(i+1));
-			System.out.println(pacs.get(i).getNombre());
-			System.out.println(pacs.get(i).getApellido());
-			System.out.println("------------------------");
-		}
-		Usuario uN=new Usuario();
-	
-		System.out.println("Ingresar USUARIO");
-		System.out.println("Ingresar Nombre:");
-		uN.setNombre(s.nextLine());
-		System.out.println("Ingresar Apellido:");
-		uN.setApellido(s.nextLine());
-		System.out.println("Ingresar Nota:");
-		uN.setNotas(s.nextLine());
-		System.out.println("Ingresar Mail:");
-		uN.setCorreo(s.nextLine());
-		System.out.println("Ingresar Contraseña:");
-		uN.setPass(s.nextLine());
-		uN.setEstado("Habilitado");
-		System.out.println("Ingresar User:");
-		uN.setUser(s.nextLine());
-		System.out.println("Ingresar pass:");
-		uN.setPass(s.nextLine());
-
+//		try {
+//			pacs=ctrlPac.getByApe(pac);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			pacs=ctrlPac.getAll();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		for(int i=0;i<pacs.size();i++){
+//			System.out.println("Paciente "+(i+1));
+//			System.out.println(pacs.get(i).getNombre());
+//			System.out.println(pacs.get(i).getApellido());
+//			System.out.println("------------------------");
+//		}
+//		Usuario uN=new Usuario();
+//	
+//		System.out.println("Ingresar USUARIO");
+//		System.out.println("Ingresar Nombre:");
+//		uN.setNombre(s.nextLine());
+//		System.out.println("Ingresar Apellido:");
+//		uN.setApellido(s.nextLine());
+//		System.out.println("Ingresar Nota:");
+//		uN.setNotas(s.nextLine());
+//		System.out.println("Ingresar Mail:");
+//		uN.setCorreo(s.nextLine());
+//		System.out.println("Ingresar Contraseña:");
+//		uN.setPass(s.nextLine());
+//		uN.setEstado("Habilitado");
+//		System.out.println("Ingresar User:");
+//		uN.setUser(s.nextLine());
+//		System.out.println("Ingresar pass:");
+//		uN.setPass(s.nextLine());
+//
 //		uN.setFecEstado("2018-02-17");
-		try {
-			x=ctrlUser.add(uN);
-			System.out.println(x);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			x=ctrlUser.add(uN);
+//			System.out.println(x);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		if(x){
 //			System.out.println("Se agrego un nuevo usuario ");
 //		}else{
@@ -119,11 +126,25 @@ public class consola {
 //		pac.setNroOs(Integer.parseInt(s.nextLine()));
 //		pac.setIdPac(3);
 //		try {
-//			ctrlPac.update(pac);
+//			pa=ctrlPac.add(pac);
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		System.out.println("Ingrese  3 letras para buscar apellido");
+		pac.setApellido(s.nextLine());
+		try {
+			pacs=ctrlPac.getByApe(pac);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		for(int i=0;i<pacs.size();i++){
+			System.out.println(pacs.get(i).getNroDoc());
+			System.out.println(pacs.get(i).getApellido());
+			System.out.println(pacs.get(i).getNombre());
+		}
 //		System.out.println(uLogueado.getNivel().get(0).getIdNivel());
 //		try {
 //			usus=ctrlUser.getAll();
