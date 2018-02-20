@@ -10,14 +10,11 @@ public class CtrlABMPaciente {
 	private DataPaciente dataPac = new DataPaciente();
 
 	
-	public Paciente add(Paciente pac) throws Exception{	
+	public void add(Paciente pac) throws Exception{	
 		Paciente pa=new Paciente();
 		pa=this.getByDoc(pac);		
 		if(pa==null){
 			dataPac.add(pac);
-			return pac;
-		}else{
-			return pa;
 		}
 	}
 	
