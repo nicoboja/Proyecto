@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controlers.CtrlABMUsuario;
-import entity.Usuario;
+import controlers.CtrlABMPaciente;
+import entity.Paciente;
+
+
 
 /**
  * Servlet implementation class Pacientes
@@ -39,16 +41,35 @@ public class Pacientes extends HttpServlet {
 		try {
 			if(session.getAttribute("uss")!=null) {
 					pagina = "/buscar_paciente.jsp";
-					
-			
-					try {
+					CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
+					ArrayList<Paciente> listPac = new ArrayList<>();
+					listPac=null;
+					Paciente pac = new Paciente();
+					if (request.getParameter("dni") != null && request.getParameter("dni") != "") {
+						request.setAttribute("infoNav", "DNI");	
+						int doc = Integer.parseInt(request.getParameter("dni"));
+						pac.setNroDoc(doc);
+						listPac = ctrlPac.getListDoc(pac);
+					}else{
 						
-				
-					} catch (Exception e) {
-						request.setAttribute("infoNav", e);
+					if (request.getParameter("ape") != null && request.getParameter("ape") != ""){
+						request.setAttribute("infoNav", "APELLIDO");
+						pac.setApellido((String) request.getAttribute("ape"));
+						listPac = ctrlPac.getByApe(pac);
+						}else{
+							
+					if (request.getParameter("hc") != null && request.getParameter("hc") != ""){
+							request.setAttribute("infoNav", "HC");	
+							int hc = Integer.parseInt(request.getParameter("hc"));
+							pac.setNroDoc(hc);
+							listPac = ctrlPac.getListDoc(pac);
+						}
 					}
-			
-				
+					}
+					
+						
+					request.setAttribute("listPac", listPac);		
+					
 			}else{
 					request.setAttribute("infoTipo", "info");
 					request.setAttribute("infoText", "Ingrese usuario y contraseña");

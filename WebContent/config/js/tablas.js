@@ -13,7 +13,7 @@ var table = $('#example').DataTable({
 	         fixedColumns: false,
 	         
 	"language": {
-        "zeroRecords": "<input class='btn btn-lg btn-success btn-block' type='button' value='Nuevo'>",
+        "zeroRecords": "<p class='bg-warning'>No se encontraron registros..</p>",
         "lengthMenu": "Visualizar _MENU_ por pagina",
       	"sProcessing":     "Procesando...",
         "sEmptyTable":     "Ningún dato disponible en esta tabla",
