@@ -245,4 +245,95 @@ public class DataPaciente {
 		} 
 		return pacientes;
 	}	
+	
+	public ArrayList<Paciente> getListDoc(Paciente pac) throws AppDataException {
+		Paciente p=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;		
+		ArrayList<Paciente> pacientes= new ArrayList<Paciente>();
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from paciente where nroDoc like ?");
+			stmt.setString(1, pac.getNroDoc()+"%");
+			rs = stmt.executeQuery();
+			
+			if(rs!=null){
+				while(rs.next()){
+					p = new Paciente();
+					p.setIdPac(rs.getInt("idPac"));
+					p.setNombre(rs.getString("nombre"));
+					p.setApellido(rs.getString("apellido"));
+					p.setNroDoc(rs.getInt("nroDoc"));
+					p.setCorreo(rs.getString("correo"));
+					p.setTelefono(rs.getInt("telefono"));
+					p.setDireccion(rs.getString("direccion"));
+					p.setNota(rs.getString("nota"));
+					p.setOs(rs.getString("os"));
+					p.setNroOs(rs.getInt("nroOs"));
+					p.setFecNac(rs.getString("fecNac"));
+					p.setCelular(rs.getInt("celular"));
+					p.setCiudad(rs.getString("ciudad"));
+					pacientes.add(p);
+				}
+			}
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible recuperar Pacientes de la BD");
+			
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return pacientes;
+	}	
+	
+	public ArrayList<Paciente> getListHC(Paciente pac) throws AppDataException {
+		Paciente p=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;		
+		ArrayList<Paciente> pacientes= new ArrayList<Paciente>();
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from paciente where idPac like ?");
+			stmt.setString(1, pac.getIdPac()+"%");
+			rs = stmt.executeQuery();
+			
+			if(rs!=null){
+				while(rs.next()){
+					p = new Paciente();
+					p.setIdPac(rs.getInt("idPac"));
+					p.setNombre(rs.getString("nombre"));
+					p.setApellido(rs.getString("apellido"));
+					p.setNroDoc(rs.getInt("nroDoc"));
+					p.setCorreo(rs.getString("correo"));
+					p.setTelefono(rs.getInt("telefono"));
+					p.setDireccion(rs.getString("direccion"));
+					p.setNota(rs.getString("nota"));
+					p.setOs(rs.getString("os"));
+					p.setNroOs(rs.getInt("nroOs"));
+					p.setFecNac(rs.getString("fecNac"));
+					p.setCelular(rs.getInt("celular"));
+					p.setCiudad(rs.getString("ciudad"));
+					pacientes.add(p);
+				}
+			}
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible recuperar Pacientes de la BD");
+			
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return pacientes;
+	}	
+
 }

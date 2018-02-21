@@ -36,17 +36,17 @@
                                <%=request.getAttribute("infoText")%>
             		 </div> 
             		 <%} %>
-                   <form name="modifica" action="ModificarUsuario" method="post">
+                   <form name="modifica" action="NuevoUsuario" method="post">
                         <div class="row">
-                        	<input hidden id="id" name="id" value="">
+                        	
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>Usuario</label>
-                                        <input class="form-control" disabled="disabled" value="">
+                                        <input class="form-control" autofocus name="usuario" id="usuario" value="">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control" autofocus name="apellido" id="apellido" value="" >
+                                       <input class="form-control"  name="apellido" id="apellido" value="" >
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
@@ -54,11 +54,11 @@
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correo" id="correo" value="" >
+                                            <input class="form-control" name="correon" id="correon" value="" >
                                     </div>
                                     <div class="form-group">
                                             <label>Contraseña</label>
-                                            <input class="form-control" type="password" name="pass" id="pass" value="" >
+                                            <input class="form-control" type="password" name="passn" id="passn" value="" >
                                     </div>
                                  </div><!-- /col6 -->
                                  
@@ -75,16 +75,7 @@
                                                 	 for(Nivel n : listNivBD){
                                                  %>
                                                  	<label>
-                                                	<input type="checkbox" name="correo" id="correo" value="<%=n.getDescripcion() %>" 
-                                                	<%
-                                                	ArrayList<Nivel> listNivUss = ((Usuario)request.getAttribute("ussM")).getNivel();
-                                                	for(Nivel u: listNivUss){if(u.getDescripcion().equals(n.getDescripcion())){
-                                                		
-                                                		%>
-                                                		checked
-                                                		<% 
-                                                	}}
-                                                	%>><%=n.getDescripcion() %>
+                                                	<input type="checkbox" name="nivel" id="nivel" value="<%=n.getDescripcion() %>"><%=n.getDescripcion() %>
                                                 	</label>
                                                 <%}} %>
                                                 
@@ -101,7 +92,7 @@
 									      	</div>
 									      	<div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea class="form-control" rows="5"></textarea>
+                                            	<textarea id="notas" name="notas" class="form-control" rows="5"></textarea>
                                         	</div>
                                        		 
                                 			
@@ -111,7 +102,7 @@
                                     </div><!-- /col6 -->
                               		</div><!-- /row -->	
                               		<div class="col-lg-12">
-                                   <button type="submit" class="btn btn-success btn-lg btn-block ">Guardar</button>   
+                                   <button type="submit" class="btn btn-success btn-lg btn-block ">Nuevo Usuario</button>   
                                 </form>
                                 </div>	 
                          </div><!-- /panel body -->

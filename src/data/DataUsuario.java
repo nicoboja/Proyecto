@@ -29,6 +29,7 @@ public class DataUsuario {
 			stmt.setString(8, u.getFecAlta());
 			stmt.setString(9, u.getFecEstado());
 			stmt.executeUpdate();
+			
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Usuario a la BD");
 			

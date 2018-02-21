@@ -42,4 +42,12 @@ public class CtrlABMPaciente {
 		return this.dataPac.getByApe(pac);			
 	}
 
+	public ArrayList<Paciente> getListDoc(Paciente pac) throws Exception{	
+		return this.dataPac.getListDoc(pac);		
+	}
+	
+	public ArrayList<Paciente> getListHC(Paciente pac) throws Exception{	
+		return this.dataPac.getListHC(pac);		
+	}
+
 }

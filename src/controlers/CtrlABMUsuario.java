@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import data.DataUsuario;
 
 public class CtrlABMUsuario {
-	
+
 	private DataUsuario dataU = new DataUsuario();
-	
-	
+		
 	public boolean add(Usuario u) throws Exception{
 		boolean b=false;
 
@@ -49,9 +48,10 @@ public class CtrlABMUsuario {
 			dataU.deleteNivUser(u);
 			dataU.insertNivUser(u);
 		}		
-	}							
+	}					
+		
 	
-	public Usuario login(Usuario u) throws Exception{
+	public Usuario login(Usuario u) throws Exception{		
 		return this.dataU.getLogedUser(u);
 	}
 	
@@ -73,4 +73,3 @@ public class CtrlABMUsuario {
 		return this.dataU.getById(u);
 	}
 }
-

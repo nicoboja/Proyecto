@@ -48,10 +48,10 @@
                             <a href="#"><i class="fa fa-address-book-o" aria-hidden="true"></i> Pacientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../pages/historias_clinicas.jsp"><i class="fa fa-search" aria-hidden="true"></i> Historia Clinica</a>
+                                    <a href="../Proyecto/Pacientes"><i class="fa fa-search" aria-hidden="true"></i> Historia Clinica</a>
                                 </li>
                                 <li>
-                                    <a href="../pages/nueva_ficha.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nueva Ficha</a>
+                                    <a href="../Proyecto/NuevoPaciente"><i class="fa fa-plus-square-o fa-fw"></i> Nueva Ficha</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

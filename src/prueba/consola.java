@@ -5,9 +5,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controlers.CtrlABMFichaLente;
+import controlers.CtrlABMLenteMaterial;
+import controlers.CtrlABMLenteTipo;
 import controlers.CtrlABMNivel;
 import controlers.CtrlABMPaciente;
 import controlers.CtrlABMUsuario;
+import entity.FichaLente;
+import entity.LenteMaterial;
+import entity.LenteTipo;
 import entity.Nivel;
 import entity.Paciente;
 import entity.Usuario;
@@ -17,9 +23,7 @@ public class consola {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner s=new Scanner(System.in);
-		Usuario usu=new Usuario();
 		Usuario uLogueado=new Usuario();
-		Paciente pac=new Paciente();
 		Paciente pa=new Paciente();
 		CtrlABMUsuario ctrlUser=new CtrlABMUsuario();
 		ArrayList<Usuario> usus= new ArrayList<Usuario>();
@@ -27,20 +31,113 @@ public class consola {
 		ArrayList<Paciente> pacs= new ArrayList<Paciente>();
 		CtrlABMNivel ctrlNiv=new CtrlABMNivel();
 		boolean x = false;
+		FichaLente fl=new FichaLente();
+		LenteTipo lt=new LenteTipo();
+		LenteMaterial lm=new LenteMaterial();
+		Paciente pac=new Paciente();
+		Usuario opt=new Usuario();
+		Usuario tal=new Usuario();
+		CtrlABMFichaLente ctrlF= new CtrlABMFichaLente();
+		CtrlABMLenteMaterial ctrlLM=new CtrlABMLenteMaterial();
+		CtrlABMLenteTipo ctrlT=new CtrlABMLenteTipo();
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate localDate = LocalDate.now();
-		System.out.println(dtf.format(localDate)); //2016/11/16
-		
-		System.out.println("Ingrese Usuario:");
-		usu.setUser(s.nextLine());
-		System.out.println("Ingrese Pass:");
-		usu.setPass(s.nextLine());
+		System.out.println("Ficha Lente");
+		System.out.println("Ingresar");
+		System.out.println("Armazon:");
+		fl.setArmazon(s.nextLine());
+		System.out.println("codcil:");
+		fl.setCodcil(Float.parseFloat(s.nextLine()));
+		System.out.println("codesf:");
+		fl.setCodesf(Float.parseFloat(s.nextLine()));
+		System.out.println("codgrados:");
+		fl.setCodgrados(Integer.parseInt(s.nextLine()));
+		System.out.println("coicil:");
+		fl.setCoicil(Float.parseFloat(s.nextLine()));
+		System.out.println("coiesf:");
+		fl.setCoiesf(Float.parseFloat(s.nextLine()));
+		System.out.println("coigrados:");
+		fl.setCoigrados(Integer.parseInt(s.nextLine()));
+		System.out.println("color:");
+		fl.setColor(s.nextLine());
+		System.out.println("costo armazon:");
+		fl.setCostoArm(Float.parseFloat(s.nextLine()));
+		System.out.println("costo cristales:");
+		fl.setCostoCrist(Float.parseFloat(s.nextLine()));
+		System.out.println("fecha Entrada:");
+		fl.setFecEntrada(s.nextLine());
+		System.out.println("lodcil:");
+		fl.setCodcil(Float.parseFloat(s.nextLine()));
+		System.out.println("lodesf:");
+		fl.setLodesf(Float.parseFloat(s.nextLine()));
+		System.out.println("lodgrados:");
+		fl.setLodgrados(Integer.parseInt(s.nextLine()));
+		System.out.println("loigrados:");
+		fl.setLoigrados(Integer.parseInt(s.nextLine()));
+		System.out.println("ID Material:");
+		lm.setIdMaterial(Integer.parseInt(s.nextLine()));
 		try {
-			uLogueado=ctrlUser.login(usu);
+			fl.setMaterial(ctrlLM.getById(lm));
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("modelo:");
+		fl.setModelo(s.nextLine());
+		System.out.println("ID optico:");
+		opt.setIdU(Integer.parseInt(s.nextLine()));
+		try {
+			fl.setOptico(ctrlUser.getById(opt));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("ID paciente:");
+		pac.setIdPac(Integer.parseInt(s.nextLine()));
+		try {
+			fl.setPaciente(ctrlPac.getById(pac));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("Seña:");
+		fl.setSena(Float.parseFloat(s.nextLine()));
+		System.out.println("ID tallerista:");
+		tal.setIdU(Integer.parseInt(s.nextLine()));
+		try {
+			fl.setTallerista(ctrlUser.getById(tal));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("ID tipo:");
+		lt.setIdTipo(Integer.parseInt(s.nextLine()));
+		try {
+			fl.setTipo(ctrlT.getById(lt));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ctrlF.add(fl);
+			System.out.println("FL agregada con exito");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		LocalDate localDate = LocalDate.now();
+//		System.out.println(dtf.format(localDate)); //2016/11/16
+//		
+//		System.out.println("Ingrese Usuario:");
+//		usu.setUser(s.nextLine());
+//		System.out.println("Ingrese Pass:");
+//		usu.setPass(s.nextLine());
+//		try {
+//			uLogueado=ctrlUser.login(usu);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 //		System.out.println(uLogueado.getApellido());
 //		System.out.println("Ingresar numero:");
 //		String g;
@@ -126,25 +223,25 @@ public class consola {
 //		pac.setNroOs(Integer.parseInt(s.nextLine()));
 //		pac.setIdPac(3);
 //		try {
-//			pa=ctrlPac.add(pac);
+//			ctrlPac.add(pac);
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		System.out.println("Ingrese  3 letras para buscar apellido");
-		pac.setApellido(s.nextLine());
-		try {
-			pacs=ctrlPac.getByApe(pac);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		for(int i=0;i<pacs.size();i++){
-			System.out.println(pacs.get(i).getNroDoc());
-			System.out.println(pacs.get(i).getApellido());
-			System.out.println(pacs.get(i).getNombre());
-		}
+//		System.out.println("Ingrese  3 letras para buscar apellido");
+//		pac.setApellido(s.nextLine());
+//		try {
+//			pacs=ctrlPac.getByApe(pac);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		for(int i=0;i<pacs.size();i++){
+//			System.out.println(pacs.get(i).getNroDoc());
+//			System.out.println(pacs.get(i).getApellido());
+//			System.out.println(pacs.get(i).getNombre());
+//		}
 //		System.out.println(uLogueado.getNivel().get(0).getIdNivel());
 //		try {
 //			usus=ctrlUser.getAll();
