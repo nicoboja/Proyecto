@@ -78,7 +78,7 @@
        						 %>
            							
            							<tr class="<%=tipo%>">
-           								<td><button type="button" onclick="document.location ='ModificarUsuario?id=<%=f.getIdFicha()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=f.getIdFicha()%></button></td>
+           								<td><button type="button" onclick="document.location ='ModificarUsuario?id=<%=((Paciente)request.getAttribute("pac")).getApellido()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=f.getIdFicha()%></button></td>
            								<td><%=f.getFecEntrada()%></td>
            								<td><%=f.getFecEstimadaS()%></td>
            								<td><%=f.getTipo().getDescripcion()%></td>
@@ -100,7 +100,7 @@
                 <!-- /.col-lg-12 -->
                 <div class="col-lg-12">
                 <br>
-                                 <button type="submit" class="btn btn-info btn-lg btn-block" >Nueva Atención</button>  	
+                                 <button type="button" onclick="document.location ='NuevoLente?hc=<%=((Paciente)request.getAttribute("pac")).getIdPac()%>'" class="btn btn-info btn-lg btn-block" >Nueva Atención</button>  	
                                  </div><!-- /row -->	
             </div>
             <!-- /.row -->

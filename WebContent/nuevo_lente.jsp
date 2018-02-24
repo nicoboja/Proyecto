@@ -21,11 +21,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Atenciones del paciente: </div>
+                            Paciente: <b><%=((Paciente)request.getAttribute("pac")).getApellido()%> <%=((Paciente)request.getAttribute("pac")).getNombre()%></b></div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
 
-            <form id ="formFicha" name="Ficha" action="" onsubmit="return validarFicha(this)" method="post"> 
+            <form id ="formFicha" name="formFicha" action="NuevoLente" method="post"> 
             
             <div class="col-md-12">
             <div class="col-md-4">
@@ -67,28 +67,28 @@
                <label>Tipo:</label>                                    	
                <div class="radio">
                    <label>
-                      <input type="radio" name="tipo" onclick="enable()" value="Multifocal" checked>
+                      <input type="radio" name="tipo" onclick="enable()" value="4" checked>
    			Multifocal
                    </label>
                    <br>
                    <label>
-                        <input type="radio" onclick="enable()" name="tipo"  value="Bifocal" >
+                        <input type="radio" onclick="enable()" name="tipo"  value="5" >
    			Bifocal
                    </label>
                   <br>
                    <label>
-                       <input type="radio" onclick="disable_cerca()" name="tipo"  value="Lejos Monofocal" >
+                       <input type="radio" onclick="disable_cerca()" name="tipo"  value="6" >
    			Lejos Monofocal
                         
                    </label>
                    <br>
                    <label>
-                       <input type="radio" onclick="disable_lejos()" onchange="disable_lejos()" name="tipo" value="Cerca Monofocal" >
+                       <input type="radio" onclick="disable_lejos()" onchange="disable_lejos()" name="tipo" value="7" >
    			Cerca Monofocal
                    </label>
                    <br>
                    <label>
-                        <input type="radio" onchange="disable_lejos()" name="tipo"  value="Cerca Ocupacional" >
+                        <input type="radio" onchange="disable_lejos()" name="tipo"  value="8" >
    			Cerca Ocupacional
                    </label>
                    <br>
@@ -99,17 +99,17 @@
                
                 <div class="radio">
                    <label>
-                        <input type="radio" name="lente"  value="Mineral" checked>
+                        <input type="radio" name="lente"  value="1" checked>
    			Mineral
                    </label>
                     <br>
                    <label>
-                        <input type="radio" name="lente"  value="Organico" >
+                        <input type="radio" name="lente"  value="2" >
    			Organico
                    </label>
                     <br>
                    <label>
-                        <input type="radio" name="lente"  value="Policarbonato" >
+                        <input type="radio" name="lente"  value="3" >
    			Policarbonato
                    </label>
                         <br>
@@ -225,7 +225,7 @@
                     <hr>
                     </div>  
                     <div align="right">
-                    <button type="submit" class="btn btn-success">Aceptar</button>   
+                    <button type="submit" class="btn btn-outline btn-success text-right btn-block">Guardar</button>   
                   </div> 
                    <hr>
                </div>    
