@@ -25,6 +25,10 @@ public class FichaLente {
 	private Usuario optico;
 	private Usuario tallerista;
 	private String estado;
+	private String fecEstado;
+	private String fecReceta;
+	private String fecEstimadaS;
+	private String notas;
 	
 	public int getIdFicha() {
 		return idFicha;
@@ -169,6 +173,30 @@ public class FichaLente {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public String getFecEstado() {
+		return fecEstado;
+	}
+	public void setFecEstado(String fecEstado) {
+		this.fecEstado = fecEstado;
+	}
+	public String getFecReceta() {
+		return fecReceta;
+	}
+	public void setFecReceta(String fecReceta) {
+		this.fecReceta = fecReceta;
+	}
+	public String getFecEstimadaS() {
+		return fecEstimadaS;
+	}
+	public void setFecEstimadaS(String fecEstimadaS) {
+		this.fecEstimadaS = fecEstimadaS;
+	}
+	public String getNotas() {
+		return notas;
+	}
+	public void setNotas(String notas) {
+		this.notas = notas;
 	} 	
-	
+			
 }

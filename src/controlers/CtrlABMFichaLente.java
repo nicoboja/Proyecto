@@ -34,7 +34,12 @@ public class CtrlABMFichaLente {
 		return dataFicLen.getCantEstado(est);			
 	}
 	
-	public ArrayList<FichaLente> getByPaciente (Paciente pac)throws Exception{
+	public ArrayList<FichaLente> getByPaciente(Paciente pac)throws Exception{
 		return dataFicLen.getByPaciente(pac);		
 	}
+	
+	public void cambiarEstado(FichaLente fl) throws Exception{			
+		dataFicLen.cambiarEstado(fl);					
+	}			
+	
 }

@@ -19,9 +19,10 @@ public class DataFichaLente {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"insert into fichalente (fecEntrada, armazon, modelo, color, codesf, codcil, coiesf, coicil, "
-						+ "lodesf, lodcil, codgrados, coigrados, lodgrados, loigrados, costoArm, costoCrist, sena, idPac,"
-						+ "optico, tallerista, tipo, material, estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+						"insert into fichalente (fecEntrada, armazon, modelo, color, codesf, codcil, coiesf,"
+						+ " coicil, lodesf, lodcil, codgrados, coigrados, lodgrados, loigrados, costoArm, "
+						+ "costoCrist, sena, idPac, optico, tallerista, tipo, material, estado, fecEstado, "
+						+ "fecReceta, fecEstimadaS, notas) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			
 			stmt.setString(1, fl.getFecEntrada());	
 			stmt.setString(2,fl.getArmazon());
@@ -46,6 +47,10 @@ public class DataFichaLente {
 			stmt.setInt(21, fl.getTipo().getIdTipo());
 			stmt.setInt(22, fl.getMaterial().getIdMaterial());
 			stmt.setString(23, fl.getEstado());
+			stmt.setString(24, fl.getFecEstado());
+			stmt.setString(25, fl.getFecReceta());
+			stmt.setString(26, fl.getFecEstimadaS());
+			stmt.setString(27, fl.getNotas());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Nueva Ficha a la BD");
@@ -70,7 +75,8 @@ public class DataFichaLente {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"update fichalente set fecEntrada=?, armazon=?, modelo=?, color=?, codesf=?, codcil=?, coiesf=?,"
 						+ " coicil=?, lodesf=?, lodcil=?, codgrados=?, coigrados=?, lodgrados=?, loigrados=?, costoArm=?,"
-						+ " costoCrist=?, sena=?, idPac=?, optico=?, tallerista=?, tipo=?, material=?, estado=? where idFicha=?");
+						+ " costoCrist=?, sena=?, idPac=?, optico=?, tallerista=?, tipo=?, material=?, estado=?, fecEstado=?,"
+						+ " fecReceta=?, fecEstimadaS=?, notas=? where idFicha=?");
 			
 			stmt.setString(1, fl.getFecEntrada());	
 			stmt.setString(2,fl.getArmazon());
@@ -94,8 +100,12 @@ public class DataFichaLente {
 			stmt.setInt(20, fl.getTallerista().getIdU());
 			stmt.setInt(21, fl.getTipo().getIdTipo());
 			stmt.setInt(22, fl.getMaterial().getIdMaterial());
-			stmt.setString(23, fl.getEstado());
-			stmt.setInt(24, fl.getIdFicha());
+			stmt.setString(23, fl.getEstado());			
+			stmt.setString(24, fl.getFecEstado());
+			stmt.setString(25, fl.getFecReceta());
+			stmt.setString(26, fl.getFecEstimadaS());
+			stmt.setString(27, fl.getNotas());
+			stmt.setInt(28, fl.getIdFicha());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible actualizar Ficha en la BD");
@@ -159,6 +169,10 @@ public class DataFichaLente {
 				fic.getMaterial().setIdMaterial(rs.getInt("material"));
 				fic.setMaterial(dataMat.getById(fic.getMaterial()));
 				fic.setEstado(rs.getString("estado"));
+				fic.setFecEstado(rs.getString("fecEstado"));
+				fic.setFecReceta(rs.getString("fecReceta"));
+				fic.setFecEstimadaS(rs.getString("fecEstimadaS"));				
+				fic.setNotas(rs.getString("notas"));
 				}			
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible recuperar Ficha de la BD");
@@ -226,6 +240,10 @@ public class DataFichaLente {
 					fic.getMaterial().setIdMaterial(rs.getInt("material"));
 					fic.setMaterial(dataMat.getById(fic.getMaterial()));
 					fic.setEstado(rs.getString("estado"));
+					fic.setFecEstado(rs.getString("fecEstado"));
+					fic.setFecReceta(rs.getString("fecReceta"));
+					fic.setFecEstimadaS(rs.getString("fecEstimadaS"));				
+					fic.setNotas(rs.getString("notas"));
 					fichas.add(fic);
 					}				
 				}			
@@ -295,6 +313,10 @@ public class DataFichaLente {
 					fic.getMaterial().setIdMaterial(rs.getInt("material"));
 					fic.setMaterial(dataMat.getById(fic.getMaterial()));
 					fic.setEstado(rs.getString("estado"));
+					fic.setFecEstado(rs.getString("fecEstado"));
+					fic.setFecReceta(rs.getString("fecReceta"));
+					fic.setFecEstimadaS(rs.getString("fecEstimadaS"));				
+					fic.setNotas(rs.getString("notas"));
 					fichas.add(fic);
 					}				
 				}			
@@ -337,6 +359,28 @@ public class DataFichaLente {
 			}
 		} 
 		return cant;
+	}
+
+	public void cambiarEstado(FichaLente fl) throws AppDataException {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"update fichalente set estado=?, fecEstado=? where idFicha=?");
+			
+			stmt.setString(1, fl.getEstado());
+			stmt.setString(2, fl.getFecEstado());
+			stmt.setInt(3, fl.getIdFicha());			
+			stmt.executeUpdate();
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible actualizar Ficha en la BD");
+			
+		}finally{
+			try{
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		}		
 	}
 }
 
