@@ -48,6 +48,12 @@ public class consola {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			System.out.println(ctrlF.getCantEstado("Pendiente"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("Ficha de Lente Pendientes: ");
 		for(int i=0;i<fichasLen.size();i++){
 			System.out.println(fichasLen.get(i).getArmazon());

@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import controlers.CtrlABMPaciente;
 import entity.FichaLente;
 import entity.LenteMaterial;
 import entity.LenteTipo;
@@ -115,6 +114,10 @@ public class DataFichaLente {
 		FichaLente fic=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
+		DataPaciente dataPac = new DataPaciente();
+		DataUsuario dataUs = new DataUsuario();
+		DataLenteTipo dataTipo = new DataLenteTipo();
+		DataLenteMaterial dataMat = new DataLenteMaterial();
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"SELECT * from fichalente where idFicha=?");
@@ -146,10 +149,15 @@ public class DataFichaLente {
 				fic.setCostoCrist(rs.getFloat("costoCrist"));
 				fic.setSena(rs.getFloat("sena"));
 				fic.getPaciente().setIdPac(rs.getInt("idPac"));
+				fic.setPaciente(dataPac.getById(fic.getPaciente()));
 				fic.getOptico().setIdU(rs.getInt("optico"));
+				fic.setOptico(dataUs.getById(fic.getOptico()));
 				fic.getTallerista().setIdU(rs.getInt("tallerista"));
+				fic.setTallerista(dataUs.getById(fic.getTallerista()));
 				fic.getTipo().setIdTipo(rs.getInt("tipo"));
+				fic.setTipo(dataTipo.getById(fic.getTipo()));
 				fic.getMaterial().setIdMaterial(rs.getInt("material"));
+				fic.setMaterial(dataMat.getById(fic.getMaterial()));
 				fic.setEstado(rs.getString("estado"));
 				}			
 			}catch (SQLException e) {
@@ -234,6 +242,101 @@ public class DataFichaLente {
 				}
 			} 
 			return fichas;
+	}
+	
+	public ArrayList<FichaLente> getByPaciente(Paciente p) throws AppDataException {
+		FichaLente fic=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		DataPaciente dataPac = new DataPaciente();
+		DataUsuario dataUs = new DataUsuario();
+		DataLenteTipo dataTipo = new DataLenteTipo();
+		DataLenteMaterial dataMat = new DataLenteMaterial();
+		ArrayList<FichaLente> fichas= new ArrayList<FichaLente>();
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"SELECT * from fichalente where idPac=?");
+			stmt.setInt(1, p.getIdPac());
+			rs=stmt.executeQuery();
+			if(rs!=null){
+				while(rs.next()){
+					fic = new FichaLente();
+					fic.setMaterial(new LenteMaterial());
+					fic.setTipo(new LenteTipo());
+					fic.setPaciente(new Paciente());
+					fic.setOptico(new Usuario());
+					fic.setTallerista(new Usuario());
+					fic.setIdFicha(rs.getInt("idFicha")); 
+					fic.setFecEntrada(rs.getString("fecEntrada"));
+					fic.setArmazon(rs.getString("armazon"));
+					fic.setModelo(rs.getString("modelo"));
+					fic.setColor(rs.getString("color"));
+					fic.setCodesf(rs.getFloat("codesf"));
+					fic.setCodcil(rs.getFloat("codcil"));
+					fic.setCoiesf(rs.getFloat("coiesf"));
+					fic.setCoicil(rs.getFloat("coicil"));
+					fic.setLodesf(rs.getFloat("lodesf"));
+					fic.setLodcil(rs.getFloat("lodcil"));
+					fic.setCodgrados(rs.getInt("codgrados"));
+					fic.setCoigrados(rs.getInt("coigrados"));
+					fic.setLodgrados(rs.getInt("lodgrados"));
+					fic.setLoigrados(rs.getInt("loigrados"));
+					fic.setCostoArm(rs.getFloat("costoArm"));
+					fic.setCostoCrist(rs.getFloat("costoCrist"));
+					fic.setSena(rs.getFloat("sena"));					
+					fic.getPaciente().setIdPac(rs.getInt("idPac"));
+					fic.setPaciente(dataPac.getById(fic.getPaciente()));
+					fic.getOptico().setIdU(rs.getInt("optico"));
+					fic.setOptico(dataUs.getById(fic.getOptico()));
+					fic.getTallerista().setIdU(rs.getInt("tallerista"));
+					fic.setTallerista(dataUs.getById(fic.getTallerista()));
+					fic.getTipo().setIdTipo(rs.getInt("tipo"));
+					fic.setTipo(dataTipo.getById(fic.getTipo()));
+					fic.getMaterial().setIdMaterial(rs.getInt("material"));
+					fic.setMaterial(dataMat.getById(fic.getMaterial()));
+					fic.setEstado(rs.getString("estado"));
+					fichas.add(fic);
+					}				
+				}			
+			}catch (SQLException| AppDataException e) {
+				throw new AppDataException(e,"No es posible recuperar Ficha de la BD");
+				
+			}finally{
+				try{
+					if(rs!=null) rs.close();
+					if(stmt!=null) stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 
+			return fichas;
+	}
+
+	public int getCantEstado(String est) throws AppDataException {
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		int cant=0;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"SELECT count(*) as cant from fichalente where estado=?");
+			stmt.setString(1, est);
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				cant=rs.getInt("cant");
+			}
+		}catch (SQLException| AppDataException e) {
+			throw new AppDataException(e,"No es posible recuperar Estados de las Fichas de la BD");
+		}finally{
+			try{
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		} 
+		return cant;
 	}
 }
 

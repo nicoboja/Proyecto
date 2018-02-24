@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import data.DataFichaLente;
 import entity.FichaLente;
+import entity.Paciente;
 
 public class CtrlABMFichaLente {
 	private DataFichaLente dataFicLen = new DataFichaLente();
@@ -27,5 +28,13 @@ public class CtrlABMFichaLente {
 	
 	public ArrayList<FichaLente> getByEstado(String est) throws Exception{
 		return dataFicLen.getByEstado(est);		
+	}
+	
+	public int getCantEstado(String est)throws Exception{		
+		return dataFicLen.getCantEstado(est);			
+	}
+	
+	public ArrayList<FichaLente> getByPaciente (Paciente pac)throws Exception{
+		return dataFicLen.getByPaciente(pac);		
 	}
 }
