@@ -1,5 +1,7 @@
 package controlers;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import data.DataFichaLente;
@@ -10,7 +12,11 @@ public class CtrlABMFichaLente {
 	private DataFichaLente dataFicLen = new DataFichaLente();
 
 	
-	public void add(FichaLente fl) throws Exception{		
+	public void add(FichaLente fl) throws Exception{	
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		fl.setFecEntrada(dtf.format(localDate));
+		fl.setFecEstado(dtf.format(localDate));;
 		dataFicLen.add(fl);		
 	}
 	
@@ -38,8 +44,10 @@ public class CtrlABMFichaLente {
 		return dataFicLen.getByPaciente(pac);		
 	}
 	
-	public void cambiarEstado(FichaLente fl) throws Exception{			
+	public void cambiarEstado(FichaLente fl) throws Exception{	
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		fl.setFecEstado(dtf.format(localDate));
 		dataFicLen.cambiarEstado(fl);					
-	}			
-	
+	}		
 }
