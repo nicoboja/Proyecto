@@ -26,6 +26,7 @@ public class NuevoPaciente extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	
     public NuevoPaciente() {
         super();
         // TODO Auto-generated constructor stub
@@ -48,6 +49,7 @@ public class NuevoPaciente extends HttpServlet {
 					
 				}
 			}else{
+				
 				request.setAttribute("infoTipo", "info");
 				request.setAttribute("infoText", "Ingrese usuario y contraseña");
 				pagina = "/login.jsp";
