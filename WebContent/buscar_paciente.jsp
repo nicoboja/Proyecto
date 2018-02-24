@@ -114,7 +114,7 @@
        	            		for(Paciente p: listPac){
        						 %>
            							<tr>
-                                        <td><button title="Historia Clinica" type="button" onclick="document.location ='HistoriaClinica?id=<%=p.getIdPac()%>'" class="btn btn-outline btn-primary text-right btn-block"><%=p.getIdPac() %></button></td>
+                                        <td><button title="Historia Clinica" type="button" onclick="document.location ='Atenciones?hc=<%=p.getIdPac()%>'" class="btn btn-outline btn-primary text-right btn-block"><%=p.getIdPac() %></button></td>
                                         <td><button title="Datos del Paciente" type="button" onclick="document.location ='ModificarPaciente?id=<%=p.getIdPac()%>'" class="btn btn-outline btn-info text-right btn-block"><%=p.getNroDoc() %></button></td>
                                         <td><%=p.getApellido()%></td>
                                         <td><%=p.getNombre() %></td>

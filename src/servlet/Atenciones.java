@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controlers.CtrlABMFichaLente;
+import controlers.CtrlABMPaciente;
 import entity.FichaLente;
 import entity.Paciente;
 import entity.Usuario;
@@ -42,10 +43,15 @@ public class Atenciones extends HttpServlet {
 				try {
 					Paciente pac = new Paciente();
 					int id = Integer.parseInt(request.getParameter("hc"));
+					
 					pac.setIdPac(id);
+					CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
+					pac = ctrlPac.getById(pac);
 					CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
-				//	ArrayList<FichaLente> listFic = ctrlFicha.getById(pac);
-				//	request.setAttribute("listFicha", listFic);
+					ArrayList<FichaLente> listFic = ctrlFicha.getByPaciente(pac);
+					request.setAttribute("listFicha", listFic);
+					request.setAttribute("pac", pac);
+					
 					
 				} catch (Exception e) {
 					// TODO: handle exception

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList"%>
     <%@page import="entity.FichaLente"%>
+    <%@page import="entity.Paciente"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +24,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Atenciones del paciente: 
+                            Atenciones del paciente: <b><%=((Paciente)request.getAttribute("pac")).getApellido()%> <%=((Paciente)request.getAttribute("pac")).getNombre() %></b>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -32,29 +33,61 @@
 						 <!-- class="table table-striped table-bordered table-hover"    -->
                          <thead>
             					<tr>
-                					<th>HC</th>
-                					<th>Doc.</th>
+            						<th>Ficha</th>
+                					<th>Entrada</th>
+                					<th>Estimado</th>
+                					<th>Tipo</th>
+                					<th>Lente</th>
+                					<th>Estado</th>
+                					<th>Fecha</th>
                 					
                                </tr>
         					</thead>
        						<tfoot>
           					  <tr>
-                					<th>HC</th>
-                					<th>Doc.</th>
+          					  		<th>Ficha</th>
+                					<th>Entrada</th>
+                					<th>Estimado</th>
+                					<th>Tipo</th>
+                					<th>Lente</th>
+                					<th>Estado</th>
+                					<th>Fecha</th>
                 					
                                    	
                             </tr>
         					</tfoot>
        					 <tbody>
-       					 <%if(request.getAttribute("listAte") != null){
-       						ArrayList<FichaLente> listPac = (ArrayList<FichaLente>)request.getAttribute("listAte");
+       					 <%if(request.getAttribute("listFicha") != null){
+       						ArrayList<FichaLente> listPac = (ArrayList<FichaLente>)request.getAttribute("listFicha");
        	            		for(FichaLente f: listPac){
+       	            			String tipo = "";
+       	            			switch (f.getEstado()) {
+       	            				case "Nuevo":
+       	            					tipo = "success";
+       	            				break;
+       	            				case "Taller":
+       	            					tipo = "warning";
+       	            				 break;
+       	            				case "Terminado":
+       	            					tipo = "danger";
+       	            				 break;
+       	            				case "Comunicado":
+       	            					tipo = "info";
+       	            				 break;
+       	            			}
        						 %>
-           							<tr>
-                                       	<td>asd</td>
-                                        <td>hola</td>
-                                       
+           							
+           							<tr class="<%=tipo%>">
+           								<td><button type="button" onclick="document.location ='ModificarUsuario?id=<%=f.getIdFicha()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=f.getIdFicha()%></button></td>
+           								<td><%=f.getFecEntrada()%></td>
+           								<td><%=f.getFecEstimadaS()%></td>
+           								<td><%=f.getTipo().getDescripcion()%></td>
+           								<td><%=f.getMaterial().getDescripcion()%></td>
+           								<td><%=f.getEstado()%></td>
+                                      	<td><%=f.getFecEstado()%></td>
+                                      
                                 	</tr>
+                                	
                            <%} }%>        
  							  </tbody>
     					</table>

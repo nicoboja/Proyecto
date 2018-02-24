@@ -27,7 +27,7 @@
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
+                            <div class="huge"><%=request.getAttribute("nnuevos")%></div>
                             <div>Nuevas Entradas!</div>
                         </div>
                     </div><!--/row-->
@@ -50,7 +50,7 @@
                             <i class="fa fa-wrench fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
+                            <div class="huge"><%=request.getAttribute("ntaller")%></div>
                             <div>En Taller!</div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <i class="fa fa-exclamation-circle fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">6</div>
+                            <div class="huge"><%=request.getAttribute("nterminados")%></div>
                             <div>Terminados!</div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             <i class="fa fa-thumbs-o-up fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">10</div>
+                            <div class="huge"><%=request.getAttribute("ncomunicados")%></div>
                             <div>Comunicados!</div>
                         </div>
                     </div>

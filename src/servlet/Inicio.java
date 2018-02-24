@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controlers.CtrlABMFichaLente;
 import controlers.CtrlABMUsuario;
 import entity.Usuario;
 import util.AppDataException;
@@ -38,10 +39,18 @@ public class Inicio extends HttpServlet {
 		System.out.println(" GET -INICIO ");
 		String pagina = "/escritorio.jsp";
 		HttpSession session = request.getSession();
+		CtrlABMFichaLente ctrlFicha=new CtrlABMFichaLente();
 		try {
 			if(session.getAttribute("uss")!=null) {
 				System.out.println("sesion iniciada");
-				
+				int nuevos=ctrlFicha.getCantEstado("Pendiente");
+				int taller=ctrlFicha.getCantEstado("Taller");
+				int terminado=ctrlFicha.getCantEstado("Terminado");
+				int comunicado=ctrlFicha.getCantEstado("Comunicado");
+				request.setAttribute("nnuevos", nuevos);
+				request.setAttribute("ntaller", taller);
+				request.setAttribute("nterminados", terminado);
+				request.setAttribute("ncomunicados", comunicado);
 
 			}else{
 				request.setAttribute("infoTipo", "info");
@@ -63,6 +72,7 @@ public class Inicio extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pagina = "/login.jsp";
 		HttpSession session = request.getSession();
+		CtrlABMFichaLente ctrlFicha=new CtrlABMFichaLente();
 		
 		
 		
@@ -87,6 +97,14 @@ public class Inicio extends HttpServlet {
 							System.out.println(uLog.getNivel().get(i).getDescripcion());
 							session.setAttribute(uLog.getNivel().get(i).getDescripcion(), true);
 						}
+						int nuevos=ctrlFicha.getCantEstado("Pendiente");
+						int taller=ctrlFicha.getCantEstado("Taller");
+						int terminado=ctrlFicha.getCantEstado("Terminado");
+						int comunicado=ctrlFicha.getCantEstado("Comunicado");
+						request.setAttribute("nnuevos", nuevos);
+						request.setAttribute("ntaller", taller);
+						request.setAttribute("nterminados", terminado);
+						request.setAttribute("ncomunicados", comunicado);
 					}else {
 						 
 						request.setAttribute("infoTipo", "danger");
@@ -112,11 +130,5 @@ public class Inicio extends HttpServlet {
         
 	}
 	
-	private void iniNiveles() {
-		
-		
-		
-	}
+
 }
-
-
