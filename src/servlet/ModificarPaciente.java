@@ -39,7 +39,7 @@ public class ModificarPaciente extends HttpServlet {
 		try {
 			if(session.getAttribute("uss")!=null) {
 				if(session.getAttribute("Administrador") ==null && session.getAttribute("Optico") ==null){
-					pagina = "/escritorio.jsp";
+					pagina = "/Inicio";
 					request.setAttribute("infoNav", "No tiene permisos para ingresar a Modifiar Pacientes");
 				}else{
 					if(request.getParameter("id") != null){
@@ -76,7 +76,7 @@ public class ModificarPaciente extends HttpServlet {
 				}
 		
 			}catch (Exception e) {
-				pagina= "/escritorio.jsp";
+				pagina= "/Inicio";
 				request.setAttribute("infoNav", e);
 			}
 		
