@@ -26,6 +26,7 @@ public class NuevoPaciente extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	
     public NuevoPaciente() {
         super();
         // TODO Auto-generated constructor stub
@@ -48,6 +49,7 @@ public class NuevoPaciente extends HttpServlet {
 					
 				}
 			}else{
+				
 				request.setAttribute("infoTipo", "info");
 				request.setAttribute("infoText", "Ingrese usuario y contraseña");
 				pagina = "/login.jsp";
@@ -92,7 +94,7 @@ public class NuevoPaciente extends HttpServlet {
 						pacForm.setCelular(cel);
 						pacForm.setTelefono(tel);
 						pacForm.setOs(request.getParameter("osocial"));
-						pacForm.setNroDoc(nrobra);
+						pacForm.setNroOs(nrobra);
 						pacForm.setFecNac(request.getParameter("fecnac"));
 						pacForm.setNota(request.getParameter("notas"));
 						

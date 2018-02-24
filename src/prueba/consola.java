@@ -40,90 +40,108 @@ public class consola {
 		CtrlABMFichaLente ctrlF= new CtrlABMFichaLente();
 		CtrlABMLenteMaterial ctrlLM=new CtrlABMLenteMaterial();
 		CtrlABMLenteTipo ctrlT=new CtrlABMLenteTipo();
+		ArrayList<FichaLente> fichasLen= new ArrayList<FichaLente>();
+		String estado="Pendiente";
+		try {
+			fichasLen=ctrlF.getByEstado(estado);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Ficha de Lente Pendientes: ");
+		for(int i=0;i<fichasLen.size();i++){
+			System.out.println(fichasLen.get(i).getArmazon());
+			System.out.println(fichasLen.get(i).getPaciente().getNombre());
+			System.out.println(fichasLen.get(i).getPaciente().getApellido());
+			System.out.println(fichasLen.get(i).getOptico().getUser());
+			System.out.println(fichasLen.get(i).getTallerista().getUser());
+			System.out.println(fichasLen.get(i).getTipo().getDescripcion());
+			System.out.println(fichasLen.get(i).getMaterial().getDescripcion());
+		}
+	
 		
-		System.out.println("Ficha Lente");
-		System.out.println("Ingresar");
-		System.out.println("Armazon:");
-		fl.setArmazon(s.nextLine());
-		System.out.println("codcil:");
-		fl.setCodcil(Float.parseFloat(s.nextLine()));
-		System.out.println("codesf:");
-		fl.setCodesf(Float.parseFloat(s.nextLine()));
-		System.out.println("codgrados:");
-		fl.setCodgrados(Integer.parseInt(s.nextLine()));
-		System.out.println("coicil:");
-		fl.setCoicil(Float.parseFloat(s.nextLine()));
-		System.out.println("coiesf:");
-		fl.setCoiesf(Float.parseFloat(s.nextLine()));
-		System.out.println("coigrados:");
-		fl.setCoigrados(Integer.parseInt(s.nextLine()));
-		System.out.println("color:");
-		fl.setColor(s.nextLine());
-		System.out.println("costo armazon:");
-		fl.setCostoArm(Float.parseFloat(s.nextLine()));
-		System.out.println("costo cristales:");
-		fl.setCostoCrist(Float.parseFloat(s.nextLine()));
-		System.out.println("fecha Entrada:");
-		fl.setFecEntrada(s.nextLine());
-		System.out.println("lodcil:");
-		fl.setCodcil(Float.parseFloat(s.nextLine()));
-		System.out.println("lodesf:");
-		fl.setLodesf(Float.parseFloat(s.nextLine()));
-		System.out.println("lodgrados:");
-		fl.setLodgrados(Integer.parseInt(s.nextLine()));
-		System.out.println("loigrados:");
-		fl.setLoigrados(Integer.parseInt(s.nextLine()));
-		System.out.println("ID Material:");
-		lm.setIdMaterial(Integer.parseInt(s.nextLine()));
-		try {
-			fl.setMaterial(ctrlLM.getById(lm));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("modelo:");
-		fl.setModelo(s.nextLine());
-		System.out.println("ID optico:");
-		opt.setIdU(Integer.parseInt(s.nextLine()));
-		try {
-			fl.setOptico(ctrlUser.getById(opt));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("ID paciente:");
-		pac.setIdPac(Integer.parseInt(s.nextLine()));
-		try {
-			fl.setPaciente(ctrlPac.getById(pac));
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		System.out.println("Seña:");
-		fl.setSena(Float.parseFloat(s.nextLine()));
-		System.out.println("ID tallerista:");
-		tal.setIdU(Integer.parseInt(s.nextLine()));
-		try {
-			fl.setTallerista(ctrlUser.getById(tal));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("ID tipo:");
-		lt.setIdTipo(Integer.parseInt(s.nextLine()));
-		try {
-			fl.setTipo(ctrlT.getById(lt));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			ctrlF.add(fl);
-			System.out.println("FL agregada con exito");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		System.out.println("Ingresar");
+//		System.out.println("Armazon:");
+//		fl.setArmazon(s.nextLine());
+//		System.out.println("codcil:");
+//		fl.setCodcil(Float.parseFloat(s.nextLine()));
+//		System.out.println("codesf:");
+//		fl.setCodesf(Float.parseFloat(s.nextLine()));
+//		System.out.println("codgrados:");
+//		fl.setCodgrados(Integer.parseInt(s.nextLine()));
+//		System.out.println("coicil:");
+//		fl.setCoicil(Float.parseFloat(s.nextLine()));
+//		System.out.println("coiesf:");
+//		fl.setCoiesf(Float.parseFloat(s.nextLine()));
+//		System.out.println("coigrados:");
+//		fl.setCoigrados(Integer.parseInt(s.nextLine()));
+//		System.out.println("color:");
+//		fl.setColor(s.nextLine());
+//		System.out.println("costo armazon:");
+//		fl.setCostoArm(Float.parseFloat(s.nextLine()));
+//		System.out.println("costo cristales:");
+//		fl.setCostoCrist(Float.parseFloat(s.nextLine()));
+//		System.out.println("fecha Entrada:");
+//		fl.setFecEntrada(s.nextLine());
+//		System.out.println("lodcil:");
+//		fl.setCodcil(Float.parseFloat(s.nextLine()));
+//		System.out.println("lodesf:");
+//		fl.setLodesf(Float.parseFloat(s.nextLine()));
+//		System.out.println("lodgrados:");
+//		fl.setLodgrados(Integer.parseInt(s.nextLine()));
+//		System.out.println("loigrados:");
+//		fl.setLoigrados(Integer.parseInt(s.nextLine()));
+//		System.out.println("ID Material:");
+//		lm.setIdMaterial(Integer.parseInt(s.nextLine()));
+//		try {
+//			fl.setMaterial(ctrlLM.getById(lm));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("modelo:");
+//		fl.setModelo(s.nextLine());
+//		System.out.println("ID optico:");
+//		opt.setIdU(Integer.parseInt(s.nextLine()));
+//		try {
+//			fl.setOptico(ctrlUser.getById(opt));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("ID paciente:");
+//		pac.setIdPac(Integer.parseInt(s.nextLine()));
+//		try {
+//			fl.setPaciente(ctrlPac.getById(pac));
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		System.out.println("Seña:");
+//		fl.setSena(Float.parseFloat(s.nextLine()));
+//		System.out.println("ID tallerista:");
+//		tal.setIdU(Integer.parseInt(s.nextLine()));
+//		try {
+//			fl.setTallerista(ctrlUser.getById(tal));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("ID tipo:");
+//		lt.setIdTipo(Integer.parseInt(s.nextLine()));
+//		try {
+//			fl.setTipo(ctrlT.getById(lt));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			ctrlF.add(fl);
+//			System.out.println("FL agregada con exito");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 //		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 //		LocalDate localDate = LocalDate.now();

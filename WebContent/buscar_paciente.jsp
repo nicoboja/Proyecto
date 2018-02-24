@@ -114,8 +114,8 @@
        	            		for(Paciente p: listPac){
        						 %>
            							<tr>
-                                        <td><button title="Historia Clinica" type="button" onclick="document.location ='../pages/usuario_modificar.jsp'" class="btn btn-outline btn-primary text-right btn-block"><%=p.getIdPac() %></button></td>
-                                        <td><button title="Datos del Paciente" type="button" onclick="document.location ='../pages/usuario_modificar.jsp'" class="btn btn-outline btn-info text-right btn-block"><%=p.getNroDoc() %></button></td>
+                                        <td><button title="Historia Clinica" type="button" onclick="document.location ='HistoriaClinica?id=<%=p.getIdPac()%>'" class="btn btn-outline btn-primary text-right btn-block"><%=p.getIdPac() %></button></td>
+                                        <td><button title="Datos del Paciente" type="button" onclick="document.location ='ModificarPaciente?id=<%=p.getIdPac()%>'" class="btn btn-outline btn-info text-right btn-block"><%=p.getNroDoc() %></button></td>
                                         <td><%=p.getApellido()%></td>
                                         <td><%=p.getNombre() %></td>
                                         <td><a href="mailto:nico.boja@gmail.com"><%=p.getCorreo() %></a></td>

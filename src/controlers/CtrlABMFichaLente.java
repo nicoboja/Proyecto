@@ -1,5 +1,7 @@
 package controlers;
 
+import java.util.ArrayList;
+
 import data.DataFichaLente;
 import entity.FichaLente;
 
@@ -20,6 +22,10 @@ public class CtrlABMFichaLente {
 	}			
 	
 	public FichaLente getById(FichaLente fl) throws Exception{	
-		return this.dataFicLen.getById(fl);			
+		return dataFicLen.getById(fl);			
+	}
+	
+	public ArrayList<FichaLente> getByEstado(String est) throws Exception{
+		return dataFicLen.getByEstado(est);		
 	}
 }

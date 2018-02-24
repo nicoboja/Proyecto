@@ -46,17 +46,21 @@ public class Pacientes extends HttpServlet {
 					listPac=null;
 					Paciente pac = new Paciente();
 					if (request.getParameter("dni") != null && request.getParameter("dni") != "") {
+						
 						int doc = Integer.parseInt(request.getParameter("dni"));
 						pac.setNroDoc(doc);
 						listPac = ctrlPac.getListDoc(pac);
 					}else{
 						
 					if (request.getParameter("ape") != null && request.getParameter("ape") != ""){
+						
 						pac.setApellido(request.getParameter("ape"));
+						
 						listPac = ctrlPac.getByApe(pac);
 						}else{
 							
 					if (request.getParameter("hc") != null && request.getParameter("hc") != ""){
+							
 							int hc = Integer.parseInt(request.getParameter("hc"));
 							pac.setNroDoc(hc);
 							listPac = ctrlPac.getListDoc(pac);
@@ -69,7 +73,7 @@ public class Pacientes extends HttpServlet {
 					
 			}else{
 					request.setAttribute("infoTipo", "info");
-					request.setAttribute("infoText", "Ingrese usuario y contraseÃ±a");
+					request.setAttribute("infoText", "Ingrese usuario y contraseña");
 					pagina = "/login.jsp";
 				}
 		} catch (Exception e) {
@@ -87,5 +91,4 @@ public class Pacientes extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

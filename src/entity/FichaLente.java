@@ -24,6 +24,7 @@ public class FichaLente {
 	private Paciente paciente;
 	private Usuario optico;
 	private Usuario tallerista;
+	private String estado;
 	
 	public int getIdFicha() {
 		return idFicha;
@@ -162,7 +163,12 @@ public class FichaLente {
 	}
 	public void setTallerista(Usuario tallerista) {
 		this.tallerista = tallerista;
-	} 
-	
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	} 	
 	
 }
