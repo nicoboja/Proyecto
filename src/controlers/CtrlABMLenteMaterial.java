@@ -15,5 +15,5 @@ public class CtrlABMLenteMaterial {
 	public ArrayList<LenteMaterial> getAll()throws Exception{
 		return dataMat.getAll();
 	}
-
 }
+

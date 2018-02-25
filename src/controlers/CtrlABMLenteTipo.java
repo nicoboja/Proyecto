@@ -16,5 +16,5 @@ public class CtrlABMLenteTipo {
 	public ArrayList<LenteTipo> getAll()throws Exception{
 		return dataTipo.getAll();
 	}
-
 }
+

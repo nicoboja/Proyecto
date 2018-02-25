@@ -40,7 +40,7 @@ public class ModificarUsuario extends HttpServlet {
 		try {
 			if(session.getAttribute("uss")!=null) {
 				if(session.getAttribute("Administrador") ==null){
-					pagina = "/escritorio.jsp";
+					pagina = "/Inicio";
 					request.setAttribute("infoNav", "No tiene permisos para ingresar a Usuarios");
 				}else{
 					if(request.getParameter("id") != null){
@@ -55,7 +55,7 @@ public class ModificarUsuario extends HttpServlet {
 							try {
 								ArrayList<Usuario> listUss = ctrlUss.getAll();
 								request.setAttribute("listUss", listUss);
-						
+								
 							} catch (Exception e) {
 								request.setAttribute("infoNav", e);
 							}
@@ -83,7 +83,7 @@ public class ModificarUsuario extends HttpServlet {
 				}
 		
 			}catch (Exception e) {
-				pagina= "/escritorio.jsp";
+				pagina= "/Inicio";
 				request.setAttribute("infoNav", e);
 			}
 		
@@ -105,7 +105,7 @@ public class ModificarUsuario extends HttpServlet {
 		try {
 			if(session.getAttribute("uss")!= null) {
 				if(session.getAttribute("Administrador") == null){
-					pagina = "/escritorio.jsp";
+					pagina = "/Inicio";
 					request.setAttribute("infoNav", "No tiene permisos para ingresar a Usuarios");
 					}
 				else{
@@ -146,7 +146,7 @@ public class ModificarUsuario extends HttpServlet {
 							
 							} catch (Exception e) {
 									e.printStackTrace();
-									pagina= "/escritorio.jsp";
+									pagina= "/Inicio";
 									request.setAttribute("infoNav", e);
 							}
 					}
@@ -156,7 +156,7 @@ public class ModificarUsuario extends HttpServlet {
 				pagina = "/login.jsp";
 			}
 		} catch (Exception e) {
-			pagina= "/escritorio.jsp";
+			pagina= "/Inicio";
 			request.setAttribute("infoNav", e);
 			e.printStackTrace();
 		}

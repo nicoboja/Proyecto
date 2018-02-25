@@ -56,7 +56,7 @@ public class NuevoPaciente extends HttpServlet {
 			}
 		}
 			catch (Exception e) {
-				pagina= "/escritorio.jsp";
+				pagina= "/Inicio";
 				request.setAttribute("infoNav", e);
 			}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
@@ -73,7 +73,7 @@ public class NuevoPaciente extends HttpServlet {
 		try {
 			if(session.getAttribute("uss")!=null) {
 				if(session.getAttribute("Administrador") ==null && session.getAttribute("Optico") ==null){
-					pagina = "/escritorio.jsp";
+					pagina = "/Inicio";
 					request.setAttribute("infoNav", "No tiene permisos para ingresar a crear un nuevo paciente");
 				}else{
 					if (request.getParameter("dni")!= null &&  request.getParameter("dni")!= "") {
@@ -128,7 +128,8 @@ public class NuevoPaciente extends HttpServlet {
 			}
 		}
 			catch (Exception e) {
-				pagina= "/escritorio.jsp";
+				pagina= "/Inicio";
+				
 				request.setAttribute("infoNav", e);
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);

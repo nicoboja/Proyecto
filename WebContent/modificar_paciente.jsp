@@ -38,15 +38,16 @@
             		 <%} %>
                    <form name="modificarPaciente" action="ModificarPaciente" method="post">
                         <div class="row">
+                         <input class="form-control" type="hidden" name="id" id="id" value="<%=((Paciente)request.getAttribute("pacM")).getIdPac()%>">
                         	
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>DNI</label>
-                                        <input class="form-control" autofocus name="dni" id="dni" value="<%=((Paciente)request.getAttribute("pacM")).getIdPac() %>">
+                                        <input class="form-control" autofocus name="dni" id="dni" value="<%=((Paciente)request.getAttribute("pacM")).getNroDoc()%>">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control"  name="apellido" id="apellido" value="<%=((Paciente)request.getAttribute("pacM")).getApellido() %>">
+                                       <input class="form-control"  name="apellido" id="apellido" value="<%=((Paciente)request.getAttribute("pacM")).getApellido()%>">
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
@@ -62,18 +63,18 @@
                                     </div>
                                     <div class="form-group">
                                             <label>Ciudad</label>
-                                            <input class="form-control" type="text" name="ciudad" id="ciudad" value="<%=((Paciente)request.getAttribute("pacM")).getCiudad()%>" >
+                                            <input class="form-control" type="text" name="ciudad" id="ciudad" value="<%=((Paciente)request.getAttribute("pacM")).getCiudad()%>">
                                     </div>
                                  </div><!-- /col6 -->
                                  
                                  <div class="col-lg-6">
                                 	 <div class="form-group">
                                             <label>Celular</label>
-                                            <input class="form-control" type="number" name="cel" id="cel" value="<%=((Paciente)request.getAttribute("pacM")).getCelular()%>" >
+                                            <input class="form-control" type="number" name="cel" id="cel" value="<%=((Paciente)request.getAttribute("pacM")).getCelular()%>">
                                     </div>
                                  	<div class="form-group">
                                             <label>Telefono fijo</label>
-                                            <input class="form-control" name="tel" id="tel" value="<%=((Paciente)request.getAttribute("pacM")).getTelefono()%>" >
+                                            <input class="form-control" name="tel" id="tel" value="<%=((Paciente)request.getAttribute("pacM")).getTelefono()%>">
                                     </div>
                                 
                                    	<div class="form-group">

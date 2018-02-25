@@ -43,6 +43,7 @@ public class Inicio extends HttpServlet {
 		try {
 			if(session.getAttribute("uss")!=null) {
 				System.out.println("sesion iniciada");
+
 				int nuevos=ctrlFicha.getCantEstado("Nuevo");
 				int taller=ctrlFicha.getCantEstado("Taller");
 				int terminado=ctrlFicha.getCantEstado("Terminado");
@@ -97,6 +98,7 @@ public class Inicio extends HttpServlet {
 							System.out.println(uLog.getNivel().get(i).getDescripcion());
 							session.setAttribute(uLog.getNivel().get(i).getDescripcion(), true);
 						}
+
 						int nuevos=ctrlFicha.getCantEstado("Nuevo");
 						int taller=ctrlFicha.getCantEstado("Taller");
 						int terminado=ctrlFicha.getCantEstado("Terminado");
@@ -130,11 +132,5 @@ public class Inicio extends HttpServlet {
         
 	}
 	
-	private void iniNiveles() {
-		
-		
-		
-	}
+
 }
-
-

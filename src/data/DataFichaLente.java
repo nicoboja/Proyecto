@@ -21,9 +21,9 @@ public class DataFichaLente {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"insert into fichalente (fecEntrada, armazon, modelo, color, codesf, codcil,"
 						+ " coiesf, coicil, lodesf, lodcil, codgrados, coigrados, lodgrados, loigrados,"
-						+ " costoArm, costoCrist, sena, idPac, optico, tallerista, tipo, material, estado,"
+						+ " costoArm, costoCrist, sena, idPac, optico, tipo, material, estado,"
 						+ " fecEstado, fecReceta, fecEstimadaS, notas, loiesf, loicil)"
-						+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+						+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			
 			stmt.setString(1, fl.getFecEntrada());	
 			stmt.setString(2,fl.getArmazon());
@@ -44,16 +44,15 @@ public class DataFichaLente {
 			stmt.setFloat(17, fl.getSena());
 			stmt.setInt(18, fl.getPaciente().getIdPac());
 			stmt.setInt(19, fl.getOptico().getIdU());
-			stmt.setInt(20, fl.getTallerista().getIdU());
-			stmt.setInt(21, fl.getTipo().getIdTipo());
-			stmt.setInt(22, fl.getMaterial().getIdMaterial());
-			stmt.setString(23, fl.getEstado());
-			stmt.setString(24, fl.getFecEstado());
-			stmt.setString(25, fl.getFecReceta());
-			stmt.setString(26, fl.getFecEstimadaS());
-			stmt.setString(27, fl.getNotas());
-			stmt.setFloat(28, fl.getLoiesf());
-			stmt.setFloat(29, fl.getLoicil());
+			stmt.setInt(20, fl.getTipo().getIdTipo());
+			stmt.setInt(21, fl.getMaterial().getIdMaterial());
+			stmt.setString(22, fl.getEstado());
+			stmt.setString(23, fl.getFecEstado());
+			stmt.setString(24, fl.getFecReceta());
+			stmt.setString(25, fl.getFecEstimadaS());
+			stmt.setString(26, fl.getNotas());
+			stmt.setFloat(27, fl.getLoiesf());
+			stmt.setFloat(28, fl.getLoicil());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Nueva Ficha a la BD");

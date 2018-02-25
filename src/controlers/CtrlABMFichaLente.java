@@ -50,4 +50,5 @@ public class CtrlABMFichaLente {
 		fl.setFecEstado(dtf.format(localDate));
 		dataFicLen.cambiarEstado(fl);					
 	}		
+
 }

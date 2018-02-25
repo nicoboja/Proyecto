@@ -62,8 +62,8 @@ public class Pacientes extends HttpServlet {
 					if (request.getParameter("hc") != null && request.getParameter("hc") != ""){
 							
 							int hc = Integer.parseInt(request.getParameter("hc"));
-							pac.setNroDoc(hc);
-							listPac = ctrlPac.getListDoc(pac);
+							pac.setIdPac(hc);;
+							listPac= ctrlPac.getListHC(pac);
 						}
 					}
 					}
@@ -91,4 +91,5 @@ public class Pacientes extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }
