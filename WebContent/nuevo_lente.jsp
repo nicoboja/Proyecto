@@ -26,21 +26,16 @@
                         <div class="panel-body">
 
             <form id ="formFicha" name="formFicha" action="NuevoLente" method="post"> 
-            
+            <input type="hidden" value="<%=((Paciente)request.getAttribute("pac")).getIdPac()%>" name="hc" id="hc">
             <div class="col-md-12">
-            <div class="col-md-4">
-               <div class="form-group input-group">
-                    <span class="input-group-addon">Fecha Entrada*</span>
-                    <input type="date" class="form-control" required="" name="fecha_entra" value="" placeholder="dd/mm/aaaa">
-                </div> 
-            </div>
-            <div class="col-md-4">
+           
+            <div class="col-md-6">
                <div class="form-group input-group">
                     <span class="input-group-addon">F. Estima Salida*</span>
                     <input type="date" class="form-control" required="" name="fecha_estimada" value="" >
                 </div> 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                <div class="form-group input-group">
                     <span class="input-group-addon">Fecha Receta*</span>
                     <input type="date" class="form-control" required=""  name="fecha_receta" value="" >
@@ -236,16 +231,9 @@
        
        </div>
      </div>
-       
-                        
-                        
-                    	</div>
-                    </div>
-               </div>
-          </div>
 </div>
-
-                    
+</div>
+     
 <script src="config/js/ficha.js"></script>
 </body>
 </html>
