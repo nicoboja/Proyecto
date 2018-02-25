@@ -142,8 +142,6 @@ public class NuevoLente extends HttpServlet {
 						ficha.setColor(request.getParameter("color"));
 						ficha.setNotas(request.getParameter("notas"));
 					
-						
-						
 						LenteTipo lt = new LenteTipo();
 						if (request.getParameter("tipo")!= null) {tipo = Integer.parseInt(request.getParameter("tipo"));}
 						lt.setIdTipo(tipo);
