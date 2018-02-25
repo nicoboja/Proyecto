@@ -17,6 +17,7 @@ public class CtrlABMFichaLente {
 		LocalDate localDate = LocalDate.now();
 		fl.setFecEntrada(dtf.format(localDate));
 		fl.setFecEstado(dtf.format(localDate));
+		fl.setEstado("Nuevo");
 		dataFicLen.add(fl);		
 	}
 	
