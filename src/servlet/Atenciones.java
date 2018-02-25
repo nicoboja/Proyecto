@@ -54,7 +54,7 @@ public class Atenciones extends HttpServlet {
 					
 					
 				} catch (Exception e) {
-					// TODO: handle exception
+				e.printStackTrace();
 				}
 				
 			}else{
