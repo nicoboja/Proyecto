@@ -19,10 +19,11 @@ public class DataFichaLente {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"insert into fichalente (fecEntrada, armazon, modelo, color, codesf, codcil, coiesf,"
-						+ " coicil, lodesf, lodcil, codgrados, coigrados, lodgrados, loigrados, costoArm, "
-						+ "costoCrist, sena, idPac, optico, tallerista, tipo, material, estado, fecEstado, "
-						+ "fecReceta, fecEstimadaS, notas) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+						"insert into fichalente (fecEntrada, armazon, modelo, color, codesf, codcil,"
+						+ " coiesf, coicil, lodesf, lodcil, codgrados, coigrados, lodgrados, loigrados,"
+						+ " costoArm, costoCrist, sena, idPac, optico, tallerista, tipo, material, estado,"
+						+ " fecEstado, fecReceta, fecEstimadaS, notas, loiesf, loicil)"
+						+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			
 			stmt.setString(1, fl.getFecEntrada());	
 			stmt.setString(2,fl.getArmazon());
@@ -51,6 +52,8 @@ public class DataFichaLente {
 			stmt.setString(25, fl.getFecReceta());
 			stmt.setString(26, fl.getFecEstimadaS());
 			stmt.setString(27, fl.getNotas());
+			stmt.setFloat(28, fl.getLoiesf());
+			stmt.setFloat(29, fl.getLoicil());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible agregar Nueva Ficha a la BD");
@@ -76,7 +79,7 @@ public class DataFichaLente {
 						"update fichalente set fecEntrada=?, armazon=?, modelo=?, color=?, codesf=?, codcil=?, coiesf=?,"
 						+ " coicil=?, lodesf=?, lodcil=?, codgrados=?, coigrados=?, lodgrados=?, loigrados=?, costoArm=?,"
 						+ " costoCrist=?, sena=?, idPac=?, optico=?, tallerista=?, tipo=?, material=?, estado=?, fecEstado=?,"
-						+ " fecReceta=?, fecEstimadaS=?, notas=? where idFicha=?");
+						+ " fecReceta=?, fecEstimadaS=?, notas=?, loiesf=?, loicil=? where idFicha=?");
 			
 			stmt.setString(1, fl.getFecEntrada());	
 			stmt.setString(2,fl.getArmazon());
@@ -105,7 +108,9 @@ public class DataFichaLente {
 			stmt.setString(25, fl.getFecReceta());
 			stmt.setString(26, fl.getFecEstimadaS());
 			stmt.setString(27, fl.getNotas());
-			stmt.setInt(28, fl.getIdFicha());
+			stmt.setFloat(28, fl.getLoiesf());
+			stmt.setFloat(29, fl.getLoicil());
+			stmt.setInt(30, fl.getIdFicha());
 			stmt.executeUpdate();
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible actualizar Ficha en la BD");
@@ -150,7 +155,9 @@ public class DataFichaLente {
 				fic.setCoiesf(rs.getFloat("coiesf"));
 				fic.setCoicil(rs.getFloat("coicil"));
 				fic.setLodesf(rs.getFloat("lodesf"));
-				fic.setLodcil(rs.getFloat("lodcil"));
+				fic.setLodcil(rs.getFloat("lodcil"));				
+				fic.setLoiesf(rs.getFloat("loiesf"));
+				fic.setLoicil(rs.getFloat("loicil"));				
 				fic.setCodgrados(rs.getInt("codgrados"));
 				fic.setCoigrados(rs.getInt("coigrados"));
 				fic.setLodgrados(rs.getInt("lodgrados"));
@@ -222,6 +229,8 @@ public class DataFichaLente {
 					fic.setCoicil(rs.getFloat("coicil"));
 					fic.setLodesf(rs.getFloat("lodesf"));
 					fic.setLodcil(rs.getFloat("lodcil"));
+					fic.setLoiesf(rs.getFloat("loiesf"));
+					fic.setLoicil(rs.getFloat("loicil"));	
 					fic.setCodgrados(rs.getInt("codgrados"));
 					fic.setCoigrados(rs.getInt("coigrados"));
 					fic.setLodgrados(rs.getInt("lodgrados"));
@@ -295,6 +304,8 @@ public class DataFichaLente {
 					fic.setCoicil(rs.getFloat("coicil"));
 					fic.setLodesf(rs.getFloat("lodesf"));
 					fic.setLodcil(rs.getFloat("lodcil"));
+					fic.setLoiesf(rs.getFloat("loiesf"));
+					fic.setLoicil(rs.getFloat("loicil"));
 					fic.setCodgrados(rs.getInt("codgrados"));
 					fic.setCoigrados(rs.getInt("coigrados"));
 					fic.setLodgrados(rs.getInt("lodgrados"));
@@ -383,4 +394,3 @@ public class DataFichaLente {
 		}		
 	}
 }
-

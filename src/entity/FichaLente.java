@@ -29,6 +29,8 @@ public class FichaLente {
 	private String fecReceta;
 	private String fecEstimadaS;
 	private String notas;
+	private float loiesf;
+	private float loicil;
 	
 	public int getIdFicha() {
 		return idFicha;
@@ -197,6 +199,17 @@ public class FichaLente {
 	}
 	public void setNotas(String notas) {
 		this.notas = notas;
-	} 	
-			
+	}
+	public float getLoiesf() {
+		return loiesf;
+	}
+	public void setLoiesf(float loiesf) {
+		this.loiesf = loiesf;
+	}
+	public float getLoicil() {
+		return loicil;
+	}
+	public void setLoicil(float loicil) {
+		this.loicil = loicil;
+	} 			
 }
