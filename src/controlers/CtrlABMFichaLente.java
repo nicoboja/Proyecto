@@ -51,5 +51,10 @@ public class CtrlABMFichaLente {
 		fl.setFecEstado(dtf.format(localDate));
 		dataFicLen.cambiarEstado(fl);					
 	}		
+	
+	public void setTallerista(FichaLente fl) throws Exception{
+		dataFicLen.setTallerista(fl);
+		this.cambiarEstado(fl);
+	}
 
 }

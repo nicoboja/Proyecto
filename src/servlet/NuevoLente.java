@@ -19,6 +19,7 @@ import entity.FichaLente;
 import entity.LenteMaterial;
 import entity.LenteTipo;
 import entity.Paciente;
+import entity.Usuario;
 
 /**
  * Servlet implementation class NuevoLente
@@ -66,7 +67,7 @@ public class NuevoLente extends HttpServlet {
 				}
 			}else{
 				request.setAttribute("infoTipo", "info");
-				request.setAttribute("infoText", "Ingrese usuario y contraseÃ±a");
+				request.setAttribute("infoText", "Ingrese usuario y contraseña");
 				pagina = "/login.jsp";
 			}
 			
@@ -84,7 +85,7 @@ public class NuevoLente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("DO NUEVO LENTE");
-		String pagina = "/Inicio";
+		String pagina = "/escritorio.jsp";
 		HttpSession session = request.getSession();
 		try {
 			if(session.getAttribute("uss")!=null) {
@@ -96,10 +97,11 @@ public class NuevoLente extends HttpServlet {
 							FichaLente ficha = new FichaLente();
 							CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
 						
-						
-							
 							int codgrados = 0, coigrados =0, lodgrados=0, loigrados=0, tipo = 1, material = 1;
 							float codesf = 0, codcil=0, coiesf=0, coicil=0, lodesf=0, lodcil=0, loiesf=0, loicil=0, costoArm=0, costoCrist=0, sena=0; 
+							
+							ficha.setFecEstimadaS(request.getParameter("fecha_estimada"));
+							ficha.setFecReceta(request.getParameter("fecha_receta"));
 							
 							if (request.getParameter("a_od_c")!= null) {codgrados = Integer.parseInt(request.getParameter("a_od_c"));}
 							ficha.setCodgrados(codgrados);
@@ -144,6 +146,10 @@ public class NuevoLente extends HttpServlet {
 							pac = ctrlPac.getById(pac);
 							ficha.setPaciente(pac);
 							
+							Usuario us = new Usuario();
+							us = (Usuario)session.getAttribute("uss");
+							ficha.setOptico(us);
+							
 							ficha.setArmazon(request.getParameter("armazon"));
 							ficha.setModelo(request.getParameter("modelo"));
 							ficha.setColor(request.getParameter("color"));
@@ -170,7 +176,7 @@ public class NuevoLente extends HttpServlet {
 						
 						
 						ctrlFicha.add(ficha);
-						pagina="/Atencion?="+id;
+						pagina="/Atenciones?hc="+id+"";
 						
 					}else{
 						
@@ -180,11 +186,13 @@ public class NuevoLente extends HttpServlet {
 				}
 			}else{
 				request.setAttribute("infoTipo", "info");
-				request.setAttribute("infoText", "Ingrese usuario njknjky contraseÃ±a");
+				request.setAttribute("infoText", "Ingrese usuario njknjky contraseña");
 				pagina = "/login.jsp";
 			}
 			
 		} catch (Exception e) {
+			System.out.println("catch");
+			e.printStackTrace();
 			request.setAttribute("infoNav", e);
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
