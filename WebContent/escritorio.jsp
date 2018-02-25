@@ -32,6 +32,7 @@
                         </div>
                     </div><!--/row-->
                 </div><!--/panel headings-->
+                <%if((int)request.getAttribute("nnuevos")!=0){%>
                     <a href="#">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalle</span>
@@ -39,6 +40,7 @@
                         <div class="clearfix"></div>
                     </div>
                     </a>
+                <% } %>
             </div>
         </div><!--/terminados-->
         
@@ -55,13 +57,15 @@
                         </div>
                     </div>
                 </div>
+                <%if((int)request.getAttribute("ntaller")!=0){%>
                 <a href="#">
-                <div class="panel-footer">
+                <div class="panel-footer">                
                     <span class="pull-left">Ver Detalles</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>                              
                 </div>
                 </a>
+                <% } %>
             </div>
         </div>
 
@@ -78,6 +82,7 @@
                         </div>
                     </div>
                 </div>
+                <%if((int)request.getAttribute("nterminados")!=0){%>
                 <a href="#">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalle</span>
@@ -85,6 +90,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </a>
+                <% } %>
             </div>
         </div>
         
@@ -101,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+                 <%if((int)request.getAttribute("ncomunicados")!=0){%>
                 <a href="#">
                 <div class="panel-footer">
                     <span class="pull-left">Ver Detalles</span>
@@ -108,6 +115,7 @@
                     <div class="clearfix"></div>
                 </div>
                 </a>
+                <% } %>
             </div>
         </div>
     </div> <!-- ROW -->

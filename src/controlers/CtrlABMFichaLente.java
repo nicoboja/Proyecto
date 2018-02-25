@@ -16,7 +16,8 @@ public class CtrlABMFichaLente {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		fl.setFecEntrada(dtf.format(localDate));
-		fl.setFecEstado(dtf.format(localDate));;
+		fl.setFecEstado(dtf.format(localDate));
+		fl.setEstado("Nuevo");
 		dataFicLen.add(fl);		
 	}
 	
@@ -50,4 +51,5 @@ public class CtrlABMFichaLente {
 		fl.setFecEstado(dtf.format(localDate));
 		dataFicLen.cambiarEstado(fl);					
 	}		
+
 }
