@@ -75,42 +75,37 @@ public class DataFichaLente {
 		PreparedStatement stmt=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-						"update fichalente set fecEntrada=?, armazon=?, modelo=?, color=?, codesf=?, codcil=?, coiesf=?,"
-						+ " coicil=?, lodesf=?, lodcil=?, codgrados=?, coigrados=?, lodgrados=?, loigrados=?, costoArm=?,"
-						+ " costoCrist=?, sena=?, idPac=?, optico=?, tallerista=?, tipo=?, material=?, estado=?, fecEstado=?,"
-						+ " fecReceta=?, fecEstimadaS=?, notas=?, loiesf=?, loicil=? where idFicha=?");
+						"update fichalente set armazon=?, modelo=?, color=?, codesf=?, codcil=?, coiesf=?,"
+						+ " coicil=?, lodesf=?, lodcil=?, codgrados=?, coigrados=?, lodgrados=?, loigrados=?,"
+						+ " costoArm=?, costoCrist=?, sena=?, tipo=?, material=?, fecReceta=?, fecEstimadaS=?,"
+						+ " notas=?, loiesf=?, loicil=? where idFicha=?");
 			
-			stmt.setString(1, fl.getFecEntrada());	
-			stmt.setString(2,fl.getArmazon());
-			stmt.setString(3, fl.getModelo());
-			stmt.setString(4, fl.getColor());
-			stmt.setFloat(5, fl.getCodesf());
-			stmt.setFloat(6, fl.getCodcil());
-			stmt.setFloat(7, fl.getCoiesf());
-			stmt.setFloat(8, fl.getCoicil());
-			stmt.setFloat(9, fl.getLodesf());
-			stmt.setFloat(10, fl.getLodcil());
-			stmt.setInt(11, fl.getCodgrados());
-			stmt.setInt(12, fl.getCoigrados());
-			stmt.setInt(13, fl.getLodgrados());
-			stmt.setInt(14, fl.getLoigrados());
-			stmt.setFloat(15, fl.getCostoArm());
-			stmt.setFloat(16, fl.getCostoCrist());
-			stmt.setFloat(17, fl.getSena());
-			stmt.setInt(18, fl.getPaciente().getIdPac());
-			stmt.setInt(19, fl.getOptico().getIdU());
-			stmt.setInt(20, fl.getTallerista().getIdU());
-			stmt.setInt(21, fl.getTipo().getIdTipo());
-			stmt.setInt(22, fl.getMaterial().getIdMaterial());
-			stmt.setString(23, fl.getEstado());			
-			stmt.setString(24, fl.getFecEstado());
-			stmt.setString(25, fl.getFecReceta());
-			stmt.setString(26, fl.getFecEstimadaS());
-			stmt.setString(27, fl.getNotas());
-			stmt.setFloat(28, fl.getLoiesf());
-			stmt.setFloat(29, fl.getLoicil());
-			stmt.setInt(30, fl.getIdFicha());
+			stmt.setString(1,fl.getArmazon());
+			stmt.setString(2, fl.getModelo());
+			stmt.setString(3, fl.getColor());
+			stmt.setFloat(4, fl.getCodesf());
+			stmt.setFloat(5, fl.getCodcil());
+			stmt.setFloat(6, fl.getCoiesf());
+			stmt.setFloat(7, fl.getCoicil());
+			stmt.setFloat(8, fl.getLodesf());
+			stmt.setFloat(9, fl.getLodcil());
+			stmt.setInt(10, fl.getCodgrados());
+			stmt.setInt(11, fl.getCoigrados());
+			stmt.setInt(12, fl.getLodgrados());
+			stmt.setInt(13, fl.getLoigrados());
+			stmt.setFloat(14, fl.getCostoArm());
+			stmt.setFloat(15, fl.getCostoCrist());
+			stmt.setFloat(16, fl.getSena());		
+			stmt.setInt(17, fl.getTipo().getIdTipo());
+			stmt.setInt(18, fl.getMaterial().getIdMaterial());
+			stmt.setString(19, fl.getFecReceta());
+			stmt.setString(20, fl.getFecEstimadaS());
+			stmt.setString(21, fl.getNotas());
+			stmt.setFloat(22, fl.getLoiesf());
+			stmt.setFloat(23, fl.getLoicil());
+			stmt.setInt(24, fl.getIdFicha());
 			stmt.executeUpdate();
+			System.out.println("TODO BIEN");
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible actualizar Ficha en la BD");
 			
@@ -121,7 +116,6 @@ public class DataFichaLente {
 				e.printStackTrace();	
 			}
 		} 				
-		
 	}
 
 	public FichaLente getById(FichaLente fl) throws AppDataException {
@@ -391,5 +385,25 @@ public class DataFichaLente {
 				e.printStackTrace();	
 			}
 		}		
+	}
+
+	public void setTallerista(FichaLente fl) throws AppDataException {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"update fichalente set tallerista=? where idFicha=?");			
+			stmt.setInt(1, fl.getTallerista().getIdU());
+			stmt.setInt(2, fl.getIdFicha());			
+			stmt.executeUpdate();
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible asignar tallerista a la Ficha en la BD");
+			
+		}finally{
+			try{
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		}			
 	}
 }
