@@ -186,25 +186,20 @@
                     </div>
                 <div class="col-md-12">
                 <h4>Costos</h4>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Armazón			$</span>
                             <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="tot_arma" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Cristales		$</span>
                             <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="total_cris" placeholder="">
                         </div>  
                     </div>
-                  <div class="col-md-3">
-                       <div class="form-group input-group">
-                           <span class="input-group-addon">Adicionales  $</span>
-                           <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="adicionales" placeholder="">
-                       </div>
-                  </div> 
-                   <div class="col-md-3">
+                  
+                   <div class="col-md-4">
                       <div class="form-group input-group">
                            <span class="input-group-addon">Seña		$</span>
                            <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="sena" placeholder="">
@@ -220,7 +215,7 @@
                     <hr>
                     </div>  
                     <div align="right">
-                    <button type="submit" class="btn btn-outline btn-success text-right btn-block">Guardar</button>   
+                    <button type="submit" class="btn btn-outline btn-success text-right btn-block">Nuevo</button>   
                   </div> 
                    <hr>
                </div>    

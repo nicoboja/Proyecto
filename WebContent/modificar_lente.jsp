@@ -19,7 +19,57 @@
                 
         	</div><!-- /.row -->
         	
-<div class="row">
+        	<div class="row">
+                <div class="col-lg-12">
+                    <%
+                    FichaLente f = new FichaLente();
+                	f = (FichaLente)request.getAttribute("ficha");
+                    String tipo = "";
+           			switch (f.getEstado()) {
+       				case "Nuevo":
+       					%>
+       					<div class="col-lg-8">
+                    	<div>
+                                    <p>
+                                        <strong>NUEVO!</strong>
+                                        <span class="pull-right text-muted">25% Realizado</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                            <span class="sr-only">25% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                   		 </div>
+                   		 <div class="col-lg-4">
+                    	<p align="center"><small>CAMBIAR ESTADO</small></p>
+                    	<button type="button" class="btn btn-outline btn-warning text-right btn-block btn-sm" onclick="document.location ='EstadoFicha?ff=<%=f.getIdFicha()%>&hc=<%=((Paciente)request.getAttribute("pac")).getIdPac()%>'" >En Taller</button>
+                    	
+                   		 </div>
+       					<% 
+       				break;
+       				case "Taller":
+       					%>
+       					estado: taller
+       					<%
+       				 break;
+       				case "Terminado":
+       					%>
+       					estado: terminado
+       					<%
+       				 break;
+       				case "Comunicado":
+       					%>
+       					estado: 
+       					<%
+       				 break;
+       			} %>
+                    	
+                    
+                </div>
+           </div>
+        	</BR>
+			<div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -29,9 +79,7 @@
         
                         
                         <div class="panel-body">
-                        <%FichaLente f = new FichaLente();
-                        	f = (FichaLente)request.getAttribute("ficha");
-                        %>
+                        
 
             <form id ="formFicha" name="formFicha" action="ModificarLente" method="post"> 
             <input type="hidden" value="<%=((Paciente)request.getAttribute("pac")).getIdPac()%>" name="hc" id="hc">
@@ -224,7 +272,7 @@
                     <hr>
                     </div>  
                     <div align="right">
-                    <button type="submit" class="btn btn-outline btn-success text-right btn-block">Guardar</button>   
+                    <button type="submit" class="btn btn-outline btn-warning text-right btn-block">Modificar</button>   
                   </div> 
                    <hr>
                </div>    
