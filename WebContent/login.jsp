@@ -59,7 +59,7 @@ function carga() {
 			    		
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Iniciar">
 			    		<br>
-			    		<p align="right" ><em><a href="#">Recuperar Contraseña</a></em></p>
+			    	
 			    	</fieldset>
 			   </form>  
 			      	

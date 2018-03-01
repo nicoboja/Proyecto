@@ -3,7 +3,7 @@ import java.sql.*;
 import util.AppDataException;
 
 
-public class FactoryConexion {
+public class FactoryConexion2 {
 	
 	private String driver="com.mysql.jdbc.Driver";
 	private String host="localhost";
@@ -15,9 +15,9 @@ public class FactoryConexion {
 	private String db="bdoptica";
 
 	
-	private static FactoryConexion instancia;
+	private static FactoryConexion2 instancia;
 		
-	private FactoryConexion(){
+	private FactoryConexion2(){
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
@@ -26,11 +26,11 @@ public class FactoryConexion {
 		
 	}
 	
-	public static FactoryConexion getInstancia(){
-		if (FactoryConexion.instancia == null){		
-			FactoryConexion.instancia=new FactoryConexion();
+	public static FactoryConexion2 getInstancia(){
+		if (FactoryConexion2.instancia == null){		
+			FactoryConexion2.instancia=new FactoryConexion2();
 		}
-		return FactoryConexion.instancia;
+		return FactoryConexion2.instancia;
 		
 	}
 	
