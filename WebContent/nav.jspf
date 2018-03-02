@@ -48,7 +48,7 @@
                             <a href="#"><i class="fa fa-address-book-o" aria-hidden="true"></i> Pacientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../Proyecto/Pacientes"><i class="fa fa-search" aria-hidden="true"></i> Historia Clinica</a>
+                                    <a href="../Proyecto/Pacientes"><i class="fa fa-search" aria-hidden="true"></i> Buscar Paciente</a>
                                 </li>
                                 <li>
                                     <a href="../Proyecto/NuevoPaciente"><i class="fa fa-plus-square-o fa-fw"></i> Nueva Ficha</a>
@@ -61,11 +61,12 @@
                         <li>
                             <a href="#"><i class="fa fa-adjust fa-fw"></i> Lentes Recetados<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
                                 <li>
-                                    <a href="../pages/recetados_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar atención</a>
+                                    <a href="../Proyecto/Pendientes?estado=Terminado"><i class="fa fa-plus-square-o fa-fw"></i> Terminados</a>
                                 </li>
                                 <li>
-                                    <a href="../pages/recetados_nuevo.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo ingreso</a>
+                                    <a href="../Proyecto/Pendientes?estado=Comunicado"><i class="fa fa-plus-square-o fa-fw"></i> Comunicados</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -76,11 +77,12 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Taller<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../pages/reparacion_buscar.jsp"><i class="fa fa-search" aria-hidden="true"></i> Buscar Reparación</a>
+                                    <a href="../Proyecto/Pendientes?estado=Nuevo"><i class="fa fa-plus-square-o fa-fw"></i> Nuevos</a>
                                 </li>
                                 <li>
-                                    <a href="../pages/reparacion_nueva.jsp"><i class="fa fa-plus-square-o fa-fw"></i> Nuevo Ingreso</a>
+                                    <a href="../Proyecto/Pendientes?estado=Taller"><i class="fa fa-plus-square-o fa-fw"></i> en Taller</a>
                                 </li>
+                               
                             </ul>
                             <!-- /.nav-second-level -->
                         </li><!--  Contactologia -->
