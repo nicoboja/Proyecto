@@ -57,7 +57,7 @@ public class CtrlABMFichaLente {
 	        	break;
 	        case "Terminado":  fl.setEstado("Comunicado");
 	        	break;
-	        case "Comunicado":  fl.setEstado("Finalizado");
+	        case "Comunicado":  fl.setEstado("Entregado");
 	        	break;
 		}
 		dataFicLen.cambiarEstado(fl);					
