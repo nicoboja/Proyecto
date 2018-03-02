@@ -50,17 +50,68 @@
        				break;
        				case "Taller":
        					%>
-       					estado: taller
+       					<div class="col-lg-8">
+                    	<div>
+                                    <p>
+                                        <strong>EN TALLER</strong>
+                                        <span class="pull-right text-muted">50% Realizado</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                            <span class="sr-only">50% Realizado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                   		 </div>
+                   		 <div class="col-lg-4">
+                    	<p align="center"><small>CAMBIAR ESTADO</small></p>
+                    	<button type="button" class="btn btn-outline btn-danger text-right btn-block btn-sm" onclick="document.location ='EstadoFicha?ff=<%=f.getIdFicha()%>&hc=<%=((Paciente)request.getAttribute("pac")).getIdPac()%>'" >Terminado</button>
+                    	
+                   		 </div>
        					<%
        				 break;
        				case "Terminado":
        					%>
-       					estado: terminado
+       					<div class="col-lg-8">
+                    	<div>
+                                    <p>
+                                        <strong>TERMINADO</strong>
+                                        <span class="pull-right text-muted">75% Realizado</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                            <span class="sr-only">75% Realizado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                   		 </div>
+                   		 <div class="col-lg-4">
+                    	<p align="center"><small>CAMBIAR ESTADO</small></p>
+                    	<button type="button" class="btn btn-outline btn-info text-right btn-block btn-sm" onclick="document.location ='EstadoFicha?ff=<%=f.getIdFicha()%>&hc=<%=((Paciente)request.getAttribute("pac")).getIdPac()%>'" >Comunicado</button>
+                    	
+                   		 </div>
        					<%
        				 break;
        				case "Comunicado":
        					%>
-       					estado: 
+       					<div class="col-lg-8">
+                    	<div>
+                                    <p>
+                                        <strong>COMUNICADO</strong>
+                                        <span class="pull-right text-muted">90% Realizado</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                            <span class="sr-only">90% Realizado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                   		 </div>
+                   		 <div class="col-lg-4">
+                    	<p align="center"><small>CAMBIAR ESTADO</small></p>
+                    	<button type="button" class="btn btn-outline btn-primary text-right btn-block btn-sm" onclick="document.location ='EstadoFicha?ff=<%=f.getIdFicha()%>&hc=<%=((Paciente)request.getAttribute("pac")).getIdPac()%>'" >Entregado</button>
+                    	
+                   		 </div>
        					<%
        				 break;
        			} %>

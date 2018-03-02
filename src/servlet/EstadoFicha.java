@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import controlers.CtrlABMFichaLente;
 import controlers.CtrlABMPaciente;
+import entity.FichaLente;
 import entity.Paciente;
 
 /**
@@ -39,13 +40,20 @@ public class EstadoFicha extends HttpServlet {
 			try {
 				int idF = Integer.parseInt(request.getParameter("ff"));
 				int idP = Integer.parseInt(request.getParameter("hc"));
-				CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
 				
 				Paciente pac = new Paciente();
 				CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
 				pac.setIdPac(idP);
 				pac = ctrlPac.getById(pac);
 				
+				CtrlABMFichaLente ctrlfic = new CtrlABMFichaLente();
+				FichaLente ficha = new FichaLente();
+				ficha.setIdFicha(idF);
+				ficha = ctrlfic.getById(ficha);
+				ctrlfic.cambiarEstado(ficha);
+				ficha = ctrlfic.getById(ficha);
+				request.setAttribute("ficha", ficha);
+				request.setAttribute("pac", pac);
 				
 				
 			} catch (Exception e) {

@@ -46,9 +46,20 @@ public class CtrlABMFichaLente {
 	}
 	
 	public void cambiarEstado(FichaLente fl) throws Exception{	
+		fl=this.getById(fl);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		fl.setFecEstado(dtf.format(localDate));
+		switch (fl.getEstado()) {
+	        case "Nuevo":  fl.setEstado("Taller");
+	        	break;
+	        case "Taller":  fl.setEstado("Terminado");
+	        	break;
+	        case "Terminado":  fl.setEstado("Comunicado");
+	        	break;
+	        case "Comunicado":  fl.setEstado("Entregado");
+	        	break;
+		}
 		dataFicLen.cambiarEstado(fl);					
 	}		
 	
@@ -56,5 +67,5 @@ public class CtrlABMFichaLente {
 		dataFicLen.setTallerista(fl);
 		this.cambiarEstado(fl);
 	}
-
+	
 }
