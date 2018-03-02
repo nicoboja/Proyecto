@@ -24,14 +24,14 @@ import entity.Usuario;
 /**
  * Servlet implementation class NuevoLente
  */
-@WebServlet("/NuevoLente")
-public class NuevoLente extends HttpServlet {
+@WebServlet("/ModificarLente")
+public class ModificarLente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NuevoLente() {
+    public ModificarLente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,31 +40,36 @@ public class NuevoLente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pagina = "/nuevo_lente.jsp";
+		String pagina = "/modificar_lente.jsp";
 		HttpSession session = request.getSession();
 		try {
 			if(session.getAttribute("uss")!=null) {
-				if(session.getAttribute("Optico") ==null){
-					pagina = "/Inicio";
-					request.setAttribute("infoNav", "No tiene permisos para crear una nueva ficha de lente recetado");
-				}else{
-					if (request.getParameter("hc")!= null &&  request.getParameter("dni")!= "") {
-						
-						int id = Integer.parseInt(request.getParameter("hc"));
-						
-						Paciente pac = new Paciente();
-						CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
-						pac.setIdPac(id);
-						pac = ctrlPac.getById(pac);
-						
-						request.setAttribute("pac", pac);
-						
-						
+					if (request.getParameter("hc")!= null &&  request.getParameter("hc")!= "" && request.getParameter("fp")!= null &&  request.getParameter("fp")!= "") {
+						try {
+							int idPac = Integer.parseInt(request.getParameter("hc"));
+							int idFicha = Integer.parseInt(request.getParameter("fp"));
+							Paciente pac = new Paciente();
+							CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
+							pac.setIdPac(idPac);
+							pac = ctrlPac.getById(pac);
+							
+							CtrlABMFichaLente ctrlfic = new CtrlABMFichaLente();
+							FichaLente ficha = new FichaLente();
+							ficha.setIdFicha(idFicha);
+							ficha = ctrlfic.getById(ficha);
+							request.setAttribute("ficha", ficha);
+							request.setAttribute("pac", pac);
+							
+						} catch (Exception e) {
+							request.setAttribute("infoText","No se pudo cargar la ficha");
+							request.setAttribute("infoTipo","warning");
+							
+						}
 					}else{
 						request.setAttribute("infoText","No existe paciente ");
 						request.setAttribute("infoTipo","warning");
 					}
-				}
+				
 			}else{
 				request.setAttribute("infoTipo", "info");
 				request.setAttribute("infoText", "Ingrese usuario y contraseña");
@@ -84,16 +89,13 @@ public class NuevoLente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("DO NUEVO LENTE");
+		System.out.println("DO MODIFICA LENTE");
 		String pagina = "/escritorio.jsp";
 		HttpSession session = request.getSession();
 		try {
 			if(session.getAttribute("uss")!=null) {
 				
-				if(session.getAttribute("Optico") == null){
-					request.setAttribute("infoNav", "No tiene permisos para crear una nueva ficha de lente recetado");
-				}else{
-					if (request.getParameter("hc")!= null &&  request.getParameter("hc")!= "") {
+					if (request.getParameter("hc")!= null &&  request.getParameter("hc")!= "" && request.getParameter("idf")!= null &&  request.getParameter("idf")!= "" ) {
 							FichaLente ficha = new FichaLente();
 							CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
 						
@@ -138,18 +140,13 @@ public class NuevoLente extends HttpServlet {
 							if (request.getParameter("sena")!= null) {sena = Float.parseFloat(request.getParameter("sena"));}
 							ficha.setSena(sena);
 							
-							int id = Integer.parseInt(request.getParameter("hc"));
+							int id = Integer.parseInt(request.getParameter("hc"));int 
+							idf = Integer.parseInt(request.getParameter("idf"));
 							
-							Paciente pac = new Paciente();
-							CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
-							pac.setIdPac(id);
-							pac = ctrlPac.getById(pac);
-							ficha.setPaciente(pac);
-							
-							Usuario us = new Usuario();
+							/*Usuario us = new Usuario();
 							us = (Usuario)session.getAttribute("uss");
-							ficha.setOptico(us);
-							
+							ficha.setOptico(us);*/
+							ficha.setIdFicha(idf);
 							ficha.setArmazon(request.getParameter("armazon"));
 							ficha.setModelo(request.getParameter("modelo"));
 							ficha.setColor(request.getParameter("color"));
@@ -175,18 +172,21 @@ public class NuevoLente extends HttpServlet {
 						
 						
 						
-						ctrlFicha.add(ficha);
+						ctrlFicha.update(ficha);
 						pagina="/Atenciones?hc="+id+"";
+						request.setAttribute("infoText","Ficha Modificada con Exito ");
+						request.setAttribute("infoTipo","success");
+						System.out.println("FIN");
 						
 					}else{
 						
 						request.setAttribute("infoText","No existe paciente ");
 						request.setAttribute("infoTipo","warning");
 					}
-				}
+				
 			}else{
 				request.setAttribute("infoTipo", "info");
-				request.setAttribute("infoText", "Ingrese usuario njknjky contraseña");
+				request.setAttribute("infoText", "Ingrese usuario y contraseña");
 				pagina = "/login.jsp";
 			}
 			

@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,21 +12,19 @@ import javax.servlet.http.HttpSession;
 
 import controlers.CtrlABMFichaLente;
 import controlers.CtrlABMPaciente;
-import entity.FichaLente;
 import entity.Paciente;
-import entity.Usuario;
 
 /**
- * Servlet implementation class Atenciones
+ * Servlet implementation class EstadoFicha
  */
-@WebServlet({ "/Atenciones", "/atenciones", "/ATENCIONES" })
-public class Atenciones extends HttpServlet {
+@WebServlet({ "/EstadoFicha", "/estadoficha", "/Esetadoficha", "/estadoFIcha", "/ESTADOFICHA" })
+public class EstadoFicha extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Atenciones() {
+    public EstadoFicha() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,41 +33,39 @@ public class Atenciones extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pagina = "/atenciones.jsp";
+		String pagina = "/modificar_lente.jsp";
 		HttpSession session = request.getSession();
-		try {
-			if(session.getAttribute("uss")!=null) {
-				try {
-					Paciente pac = new Paciente();
-					int id = Integer.parseInt(request.getParameter("hc"));
-					
-					pac.setIdPac(id);
-					CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
-					pac = ctrlPac.getById(pac);
-					CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
-					ArrayList<FichaLente> listFic = ctrlFicha.getByPaciente(pac);
-					request.setAttribute("listFicha", listFic);
-					request.setAttribute("pac", pac);
-					
-					
-				} catch (Exception e) {
-				e.printStackTrace();
-				}
+		try {if (session.getAttribute("uss")!=null) {
+			try {
+				int idF = Integer.parseInt(request.getParameter("ff"));
+				int idP = Integer.parseInt(request.getParameter("hc"));
+				CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
 				
-			}else{
-				request.setAttribute("infoTipo", "info");
-				request.setAttribute("infoText", "Ingrese paciente y contraseña");
-				pagina = "/login.jsp";
+				Paciente pac = new Paciente();
+				CtrlABMPaciente ctrlPac = new CtrlABMPaciente();
+				pac.setIdPac(idP);
+				pac = ctrlPac.getById(pac);
+				
+				
+				
+			} catch (Exception e) {
+				pagina= "/Inicio";
+				request.setAttribute("infoNav", "Upss! Hubo un problema al querer actualizar el estado de la ficha");				
 			}
+			
+		}else{
+			request.setAttribute("infoTipo", "info");
+			request.setAttribute("infoText", "Ingrese paciente y contraseña");
+			pagina = "/login.jsp";
+		}
+			
 		} catch (Exception e) {
 			pagina= "/Inicio";
 			request.setAttribute("infoNav", e);
-			
 		}
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 		dispatcher.forward(request, response);
-		
 	}
 
 	/**

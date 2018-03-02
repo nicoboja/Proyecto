@@ -78,7 +78,7 @@
        						 %>
            							
            							<tr class="<%=tipo%>">
-           								<td><button type="button" onclick="document.location ='ModificarUsuario?id=<%=((Paciente)request.getAttribute("pac")).getApellido()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=f.getIdFicha()%></button></td>
+           								<td><button type="button" onclick="document.location ='ModificarLente?hc=<%=((Paciente)request.getAttribute("pac")).getIdPac()%>&fp=<%=f.getIdFicha()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=f.getIdFicha()%></button></td>
            								<td><%=f.getFecEntrada()%></td>
            								<td><%=f.getFecEstimadaS()%></td>
            								<td><%=f.getTipo().getDescripcion()%></td>

@@ -105,6 +105,7 @@ public class DataFichaLente {
 			stmt.setFloat(23, fl.getLoicil());
 			stmt.setInt(24, fl.getIdFicha());
 			stmt.executeUpdate();
+			System.out.println("TODO BIEN");
 		}catch (SQLException | AppDataException e) {
 			throw new AppDataException(e,"No es posible actualizar Ficha en la BD");
 			
