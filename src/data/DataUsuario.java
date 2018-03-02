@@ -94,6 +94,7 @@ public class DataUsuario {
 				usu.setEstado(rs.getString("estado"));
 				usu.setIdU(rs.getInt("idU"));
 				usu.setNotas(rs.getString("notas"));
+				usu.setNotasInt(rs.getString("notasInt"));
 				usu.setNivel(this.getNivelesUser(usu));
 				}			
 			}catch (SQLException e) {
@@ -208,6 +209,7 @@ public class DataUsuario {
 				uLog.setEstado(rs.getString("estado"));
 				uLog.setIdU(rs.getInt("idU"));
 				uLog.setNotas(rs.getString("notas"));
+				uLog.setNotasInt(rs.getString("notasInt"));
 				uLog.setNivel(this.getNivelesUser(uLog));
 				}			
 			}catch (SQLException e) {
@@ -246,6 +248,7 @@ public class DataUsuario {
 				usu.setIdU(rs.getInt("idU"));
 				usu.setNotas(rs.getString("notas"));
 				usu.setPass(rs.getString("pass"));
+				usu.setNotasInt(rs.getString("notasInt"));
 				usu.setNivel(this.getNivelesUser(usu));
 				}			
 			}catch (SQLException e) {
@@ -333,5 +336,25 @@ public class DataUsuario {
 				}
 			} 
 		return b;
+	}
+
+	public void updateNotasInt(Usuario u) throws AppDataException {
+		PreparedStatement stmt=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"update usuario set notasInt=? where idU=?;");
+			stmt.setString(1, u.getNotasInt());
+			stmt.setInt(2, u.getIdU());
+			stmt.executeUpdate();
+		}catch (SQLException | AppDataException e) {
+			throw new AppDataException(e,"No es posible actualizar notas de Usuario en la BD DATOS");
+			
+		}finally{
+			try{
+				FactoryConexion.getInstancia().releaseConn();
+			}catch (SQLException e) {
+				e.printStackTrace();	
+			}
+		}		
 	} 
 } 

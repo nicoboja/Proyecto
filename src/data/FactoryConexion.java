@@ -49,7 +49,14 @@ public class FactoryConexion {
 					
 				}
 			}catch (SQLException ex){
-			throw new AppDataException(ex, "Error al conectar a la base de datos");
+				try {
+					if(conn==null || conn.isClosed()){	
+						conn = DriverManager.getConnection(
+					        "/mydb.cfg");											
+					}
+				}catch (SQLException exe){
+					e.printStackTrace();
+				}
 			}
 		}
 		cantConn++;

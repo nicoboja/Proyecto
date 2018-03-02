@@ -43,56 +43,56 @@ public class consola {
 		ArrayList<FichaLente> fichasLen= new ArrayList<FichaLente>();
 		String estado="Pendiente";
 		
-		fl.setIdFicha(2);
-		try {
-			fl=ctrlF.getById(fl);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("------------------");
-		System.out.println(fl.getFecEstado());
-		System.out.println(fl.getIdFicha());
-		System.out.println(fl.getEstado());
-		try {
-			ctrlF.cambiarEstado(fl);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			fl=ctrlF.getById(fl);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("------------------");
-		System.out.println(fl.getFecEstado());
-		System.out.println(fl.getIdFicha());
-		System.out.println(fl.getEstado());
+//		fl.setIdFicha(2);
 //		try {
-//			fichasLen=ctrlF.getByEstado(estado);
+//			fl=ctrlF.getById(fl);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("------------------");
+//		System.out.println(fl.getFecEstado());
+//		System.out.println(fl.getIdFicha());
+//		System.out.println(fl.getEstado());
+//		try {
+//			ctrlF.cambiarEstado(fl);
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 //		try {
-//			System.out.println(ctrlF.getCantEstado("Pendiente"));
+//			fl=ctrlF.getById(fl);
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//		System.out.println("Ficha de Lente Pendientes: ");
-//		for(int i=0;i<fichasLen.size();i++){
-//			System.out.println("-------------------------------------------------");
-//			System.out.println(fichasLen.get(i).getArmazon());
-//			System.out.println(fichasLen.get(i).getPaciente().getNombre());
-//			System.out.println(fichasLen.get(i).getPaciente().getApellido());
+//		System.out.println("------------------");
+//		System.out.println(fl.getFecEstado());
+//		System.out.println(fl.getIdFicha());
+//		System.out.println(fl.getEstado());
+		try {
+			fichasLen=ctrlF.getByEstado("Nuevo");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println(ctrlF.getCantEstado("Nuevo"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Ficha de Lente Pendientes: ");
+		for(int i=0;i<fichasLen.size();i++){
+			System.out.println("-------------------------------------------------");
+			System.out.println(fichasLen.get(i).getArmazon());
+			System.out.println(fichasLen.get(i).getPaciente().getNombre());
+			System.out.println(fichasLen.get(i).getPaciente().getApellido());
 //			System.out.println(fichasLen.get(i).getOptico().getUser());
 //			System.out.println(fichasLen.get(i).getTallerista().getUser());
 //			System.out.println(fichasLen.get(i).getTipo().getDescripcion());
 //			System.out.println(fichasLen.get(i).getMaterial().getDescripcion());
-//		}
+		}
 //		fl.setIdFicha(1);
 //		try {
 //			fl=ctrlF.getById(fl);

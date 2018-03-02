@@ -72,4 +72,8 @@ public class CtrlABMUsuario {
 	public Usuario getById(Usuario u) throws Exception{
 		return this.dataU.getById(u);
 	}
+	
+	public void actualizarNotasInt(Usuario u)throws Exception{
+		dataU.updateNotasInt(u);
+	}
 }
