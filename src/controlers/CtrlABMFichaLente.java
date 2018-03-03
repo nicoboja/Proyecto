@@ -62,7 +62,7 @@ public class CtrlABMFichaLente {
 		switch (fl.getEstado()) {
 	        case "Nuevo":  fl.setEstado("Taller");
 	        	fl.setTallerista(t);
-	        	dataFicLen.setTallerista(fl);
+	        	this.setTallerista(fl);
 	        	break;
 	        case "Taller":  fl.setEstado("Terminado");
 	        	break;
@@ -76,7 +76,6 @@ public class CtrlABMFichaLente {
 	
 	public void setTallerista(FichaLente fl) throws Exception{
 		dataFicLen.setTallerista(fl);
-		this.cambiarEstado(fl);
 	}
 	
 }
