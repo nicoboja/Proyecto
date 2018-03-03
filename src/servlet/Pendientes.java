@@ -41,14 +41,13 @@ public class Pendientes extends HttpServlet {
 			if(session.getAttribute("uss")!=null) {
 				try {
 					String estado = request.getParameter("estado");
-					System.out.println();
 					CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
 					ArrayList<FichaLente> listFic = ctrlFicha.getByEstado(estado);
 					
-					if(listFic==null){
+					if(listFic.size()==0){
 						pagina= "/Inicio";
 						request.setAttribute("infoNav", "No existen tareas con estado: "+estado);
-					}else{
+					}else{;
 						request.setAttribute("listFicha", listFic);
 						request.setAttribute("Estado", estado);
 						

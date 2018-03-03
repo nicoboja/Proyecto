@@ -63,19 +63,19 @@
 									</div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control"  name="apellido" id="apellido" value="" <%=valida%>>
+                                       <input class="form-control"  name="apellido" id="apellido" value="" maxlength="25" required <%=valida%>>
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" name="nombre" id="nombre" value="" <%=valida%>>
+                                        <input class="form-control" name="nombre" id="nombre" value="" maxlength="25" required <%=valida%>>
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correon" id="correon" value="" <%=valida%>>
+                                            <input class="form-control" name="correon" id="correon" value="" type="email" maxlength="30" required <%=valida%>>
                                     </div>
                                     <div class="form-group">
                                             <label>Contraseña</label>
-                                            <input class="form-control" type="password" name="passn" id="passn" value="" <%=valida%>>
+                                            <input class="form-control" type="password" name="passn" id="passn" value=""maxlength="15" required <%=valida%>>
                                     </div>
                                  </div><!-- /col6 -->
                                  
@@ -109,7 +109,7 @@
 									      	</div>
 									      	<div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea id="notas" name="notas" class="form-control" rows="5" <%=valida%>></textarea>
+                                            	<textarea id="notas" name="notas" class="form-control" rows="8" maxlength="350" <%=valida%>></textarea>
                                         	</div>
                                        		 
                                 			
@@ -132,3 +132,4 @@
 <%@ include file="foot.jspf" %>
 </body>
 </html>
+

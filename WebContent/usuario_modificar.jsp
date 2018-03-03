@@ -27,7 +27,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        Datos de <b><%=((Usuario)request.getAttribute("ussM")).getUser() %></b> -  Fecha Alta: <%=((Usuario)request.getAttribute("ussM")).getFecAlta() %>
+                        Datos de <b><%=((Usuario)request.getAttribute("ussM")).getUser() %></b> -  Fecha Alta: <%=((Usuario)request.getAttribute("ussM")).getFecAlta()%>
                        
                    </div>
                    <div class="panel-body">
@@ -40,27 +40,28 @@
             		 <%} %>
                    <form name="modifica" action="ModificarUsuario" method="post">
                         <div class="row">
-                        	<input id="id" hidden type="text" name="id" value="<%=((Usuario)request.getAttribute("ussM")).getIdU() %>">
+                        	<input id="id" hidden type="text" name="id" value="<%=((Usuario)request.getAttribute("ussM")).getIdU()%>">
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>Usuario</label>
-                                        <input class="form-control" name="usuario" id="usuario" disabled="disabled" value="<%=((Usuario)request.getAttribute("ussM")).getUser() %>">
+                                        <input class="form-control" name="usuario" id="usuario" disabled="disabled" value="<%=((Usuario)request.getAttribute("ussM")).getUser()%>">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control" autofocus name="apellido" id="apellido" value="<%=((Usuario)request.getAttribute("ussM")).getApellido() %>" >
+                                       <input class="form-control" autofocus name="apellido" id="apellido" maxlength="25" required value="<%=((Usuario)request.getAttribute("ussM")).getApellido() %>" >
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" name="nombre" id="nombre" value="<%=((Usuario)request.getAttribute("ussM")).getNombre() %>" >
+                                        <input class="form-control" name="nombre" id="nombre" maxlength="25" required value="<%=((Usuario)request.getAttribute("ussM")).getNombre()%>" >
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correo" id="correo" value="<%=((Usuario)request.getAttribute("ussM")).getCorreo() %>" >
+                                            <input class="form-control" name="correo" id="correo" type="email" maxlength="30" required value="<%=((Usuario)request.getAttribute("ussM")).getCorreo()%>" >
                                     </div>
                                     <div class="form-group">
-                                            <label>Contraseña: <%=((Usuario)request.getAttribute("ussM")).getPass() %></label>
-                                            <input class="form-control" type="password" name="pass" id="pass" value="<%=((Usuario)request.getAttribute("ussM")).getPass() %>" >
+                                            <label>Contraseña: </label>
+                                            <input class="form-control" type="password" name="pass" id="pass" maxlength="15" value="<%=((Usuario)request.getAttribute("ussM")).getPass()%>" >
+                                            
                                     </div>
                                  </div><!-- /col6 -->
                                  

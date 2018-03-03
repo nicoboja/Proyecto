@@ -47,11 +47,11 @@
             <div class="col-md-4">
                 <div class="form-group input-group">
                     <span class="input-group-addon">Armazon</span>
-                    <input type="text" class="form-control" maxlength="15" name="armazon" placeholder="">
+                    <input type="text" class="form-control" maxlength="15" required name="armazon" placeholder="">
                 </div> 
                 <div class="form-group input-group">
                     <span class="input-group-addon">Modelo</span>
-                    <input type="text" class="form-control"  name="modelo" maxlength="15" placeholder="">
+                    <input type="text" class="form-control"  name="modelo" required maxlength="15" placeholder="">
                 </div>
                 <div class="form-group input-group">
                    <span class="input-group-addon">Color</span>
@@ -189,20 +189,20 @@
                     <div class="col-md-4">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Armazón			$</span>
-                            <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="tot_arma" placeholder="">
+                            <input type="number" min="0" step="0.10" maxlength="5" required class="form-control" name="tot_arma" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Cristales		$</span>
-                            <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="total_cris" placeholder="">
+                            <input type="number" min="0" step="0.10" maxlength="5" required class="form-control" name="total_cris" placeholder="">
                         </div>  
                     </div>
                   
                    <div class="col-md-4">
                       <div class="form-group input-group">
                            <span class="input-group-addon">Seña		$</span>
-                           <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="sena" placeholder="">
+                           <input type="number" min="0" step="0.10" maxlength="5" required class="form-control" name="sena" placeholder="">
                         </div>
                     </div>  
                <div class="col-md-9">

@@ -43,47 +43,47 @@
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>DNI</label>
-                                        <input class="form-control" autofocus name="dni" id="dni" value="<%=((Paciente)request.getAttribute("pacM")).getNroDoc()%>">
+                                        <input class="form-control" autofocus name="dni" id="dni" maxlength="10" id="dni" required value="<%=((Paciente)request.getAttribute("pacM")).getNroDoc()%>">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control"  name="apellido" id="apellido" value="<%=((Paciente)request.getAttribute("pacM")).getApellido()%>">
+                                       <input class="form-control"  name="apellido" id="apellido" maxlength="25" required value="<%=((Paciente)request.getAttribute("pacM")).getApellido()%>">
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" name="nombre" id="nombre" value="<%=((Paciente)request.getAttribute("pacM")).getNombre()%>">
+                                        <input class="form-control" name="nombre" id="nombre" maxlength="25" required value="<%=((Paciente)request.getAttribute("pacM")).getNombre()%>">
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correo" id="correo" value="<%=((Paciente)request.getAttribute("pacM")).getCorreo()%>">
+                                            <input class="form-control" name="correo" id="correo" type="email" maxlength="30" required value="<%=((Paciente)request.getAttribute("pacM")).getCorreo()%>">
                                     </div>
                                     <div class="form-group">
                                             <label>Direccion</label>
-                                            <input class="form-control" type="text" name="dir" id="dir" value="<%=((Paciente)request.getAttribute("pacM")).getDireccion()%>">
+                                            <input class="form-control" type="text" name="dir" id="dir" maxlength="30" required value="<%=((Paciente)request.getAttribute("pacM")).getDireccion()%>">
                                     </div>
                                     <div class="form-group">
                                             <label>Ciudad</label>
-                                            <input class="form-control" type="text" name="ciudad" id="ciudad" value="<%=((Paciente)request.getAttribute("pacM")).getCiudad()%>">
+                                            <input class="form-control" type="text" name="ciudad" id="ciudad" maxlength="25" required value="<%=((Paciente)request.getAttribute("pacM")).getCiudad()%>">
                                     </div>
                                  </div><!-- /col6 -->
                                  
                                  <div class="col-lg-6">
                                 	 <div class="form-group">
                                             <label>Celular</label>
-                                            <input class="form-control" type="number" name="cel" id="cel" value="<%=((Paciente)request.getAttribute("pacM")).getCelular()%>">
+                                            <input class="form-control" type="number" name="cel" id="cel" maxlength="15" required value="<%=((Paciente)request.getAttribute("pacM")).getCelular()%>">
                                     </div>
                                  	<div class="form-group">
                                             <label>Telefono fijo</label>
-                                            <input class="form-control" name="tel" id="tel" value="<%=((Paciente)request.getAttribute("pacM")).getTelefono()%>">
+                                            <input class="form-control" name="tel" id="tel" maxlength="15" required value="<%=((Paciente)request.getAttribute("pacM")).getTelefono()%>">
                                     </div>
                                 
                                    	<div class="form-group">
                                     	<label>Obra Social</label>
-                                        <input class="form-control" autofocus name="osocial" id="osocial" value="<%=((Paciente)request.getAttribute("pacM")).getOs()%>">
+                                        <input class="form-control" autofocus name="osocial" id="osocial" value="" maxlength="25" value="<%=((Paciente)request.getAttribute("pacM")).getOs()%>">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Nº Afiliado</label>
-                                       <input class="form-control"  name="nroaf" id="nroaf" value="<%=((Paciente)request.getAttribute("pacM")).getNroOs()%>">
+                                       <input class="form-control"  name="nroaf" id="nroaf" maxlength="25" value="<%=((Paciente)request.getAttribute("pacM")).getNroOs()%>">
                                     </div>
                                     <div class="form-group">
                                         <label>Fecha Nacimiento</label>
