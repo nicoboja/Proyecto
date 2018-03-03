@@ -355,5 +355,6 @@ public class DataUsuario {
 				e.printStackTrace();	
 			}
 		}		
-	} 
+	}
+
 } 
