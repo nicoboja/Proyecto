@@ -198,7 +198,7 @@ public class DataFichaLente {
 		DataLenteTipo dataTipo = new DataLenteTipo();
 		DataLenteMaterial dataMat = new DataLenteMaterial();
 		ArrayList<FichaLente> fichas= new ArrayList<FichaLente>();
-		fichas = null;
+		
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 						"SELECT * from fichalente where estado=?");

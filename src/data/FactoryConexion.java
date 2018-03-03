@@ -6,12 +6,18 @@ import util.AppDataException;
 public class FactoryConexion {
 	
 	private String driver="com.mysql.jdbc.Driver";
+	private String hostI="jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9224283";
+	private String userI="sql9224283";
+	private String passwordI="vZlfgVaENy";
 	
-	private String host="jdbc:mysql://mysql14861-soptica.jelastic.saveincloud.net:3306/dboptica";
-
-	private String user="bdoptica";
-	private String password="java";
-
+	private String hostW="localhost";
+	private String hostM="127.0.0.1";
+	
+	private String port="3306";
+	private String user="root";
+	private String password="root";
+	private String db="bdoptica";
+	
 
 
 	
@@ -40,12 +46,31 @@ public class FactoryConexion {
 		
 			try {
 				if(conn==null || conn.isClosed()){	
-					System.out.println("BD");
-					conn = DriverManager.getConnection(host, user, password);
+					conn = DriverManager.getConnection(
+					        "jdbc:mysql://"+hostM+":"+port+"/"+db+"?user="+user+"&password="+password);
+					
 					
 				}
-			}catch (SQLException ex){
-			ex.printStackTrace();
+			}catch (SQLException e){
+				try {
+					if(conn==null || conn.isClosed()){	
+						conn = DriverManager.getConnection(
+						        "jdbc:mysql://"+hostW+":"+port+"/"+db+"?user="+user+"&password="+password);
+						
+					}
+				
+				} catch (Exception ee) {
+					try {
+						if(conn==null || conn.isClosed()){	
+							System.out.println("BD");
+							conn = DriverManager.getConnection(hostI, userI, passwordI);
+							
+						}
+					
+					} catch (Exception eee) {
+					// TODO: handle exception
+					}
+				}
 			}
 		
 		cantConn++;
