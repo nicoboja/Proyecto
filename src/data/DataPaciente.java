@@ -334,5 +334,32 @@ public class DataPaciente {
 			}
 		} 
 		return pacientes;
-	}	
+	}
+
+	public boolean existePac(Paciente pac) throws AppDataException {
+		boolean b = false;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+						"select * from paciente where nroDoc=?");
+			stmt.setInt(1, pac.getNroDoc());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+				b= true;
+				}			
+			}catch (SQLException e) {
+				throw new AppDataException(e,"No es posible validar existencia de paciente en la BD");
+				
+			}finally{
+				try{
+					if(rs!=null) rs.close();
+					if(stmt!=null) stmt.close();
+					FactoryConexion.getInstancia().releaseConn();
+				}catch (SQLException e) {
+					e.printStackTrace();	
+				}
+			} 
+		return b;
+	}
 }

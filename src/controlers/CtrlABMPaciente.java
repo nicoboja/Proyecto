@@ -47,6 +47,10 @@ public class CtrlABMPaciente {
 	public ArrayList<Paciente> getByApe(Paciente pac) throws Exception{	
 		return this.dataPac.getByApe(pac);			
 	}
+	
+	public boolean validaDoc(Paciente pac)throws Exception{	
+		return this.dataPac.existePac(pac);
+	}
 
 
 
