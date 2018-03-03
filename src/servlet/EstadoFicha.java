@@ -14,6 +14,7 @@ import controlers.CtrlABMFichaLente;
 import controlers.CtrlABMPaciente;
 import entity.FichaLente;
 import entity.Paciente;
+import entity.Usuario;
 
 /**
  * Servlet implementation class EstadoFicha
@@ -50,6 +51,9 @@ public class EstadoFicha extends HttpServlet {
 				FichaLente ficha = new FichaLente();
 				ficha.setIdFicha(idF);
 				ficha = ctrlfic.getById(ficha);
+				Usuario u = new Usuario();
+				u = (Usuario)session.getAttribute("uss");
+				ficha.setTallerista(u);
 				ctrlfic.cambiarEstado(ficha);
 				ficha = ctrlfic.getById(ficha);
 				request.setAttribute("ficha", ficha);

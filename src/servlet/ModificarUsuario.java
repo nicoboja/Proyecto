@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import controlers.CtrlABMNivel;
 import controlers.CtrlABMUsuario;
+import entity.Nivel;
 import entity.Usuario;
 
 /**
@@ -123,19 +124,27 @@ public class ModificarUsuario extends HttpServlet {
 							uss.setNotas(request.getParameter("notas"));
 							uss.setIdU(id);
 							
-							/*System.out.println(uss.getApellido());
-							System.out.println(uss.getNombre());
-							System.out.println(uss.getIdU());
-							System.out.println(uss.getCorreo());
-							System.out.println(uss.getEstado());
-							System.out.println(uss.getPass());
-							System.out.println(uss.getFecEstado());
-							System.out.println(uss.getNotas());*/
+							CtrlABMNivel ctrlNiv = new CtrlABMNivel();
+							ArrayList<Nivel> listNivBD = ctrlNiv.getAll();
+							ArrayList<Nivel> listNiv = new ArrayList<Nivel>();
+						
 							
+							for (Nivel n : listNivBD) {
+								System.out.println(n.getDescripcion());
+								if (request.getParameter(n.getDescripcion()) != null) {
+								//	System.out.println("ACEPTADO: "+n.getDescripcion());
+									listNiv.add(n);
+								}
+								
+								
+							}
+							uss.setNivel(listNiv);
+							
+						
 							CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
 							ctrlUss.update(uss);
 							
-							CtrlABMNivel ctrlNiv = new CtrlABMNivel();
+						//	CtrlABMNivel ctrlNiv = new CtrlABMNivel();
 							request.setAttribute("nivBD", ctrlNiv.getAll());
 							
 							Usuario us= ctrlUss.getById(uss);

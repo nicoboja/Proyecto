@@ -96,9 +96,11 @@
        	            				 break;
        	            			}
        						 %>
+       						 
+       						
            							
            							<tr class="<%=tipo%>">
-           								<td><button type="button" onclick="document.location ='ModificarLente?hc=<%=f.getIdFicha()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=f.getIdFicha()%></button></td>
+           								<td><button type="button" onclick="document.location ='ModificarLente?hc=<%=f.getPaciente().getIdPac()%>&fp=<%=f.getIdFicha()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=f.getIdFicha()%></button></td>
            								<td><%=f.getPaciente().getApellido()%> <%=f.getPaciente().getNombre()%> </td>
            								<td><%=f.getFecEntrada()%></td>
            								<td><%=f.getFecEstimadaS()%></td>

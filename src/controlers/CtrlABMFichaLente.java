@@ -35,11 +35,9 @@ public class CtrlABMFichaLente {
 	}
 	
 	public ArrayList<FichaLente> getByEstado(String est) throws Exception{		
-		if(dataFicLen.getByEstado(est)==null){
-			return null;
-		}else{
+
 			return dataFicLen.getByEstado(est);	
-		}			
+				
 	}
 	
 	public int getCantEstado(String est)throws Exception{		
@@ -62,7 +60,7 @@ public class CtrlABMFichaLente {
 		switch (fl.getEstado()) {
 	        case "Nuevo":  fl.setEstado("Taller");
 	        	fl.setTallerista(t);
-	        	this.setTallerista(fl);
+	        	dataFicLen.setTallerista(fl);
 	        	break;
 	        case "Taller":  fl.setEstado("Terminado");
 	        	break;
@@ -76,6 +74,7 @@ public class CtrlABMFichaLente {
 	
 	public void setTallerista(FichaLente fl) throws Exception{
 		dataFicLen.setTallerista(fl);
+		this.cambiarEstado(fl);
 	}
 	
 }

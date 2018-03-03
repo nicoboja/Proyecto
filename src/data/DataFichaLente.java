@@ -249,7 +249,7 @@ public class DataFichaLente {
 					fic.setNotas(rs.getString("notas"));
 					fichas.add(fic);
 					}				
-				}			
+				}
 			}catch (SQLException| AppDataException e) {
 				throw new AppDataException(e,"No es posible recuperar Ficha de la BD");
 				
