@@ -82,4 +82,8 @@ public class CtrlABMUsuario {
 		dataU.updateNotasInt(u);
 	}
 	
+	public boolean validaUser(Usuario u)throws Exception{
+		return dataU.existeUser(u);
+	}
+	
 }
