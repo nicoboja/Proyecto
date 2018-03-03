@@ -14,6 +14,13 @@
 <body>
 <%@ include file="nav.jspf" %>
 
+<%	String valida;
+	valida = "disabled";
+	if(request.getAttribute("valido")!=null){
+	valida = "";
+	
+} %>
+
 	<div id="page-wrapper">
             <div class="row">
             
@@ -25,7 +32,14 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        Alta de <b>Usuario </b> - 
+                        <form name="valida" action="Validar" method="post">
+                        <span class="form-inline">
+                       		Alta de <b>Usuario: </b> 
+                            <input class="form-control" autofocus  name="usuario" id="usuario" value="">
+                            <button type="submit" class="btn btn-info btn-sm" id="btn-chat" ><i class="fa fa-check" aria-hidden="true"></i>
+							Validar Usuario</button>
+                            </span>
+  						</form>
                        
                    </div>
                    <div class="panel-body">
@@ -42,23 +56,26 @@
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>Usuario</label>
-                                        <input class="form-control" autofocus name="usuario" id="usuario" value="">
-                                    </div>
+                                    	<input class="form-control" name="u" id="u" value="<%if(request.getAttribute("usuario")!=null){%><%=request.getAttribute("usuario")%><%}%>" disabled>
+                                        <input class="form-control" type="hidden" name="usuario" id="usuario" value="<%if(request.getAttribute("usuario")!=null){%><%=request.getAttribute("usuario")%><%}%>" >
+                                        
+                                       
+									</div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control"  name="apellido" id="apellido" value="" >
+                                       <input class="form-control"  name="apellido" id="apellido" value="" <%=valida%>>
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" name="nombre" id="nombre" value="" >
+                                        <input class="form-control" name="nombre" id="nombre" value="" <%=valida%>>
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correon" id="correon" value="" >
+                                            <input class="form-control" name="correon" id="correon" value="" <%=valida%>>
                                     </div>
                                     <div class="form-group">
                                             <label>Contraseña</label>
-                                            <input class="form-control" type="password" name="passn" id="passn" value="" >
+                                            <input class="form-control" type="password" name="passn" id="passn" value="" <%=valida%>>
                                     </div>
                                  </div><!-- /col6 -->
                                  
@@ -75,7 +92,7 @@
                                                 	 for(Nivel n : listNivBD){
                                                  %>
                                                  	<label>
-                                                	<input type="checkbox" name="<%=n.getDescripcion()%>" id="<%=n.getDescripcion()%>" value="<%=n.getDescripcion()%>"><%=n.getDescripcion() %>
+                                                	<input type="checkbox" name="<%=n.getDescripcion()%>" id="<%=n.getDescripcion()%>" value="<%=n.getDescripcion()%>" <%=valida%>><%=n.getDescripcion() %>
                                                 	</label>
                                                 <%}} %>
                                                 
@@ -85,14 +102,14 @@
                                             
                                             <div class="form-group">
                                            		<label>Estado:</label> 
-                                            	<select id="estado" name="estado"  class="form-control ">
+                                            	<select id="estado" name="estado"  class="form-control " <%=valida%>>
                                             		<option  value="Habilitado">Habilitado</option>
                                             		<option  value="Inhabilitado">Inhabilitado</option>
                                                	</select>
 									      	</div>
 									      	<div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea id="notas" name="notas" class="form-control" rows="5"></textarea>
+                                            	<textarea id="notas" name="notas" class="form-control" rows="5" <%=valida%>></textarea>
                                         	</div>
                                        		 
                                 			
@@ -102,7 +119,7 @@
                                     </div><!-- /col6 -->
                               		</div><!-- /row -->	
                               		<div class="col-lg-12">
-                                   <button type="submit" class="btn btn-success btn-lg btn-block ">Nuevo Usuario</button>   
+                                   <button type="submit" class="btn btn-success btn-lg btn-block " <%=valida%>>Nuevo Usuario</button>   
                                 </form>
                                 </div>	 
                          </div><!-- /panel body -->
