@@ -15,7 +15,6 @@ public class CtrlABMUsuario {
 	
 	public boolean add(Usuario u) throws Exception{
 		boolean b=false;
-
 		if(dataU.existeUser(u)==false){
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate localDate = LocalDate.now();
@@ -53,8 +52,6 @@ public class CtrlABMUsuario {
 		
 	
 	public Usuario login(Usuario u) throws Exception{		
-	
-
 		return this.dataU.getLogedUser(u);
 	}
 	
@@ -75,4 +72,9 @@ public class CtrlABMUsuario {
 	public Usuario getById(Usuario u) throws Exception{
 		return this.dataU.getById(u);
 	}
+	
+	public void actulizaNotasInt(Usuario u)throws Exception{
+		dataU.updateNotasInt(u);
+	}
+	
 }
