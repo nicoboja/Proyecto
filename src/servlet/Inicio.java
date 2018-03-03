@@ -60,7 +60,9 @@ public class Inicio extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			pagina = "/login.jsp";
+			request.setAttribute("infoTipo", "danger");
+			request.setAttribute("infoText", e);
 		}
 		RequestDispatcher dispatcher =  getServletContext().getRequestDispatcher(pagina);
 		dispatcher.forward(request, response);  
@@ -124,7 +126,7 @@ public class Inicio extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("infoTipo", "danger");
 			request.setAttribute("infoText", e);
-			e.printStackTrace();
+			
 			
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);

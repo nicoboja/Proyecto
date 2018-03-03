@@ -2,10 +2,6 @@ package entity;
 
 import java.util.ArrayList;
 
-/**
- * @author Bruno
- *
- */
 public class Usuario {
 	private int idU;
 	private String user;
@@ -18,14 +14,14 @@ public class Usuario {
 	private String fecEstado;
 	private String notas;
 	private ArrayList<Nivel> nivel;
+	private String notasInt;
 	
 	public int getIdU() {
 		return idU;
 	}
 	public void setIdU(int idU) {
 		this.idU = idU;
-	}
-	
+	}	
 	public String getPass() {
 		return pass;
 	}
@@ -86,10 +82,10 @@ public class Usuario {
 	public void setNivel(ArrayList<Nivel> nivel) {
 		this.nivel = nivel;
 	}
-
-
-	
-	
-	
-	
+	public String getNotasInt() {
+		return notasInt;
+	}
+	public void setNotasInt(String notasInt) {
+		this.notasInt = notasInt;
+	}	
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import data.DataFichaLente;
 import entity.FichaLente;
 import entity.Paciente;
+import entity.Usuario;
 
 public class CtrlABMFichaLente {
 	private DataFichaLente dataFicLen = new DataFichaLente();
@@ -33,8 +34,12 @@ public class CtrlABMFichaLente {
 		return dataFicLen.getById(fl);			
 	}
 	
-	public ArrayList<FichaLente> getByEstado(String est) throws Exception{
-		return dataFicLen.getByEstado(est);		
+	public ArrayList<FichaLente> getByEstado(String est) throws Exception{		
+		if(dataFicLen.getByEstado(est)==null){
+			return null;
+		}else{
+			return dataFicLen.getByEstado(est);	
+		}			
 	}
 	
 	public int getCantEstado(String est)throws Exception{		
@@ -46,12 +51,18 @@ public class CtrlABMFichaLente {
 	}
 	
 	public void cambiarEstado(FichaLente fl) throws Exception{	
+		Usuario t=new Usuario();		
+		if(fl.getTallerista()!=(null)){
+			t=fl.getTallerista();
+		}
 		fl=this.getById(fl);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		fl.setFecEstado(dtf.format(localDate));
 		switch (fl.getEstado()) {
 	        case "Nuevo":  fl.setEstado("Taller");
+	        	fl.setTallerista(t);
+	        	dataFicLen.setTallerista(fl);
 	        	break;
 	        case "Taller":  fl.setEstado("Terminado");
 	        	break;
