@@ -155,11 +155,11 @@
             <div class="col-md-4">
                 <div class="form-group input-group">
                     <span class="input-group-addon">Armazon</span>
-                    <input type="text" class="form-control" maxlength="15" name="armazon" placeholder="" value="<%=f.getArmazon()%>">
+                    <input type="text" class="form-control" maxlength="15" name="armazon" required placeholder="" value="<%=f.getArmazon()%>">
                 </div> 
                 <div class="form-group input-group">
                     <span class="input-group-addon">Modelo</span>
-                    <input type="text" class="form-control"  name="modelo" maxlength="15" placeholder="" value="<%=f.getModelo()%>">
+                    <input type="text" class="form-control"  name="modelo" maxlength="15" required placeholder="" value="<%=f.getModelo()%>">
                 </div>
                 <div class="form-group input-group">
                    <span class="input-group-addon">Color</span>
@@ -297,20 +297,20 @@
                     <div class="col-md-4">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Armazón			$</span>
-                            <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="tot_arma" placeholder="" value="<%=f.getCostoArm()%>">
+                            <input type="number" min="0" step="0.10" required maxlength="5" class="form-control" name="tot_arma" placeholder="" value="<%=f.getCostoArm()%>">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group input-group">
                             <span class="input-group-addon">Cristales		$</span>
-                            <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="total_cris" placeholder="" value="<%=f.getCostoCrist()%>">
+                            <input type="number" min="0" step="0.10" required maxlength="5" class="form-control" name="total_cris" placeholder="" value="<%=f.getCostoCrist()%>">
                         </div>  
                     </div>
                   
                    <div class="col-md-4">
                       <div class="form-group input-group">
                            <span class="input-group-addon">Seña		$</span>
-                           <input type="number" min="0" step="0.10" maxlength="5" class="form-control" name="sena" placeholder="" value="<%=f.getSena()%>">
+                           <input type="number" min="0" step="0.10" required maxlength="5" class="form-control" name="sena" placeholder="" value="<%=f.getSena()%>">
                         </div>
                     </div>  
                <div class="col-md-9">

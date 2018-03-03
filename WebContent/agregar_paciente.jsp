@@ -42,47 +42,47 @@
                         		 <div class="col-lg-6">
                          	        <div class="form-group">
                                     	<label>DNI</label>
-                                        <input class="form-control" autofocus name="dni" id="dni" value="">
+                                        <input class="form-control" autofocus name="dni" value="" maxlength="10" id="dni" required>
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control"  name="apellido" id="apellido" value="" >
+                                       <input class="form-control"  name="apellido" id="apellido" value="" maxlength="25" required >
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" name="nombre" id="nombre" value="" >
+                                        <input class="form-control" name="nombre" id="nombre" value="" maxlength="25" required>
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correo" id="correo" value="" >
+                                            <input class="form-control" name="correo" id="correo" value="" type="email" maxlength="30" required>
                                     </div>
                                     <div class="form-group">
                                             <label>Direccion</label>
-                                            <input class="form-control" type="text" name="dir" id="dir" value="" >
+                                            <input class="form-control" type="text" name="dir" id="dir" value="" maxlength="30" required >
                                     </div>
                                     <div class="form-group">
                                             <label>Ciudad</label>
-                                            <input class="form-control" type="text" name="ciudad" id="ciudad" value="" >
+                                            <input class="form-control" type="text" name="ciudad" id="ciudad" value="" maxlength="25" required >
                                     </div>
                                  </div><!-- /col6 -->
                                  
                                  <div class="col-lg-6">
                                 	 <div class="form-group">
                                             <label>Celular</label>
-                                            <input class="form-control" type="number" name="cel" id="cel" value="" >
+                                            <input class="form-control" type="number" name="cel" id="cel" value="" maxlength="15" required>
                                     </div>
                                  	<div class="form-group">
                                             <label>Telefono fijo</label>
-                                            <input class="form-control" name="tel" id="tel" value="" >
+                                            <input class="form-control" name="tel" id="tel" value="" maxlength="15" required>
                                     </div>
                                 
                                    	<div class="form-group">
                                     	<label>Obra Social</label>
-                                        <input class="form-control" autofocus name="osocial" id="osocial" value="">
+                                        <input class="form-control" autofocus name="osocial" id="osocial" value=""maxlength="25">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Nº Afiliado</label>
-                                       <input class="form-control"  name="nroaf" id="nroaf" value="" >
+                                       <input class="form-control"  name="nroaf" id="nroaf" value=""maxlength="25">
                                     </div>
                                     <div class="form-group">
                                         <label>Fecha Nacimiento</label>
@@ -97,7 +97,7 @@
                               		<div class="col-lg-12">
                               			<div class="form-group">
                                             	<label>Notas Internas</label>
-                                            	<textarea id="notas" name="notas" class="form-control" rows="5"></textarea>
+                                            	<textarea id="notas" name="notas" class="form-control" rows="3" maxlength="45"></textarea>
                                      	</div>
                                      	</div>
                                      	</div>

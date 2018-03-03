@@ -14,6 +14,8 @@
 <body>
 <%@ include file="nav.jspf" %>
 
+
+
 	<div id="page-wrapper">
             <div class="row">
             
@@ -46,19 +48,19 @@
                                     </div>
                                     <div class="form-group">
                                  	   <label>Apellido</label>
-                                       <input class="form-control" autofocus name="apellido" id="apellido" value="<%=((Usuario)request.getAttribute("ussM")).getApellido() %>" >
+                                       <input class="form-control" autofocus name="apellido" id="apellido" maxlength="25" required value="<%=((Usuario)request.getAttribute("ussM")).getApellido() %>" >
                                     </div>
                                     <div class="form-group">
                                         <label>Nombre</label>
-                                        <input class="form-control" name="nombre" id="nombre" value="<%=((Usuario)request.getAttribute("ussM")).getNombre() %>" >
+                                        <input class="form-control" name="nombre" id="nombre" maxlength="25" required value="<%=((Usuario)request.getAttribute("ussM")).getNombre() %>" >
                                     </div>
                                     <div class="form-group">
                                             <label>Correo</label>
-                                            <input class="form-control" name="correo" id="correo" value="<%=((Usuario)request.getAttribute("ussM")).getCorreo() %>" >
+                                            <input class="form-control" name="correo" id="correo" type="email" maxlength="30" required value="<%=((Usuario)request.getAttribute("ussM")).getCorreo() %>" >
                                     </div>
                                     <div class="form-group">
-                                            <label>Contraseña: <%=((Usuario)request.getAttribute("ussM")).getPass() %></label>
-                                            <input class="form-control" type="password" name="pass" id="pass" value="<%=((Usuario)request.getAttribute("ussM")).getPass() %>" >
+                                            <label>Contraseña: </label>
+                                            <input class="form-control" type="password" name="pass" id="pass" value=""maxlength="15" required value="<%=((Usuario)request.getAttribute("ussM")).getPass() %>" >
                                     </div>
                                  </div><!-- /col6 -->
                                  
