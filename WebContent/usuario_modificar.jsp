@@ -33,7 +33,7 @@
                     <div class="alert alert-<%=request.getAttribute("infoTipo")%>">
                 	<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
                               <big><i class="fa fa-exclamation-circle" aria-hidden="true"></i></big>
-                               <%=request.getAttribute("infoText")%>
+                               <%=request.getAttribute("infoText")%> 
             		 </div> 
             		 <%} %>
                    <form name="modifica" action="ModificarUsuario" method="post">
@@ -75,7 +75,7 @@
                                                 	 for(Nivel n : listNivBD){
                                                  %>
                                                  	<label>
-                                                	<input type="checkbox" name="correo" id="correo" value="<%=n.getDescripcion() %>" 
+                                                	<input type="checkbox" name="<%=n.getDescripcion()%>" id="<%=n.getDescripcion()%>" value="<%=n.getDescripcion()%>" 
                                                 	<%
                                                 	ArrayList<Nivel> listNivUss = ((Usuario)request.getAttribute("ussM")).getNivel();
                                                 	for(Nivel u: listNivUss){if(u.getDescripcion().equals(n.getDescripcion())){

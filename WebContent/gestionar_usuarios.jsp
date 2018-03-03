@@ -31,8 +31,8 @@
                          <thead>
             					<tr>
                 					<th>Usuario</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
+                                    
+                                    <th>Apellido y Nombre</th>
                                     <th>Correo</th>
                                     <th>Fecha Alta</th>
                                     <th>Estado</th>
@@ -43,8 +43,8 @@
        						<tfoot>
           					  <tr>
                 					<th>Usuario</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
+                                   
+                                    <th>Apellido y Nombre</th>
                                     <th>Correo</th>
                                     <th>Fecha Alta</th>
                                     <th>Estado</th>
@@ -61,8 +61,8 @@
        					 %>
        					 		<tr>
                                         <td><button type="button" onclick="document.location ='ModificarUsuario?id=<%=u.getIdU()%>'" class="btn btn-outline btn-warning text-right btn-block"><%=u.getUser() %></button></td>
-                                        <td><%=u.getNombre() %></td>
-                                        <td><%=u.getApellido() %></td>
+                                        
+                                        <td><%=u.getApellido() %> <%=u.getNombre() %></td>
                                         <td><%=u.getCorreo() %></td>
                                         <td><%=u.getFecAlta() %></td>
                                         <td><%=u.getEstado() %></td>
