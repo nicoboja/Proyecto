@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controlers.CtrlABMFichaLente;
 import controlers.CtrlABMUsuario;
 import entity.Usuario;
 
@@ -50,7 +51,20 @@ public class Notas extends HttpServlet {
 				u.setNotasInt(request.getParameter("notaint"));
 				CtrlABMUsuario ctrlUss = new CtrlABMUsuario();
 				ctrlUss.actulizaNotasInt(u);
+				session.setAttribute("uss", u);
+				CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
+				int nuevos=ctrlFicha.getCantEstado("Nuevo");
+				int taller=ctrlFicha.getCantEstado("Taller");
+				int terminado=ctrlFicha.getCantEstado("Terminado");
+				int comunicado=ctrlFicha.getCantEstado("Comunicado");
+				request.setAttribute("nnuevos", nuevos);
+				request.setAttribute("ntaller", taller);
+				request.setAttribute("nterminados", terminado);
+				request.setAttribute("ncomunicados", comunicado);
+				pagina="/escritorio.jsp";
+				
 			}
+			
 			
 		} catch (Exception e) {
 			request.setAttribute("infoNav", e);

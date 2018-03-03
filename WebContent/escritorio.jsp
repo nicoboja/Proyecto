@@ -129,12 +129,14 @@
                         <i class="fa fa-pencil-square-o fa-fw"></i> Notas Personales
                		</div>  <!-- /.panel-heading -->
                 	<div class="panel-body">
+                		<form action="Notas" id="notas" name="notas" method="post">
                     	<div class="form-group">
-                        	<textarea class="form-control" rows="10" id="comment"></textarea>
+                        	<textarea class="form-control" rows="10" id="notaint" name="notaint"><%if(((Usuario)session.getAttribute("uss")).getNotasInt()!=null){%><%=((Usuario)session.getAttribute("uss")).getNotasInt()%><%} %></textarea>
                     	</div>
                     	<div>
-                        	<button type="button" class="btn btn-outline btn-primary btn-lg btn-block">Guardar</button>
+                        	<button type="submit" class="btn btn-outline btn-primary btn-lg btn-block">Guardar</button>
                     	</div>
+                    	</form>
                 	</div>
             	</div>
         	</div>     
