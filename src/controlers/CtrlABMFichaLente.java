@@ -34,8 +34,12 @@ public class CtrlABMFichaLente {
 		return dataFicLen.getById(fl);			
 	}
 	
-	public ArrayList<FichaLente> getByEstado(String est) throws Exception{
-		return dataFicLen.getByEstado(est);		
+	public ArrayList<FichaLente> getByEstado(String est) throws Exception{		
+		if(dataFicLen.getByEstado(est)==null){
+			return null;
+		}else{
+			return dataFicLen.getByEstado(est);	
+		}			
 	}
 	
 	public int getCantEstado(String est)throws Exception{		
