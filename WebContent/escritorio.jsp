@@ -33,7 +33,7 @@
                     </div><!--/row-->
                 </div><!--/panel headings-->
                 <%if((int)request.getAttribute("nnuevos")!=0){%>
-                    <a href="#">
+                    <a href="../Proyecto/Pendientes?estado=Nuevo">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalle</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <%if((int)request.getAttribute("ntaller")!=0){%>
-                <a href="#">
+                <a href="../Proyecto/Pendientes?estado=Taller">
                 <div class="panel-footer">                
                     <span class="pull-left">Ver Detalles</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <%if((int)request.getAttribute("nterminados")!=0){%>
-                <a href="#">
+                <a href="../Proyecto/Pendientes?estado=Terminado">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalle</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                  <%if((int)request.getAttribute("ncomunicados")!=0){%>
-                <a href="#">
+                <a href="../Proyecto/Pendientes?estado=Comunicado">
                 <div class="panel-footer">
                     <span class="pull-left">Ver Detalles</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

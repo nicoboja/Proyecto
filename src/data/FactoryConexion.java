@@ -6,13 +6,13 @@ import util.AppDataException;
 public class FactoryConexion {
 	
 	private String driver="com.mysql.jdbc.Driver";
-	private String host="localhost";
-	private String hostM="127.0.0.1";
-	private String port="3306";
-	private String user="root";
-	private String password="root";
+	
+	private String host="jdbc:mysql://mysql14861-soptica.jelastic.saveincloud.net:3306/dboptica";
 
-	private String db="bdoptica";
+	private String user="bdoptica";
+	private String password="java";
+
+
 
 	
 	private static FactoryConexion instancia;
@@ -37,22 +37,17 @@ public class FactoryConexion {
 	private Connection conn;
 	private int cantConn=0;
 	public Connection getConn() throws SQLException,AppDataException{
-		try {
-			if(conn==null || conn.isClosed()){	
-				conn = DriverManager.getConnection(
-			        "jdbc:mysql://"+host+":"+port+"/"+db+"?user="+user+"&password="+password);
-			}
-		} catch (SQLException e) {
+		
 			try {
 				if(conn==null || conn.isClosed()){	
-					conn = DriverManager.getConnection(
-				        "jdbc:mysql://"+hostM+":"+port+"/"+db+"?user="+user+"&password="+password);
+					System.out.println("BD");
+					conn = DriverManager.getConnection(host, user, password);
 					
 				}
 			}catch (SQLException ex){
-			throw new AppDataException(ex, "Error al conectar a la base de datos");
+			ex.printStackTrace();
 			}
-		}
+		
 		cantConn++;
 		return conn;
 	}
