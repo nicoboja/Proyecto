@@ -10,10 +10,8 @@ public class CtrlABMNivel {
 	
 	private DataNivel dataN = new DataNivel();
 	
-	public ArrayList<Nivel> getAll() throws Exception {		
-		
-			return dataN.getAll();		
-		
+	public ArrayList<Nivel> getAll() throws Exception {			
+			return dataN.getAll();				
 	}
 
 }

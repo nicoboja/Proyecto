@@ -94,7 +94,7 @@ public class DataUsuario {
 				usu.setIdU(rs.getInt("idU"));
 				usu.setNotas(rs.getString("notas"));
 				usu.setNotasInt(rs.getString("notasint"));
-				usu.setNivel(this.getNivelesUser(usu));
+//				usu.setNivel(this.getNivelesUser(usu));
 				}			
 			}catch (SQLException e) {
 				throw new AppDataException(e,"No es posible recuperar usuario de la BD");
@@ -286,13 +286,14 @@ public class DataUsuario {
 	}
 
 	public void insertNivUser(Usuario u) throws AppDataException {
-		
-		for(int i=0;i<u.getNivel().size();i++){	
+		ArrayList<Nivel> niv= new ArrayList<Nivel>();
+		niv=u.getNivel();
+		for(Nivel n: niv){			
 			PreparedStatement stmt=null;
 			try {
 				stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 							"insert into nivel_usuario (idNivel, idUsuario) values (?,?)");	
-				stmt.setInt(1, u.getNivel().get(i).getIdNivel());
+				stmt.setInt(1, n.getIdNivel());
 				stmt.setInt(2,u.getIdU());
 				stmt.executeUpdate();
 			}catch (SQLException | AppDataException e) {
@@ -303,8 +304,8 @@ public class DataUsuario {
 					FactoryConexion.getInstancia().releaseConn();
 				}catch (SQLException e) {
 					e.printStackTrace();	
-				}
-			} 		
+				}			
+			}		
 		}
 	}	
 	

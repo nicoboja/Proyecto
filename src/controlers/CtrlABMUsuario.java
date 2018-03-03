@@ -1,5 +1,6 @@
 package controlers;
 
+import entity.Nivel;
 import entity.Usuario;
 
 import java.time.LocalDate;
@@ -15,13 +16,17 @@ public class CtrlABMUsuario {
 	
 	public boolean add(Usuario u) throws Exception{
 		boolean b=false;
+		ArrayList<Nivel> niv= new ArrayList<Nivel>();
+		niv=u.getNivel();
 		if(dataU.existeUser(u)==false){
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate localDate = LocalDate.now();
 			u.setFecAlta((dtf.format(localDate)));
 			u.setFecEstado((dtf.format(localDate)));
 			dataU.add(u);	
-			if(u.getNivel()!=null){
+			if(niv!=null){
+				u=this.getByUser(u);
+				u.setNivel(niv);
 				dataU.insertNivUser(u);
 			}				
 			b=true;

@@ -40,21 +40,19 @@ public class Pendientes extends HttpServlet {
 		try {
 			if(session.getAttribute("uss")!=null) {
 				try {
-					
 					String estado = request.getParameter("estado");
+					System.out.println();
 					CtrlABMFichaLente ctrlFicha = new CtrlABMFichaLente();
-					ArrayList<FichaLente> listFic = ctrlFicha.getByEstado(estado);
-					if(listFic==null){
+					
+					if(estado!="Nuevo"|| estado!="Taller"|| estado!="Terminado"|| estado!="Comunicado"){
 						pagina= "/Inicio";
-						request.setAttribute("infoNav", "No existen tareas con ese estado");
+						request.setAttribute("infoNav", "No existen tareas con estado: "+estado);
 					}else{
+						ArrayList<FichaLente> listFic = ctrlFicha.getByEstado(estado);
 						request.setAttribute("listFicha", listFic);
 						request.setAttribute("Estado", estado);
 						
 					}
-					
-					
-					
 				} catch (Exception e) {
 					pagina= "/Inicio";
 					request.setAttribute("infoNav", e);
@@ -62,7 +60,7 @@ public class Pendientes extends HttpServlet {
 				
 			}else{
 				request.setAttribute("infoTipo", "info");
-				request.setAttribute("infoText", "Ingrese paciente y contraseÃ±a");
+				request.setAttribute("infoText", "Ingrese paciente y contraseña");
 				pagina = "/login.jsp";
 			}
 		} catch (Exception e) {
@@ -70,7 +68,7 @@ public class Pendientes extends HttpServlet {
 			request.setAttribute("infoNav", e);
 			
 		}
-		
+		System.out.println(pagina);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
 		dispatcher.forward(request, response);
 	}
