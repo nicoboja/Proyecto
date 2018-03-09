@@ -79,7 +79,7 @@
                                 
                                    	<div class="form-group">
                                     	<label>Obra Social</label>
-                                        <input class="form-control" autofocus name="osocial" id="osocial" value="" maxlength="25" value="<%=((Paciente)request.getAttribute("pacM")).getOs()%>">
+                                        <input class="form-control" autofocus name="osocial" id="osocial" maxlength="25" value="<%=((Paciente)request.getAttribute("pacM")).getOs()%>">
                                     </div>
                                     <div class="form-group">
                                  	   <label>Nº Afiliado</label>
